@@ -1,3 +1,4 @@
+import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/home/home_page.dart';
@@ -66,9 +67,11 @@ class _ConfigPageState extends State<ConfigPage> {
             ),
             home: HomePage(),
             routes: {
+              
               HomePage.routeName: (context) => HomePage(),
              // SpeakerPage.routeName: (context) => SpeakerPage(),
               AgendaPage.routeName: (context) => AgendaPage(),
+              RankPage.routeName:(context)=> RankPage(),
               /*
               SponsorPage.routeName: (context) => SponsorPage(),
               TeamPage.routeName: (context) => TeamPage(),

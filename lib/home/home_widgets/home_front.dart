@@ -1,3 +1,4 @@
+import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
 
 import 'package:anet/agenda/agenda_page.dart';
@@ -99,28 +100,138 @@ class HomeFront extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            new Container(
-              child: Column(
-                children: <Widget>[
-                  new Text("100", style: Theme.of(context).textTheme.headline),
-                  new Divider(
-                    height: 2,
-                  ),
-                  new Text(
-                    "Events Ateended",
-                    style: Theme.of(context).textTheme.body2,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+            new Container(IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
             ),
-            new VerticalDivider(
-              width: 1,
-              color: Colors.red,
+              child: Column(IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
             ),
-            new Container(
-              child: Column(
-                children: <Widget>[
+                children: <Widget>[IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                  new Text("100", styleIconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),: Theme.of(context).textTheme.headline),
+                  new Divider(IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                    height: 2,IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                  ),IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                  new Text(IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                    "Events Ateended",IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                    style: Theme.of(conIconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),text).textTheme.body2,
+                    textAlign: TextAligIconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),n.center,
+                  ),IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                ],IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+              ),IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+            ),IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+            new VerticalDivider(IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+              width: 1,IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+              color: Colors.red,IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+            ),IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+            new Container(IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+              child: Column(IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
+                children: <Widget>[IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),
                   new Text("200", style: Theme.of(context).textTheme.headline),
                   new Divider(
                     height: 2,
@@ -225,7 +336,7 @@ class HomeFront extends StatelessWidget {
             icon: FontAwesomeIcons.trophy,
             color: Colors.amber,
             title: "Rank",
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, RankPage.routeName),
           ),
           ActionCard(
             icon: FontAwesomeIcons.checkSquare,
@@ -233,6 +344,12 @@ class HomeFront extends StatelessWidget {
             title: "Attendance",
             onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
           ),
+           ActionCard(
+            icon: FontAwesomeIcons.facebook,
+            color: Colors.brown,
+            title: "Projects",
+            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+          ),/*
           ActionCard(
             icon: FontAwesomeIcons.solidNewspaper,
             color: Colors.brown,
@@ -244,7 +361,7 @@ class HomeFront extends StatelessWidget {
             color: Colors.blue,
             title: "Where is?",
             onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
-          )
+          )*/
         ],
       );
 
@@ -259,38 +376,47 @@ class HomeFront extends StatelessWidget {
               },
             ),
             IconButton(
+              icon: Icon(FontAwesomeIcons.instagram),
+              onPressed: () async {
+                await _launchURL("https://www.instagram.com/cia_together/?hl=en");
+              },
+            ),
+            
+            IconButton(
               icon: Icon(FontAwesomeIcons.twitter),
               onPressed: () async {
-                await _launchURL("https://twitter.com/imthepk");
+                await _launchURL("https://twitter.com/cia_together");
               },
             ),
             IconButton(
               icon: Icon(FontAwesomeIcons.linkedinIn),
               onPressed: () async {
-                _launchURL("https://linkedin.com/in/imthepk");
+                _launchURL("https://www.linkedin.com/company/communities-in-atria");
               },
             ),
             IconButton(
               icon: Icon(FontAwesomeIcons.youtube),
               onPressed: () async {
-                await _launchURL("https://youtube.com/mtechviral");
+                await _launchURL("https://www.youtube.com/channel/UCVOsWDAhARY9WnJzkFj4Jrg ");
               },
             ),
+            /*
             IconButton(
               icon: Icon(FontAwesomeIcons.meetup),
               onPressed: () async {
                 await _launchURL("https://meetup.com/");
               },
-            ),
+            ),*/
             IconButton(
               icon: Icon(FontAwesomeIcons.envelope),
               onPressed: () async {
                 var emailUrl =
-                    '''mailto:mtechviral@gmail.com?subject=Support Needed For DevFest App&body={Name: Pawan Kumar},Email: pawan221b@gmail.com}''';
+                    '''mailto:communities.atria@gmail.com?subject=We love CIA-CommunitiesInAtria&body=Communities are great !!!''';
                 var out = Uri.encodeFull(emailUrl);
                 await _launchURL(out);
               },
             ),
+            
           ],
         ),
       );

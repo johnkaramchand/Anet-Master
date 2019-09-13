@@ -11,7 +11,7 @@ class MobileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_type == 'sessions').toList();
+    var eventSessions = events.where((s) => s.event_state == false).toList();
     return EventList(
       allEvents: eventSessions,
     );

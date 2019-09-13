@@ -23,7 +23,7 @@ class CloudScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_type == 'general').toList();
+    var eventSessions = events.where((s) => s.event_state == true).toList();
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
@@ -31,9 +31,8 @@ class CloudScreen extends StatelessWidget {
         onRefresh: () async {
           print("Pulled down");
              homeBloc.dispatch(LoadEventsEvent());
-             
              var events = state.eventsData.events;
-             eventSessions = events.where((s) => s.event_type == 'general').toList();
+             eventSessions = events.where((s) => s.event_state == true).toList();
           _refreshController.refreshCompleted();
         },
         child:buildlist(eventSessions,context)

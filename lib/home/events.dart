@@ -30,7 +30,7 @@ class EventsData {
 
 class Event {
   int event_id;
-  String event_type;
+  bool event_state;
   String title;
   String event_date;
   String start_time;
@@ -42,7 +42,7 @@ class Event {
 
   Event(
       {this.event_id,
-      this.event_type,
+      this.event_state,
       this.title,
       this.event_date,
       this.start_time,
@@ -53,7 +53,7 @@ class Event {
 
   Event.fromJson(Map<String, dynamic> json) {
     event_id = json['event_id'];
-    event_type = json['event_type'];
+    event_state = json['event_state'];
     title = json['title'];
     event_date = json['event_date'];
     start_time = json['start_time'];
@@ -67,7 +67,7 @@ class Event {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['event_id'] = this.event_id;
-    data['event_type'] = this.event_type;
+    data['event_state'] = this.event_state;
     data['title'] = this.title;
     data['event_date'] = this.event_date;
     data['start_time'] = this.start_time;

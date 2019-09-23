@@ -36,7 +36,7 @@ class HomeProvider implements IHomeProvider {
   }
 
   Future<NewsData> getNews() async{
-    final response = await http.get('http://139.59.61.35:8000/api/v2/news/?format=json');
+    final response = await http.get('http://139.59.61.35:8000/api/v2/events/?format=json');
     if(response.statusCode == 200){
       print(response.body);
       NewsData res =  NewsData.fromJson(json.decode(response.body));

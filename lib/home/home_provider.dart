@@ -4,15 +4,18 @@ import 'package:anet/home/team.dart';
 import 'package:anet/network/i_client.dart';
 import 'package:anet/utils/dependency_injection.dart';
 import 'package:anet/utils/devfest.dart';
-import 'events.dart';
+import 'package:anet/models/events.dart';
+import 'package:anet/models/news_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 
 abstract class IHomeProvider {
   Future<SpeakersData> getSpeakers();
   Future<SessionsData> getSessions();
   Future<TeamsData> getTeams();
   Future<EventsData> getEvents();
+  Future<NewsData> getNews();
 }
 
 class HomeProvider implements IHomeProvider {
@@ -31,6 +34,19 @@ class HomeProvider implements IHomeProvider {
   HomeProvider() {
     _client = Injector().currentClient;
   }
+
+  Future<NewsData> getNews() async{
+    final response = await http.get('http://139.59.61.35:8000/api/v2/news/?format=json');
+    if(response.statusCode == 200){
+      print(response.body);
+      NewsData res =  NewsData.fromJson(json.decode(response.body));
+      return res;
+    }
+    else
+    throw Exception('Failed to load events');
+  }
+
+
 
   Future<EventsData> getEvents() async{
     final response = await http.get('http://139.59.61.35:8000/api/v2/events/?format=json');

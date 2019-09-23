@@ -16,7 +16,7 @@ class AgendaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var _homeBloc = HomeBloc();
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: DevScaffold(
         title: "Events",
         tabBar: TabBar(
@@ -28,26 +28,26 @@ class AgendaPage extends StatelessWidget {
           isScrollable: false,
           tabs: <Widget>[
             Tab(
-              child: Text("General"),
+              child: Text("Upcoming"),
               icon: Icon(
-                FontAwesomeIcons.dotCircle,
+                FontAwesomeIcons.asterisk,
                 size: 12,
               ),
             ),
             Tab(
-              child: Text("Sessions"),
+              child: Text("Past"),
               icon: Icon(
-                FontAwesomeIcons.briefcase,
+                FontAwesomeIcons.dotCircle,
                 size: 12,
               ),
-            ),
+            ),/*
             Tab(
               child: Text("Competitions"),
               icon: Icon(
                 FontAwesomeIcons.moneyCheckAlt,
                 size: 12,
               ),
-            )
+            )*/
           ],
         ),
         body: TabBarView(
@@ -57,10 +57,10 @@ class AgendaPage extends StatelessWidget {
             ),
             MobileScreen(
               homeBloc: _homeBloc,
-            ),
+            ),/*
             WebScreen(
               homeBloc: _homeBloc,
-            ),
+            ),*/
           ],
         ),
       ),

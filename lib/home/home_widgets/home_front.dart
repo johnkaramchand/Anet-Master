@@ -1,3 +1,5 @@
+import 'package:anet/comingsoon.dart';
+import 'package:anet/news.dart';
 import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
 
@@ -330,25 +332,25 @@ class HomeFront extends StatelessWidget {
             icon: FontAwesomeIcons.newspaper,
             color: Colors.green,
             title: "News",
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, NewsPage.routeName),
           ),
           ActionCard(
             icon: FontAwesomeIcons.trophy,
             color: Colors.amber,
             title: "Rank",
-            onPressed: () => Navigator.pushNamed(context, RankPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, ComingSoonPage.routeName),
           ),
           ActionCard(
             icon: FontAwesomeIcons.checkSquare,
             color: Colors.purple,
             title: "Attendance",
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, ComingSoonPage.routeName),
           ),
            ActionCard(
-            icon: FontAwesomeIcons.facebook,
-            color: Colors.brown,
+            icon: FontAwesomeIcons.bars,
+            color: Colors.blue,
             title: "Projects",
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, ComingSoonPage.routeName),
           ),/*
           ActionCard(
             icon: FontAwesomeIcons.solidNewspaper,

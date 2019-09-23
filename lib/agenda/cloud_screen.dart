@@ -1,10 +1,11 @@
+import 'package:anet/agenda/event_details.dart';
 import 'package:anet/agenda/event_list.dart';
 import 'package:anet/home/session.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:anet/agenda/session_list.dart';
 import 'package:anet/home/index.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:anet/home/events.dart';
+import 'package:anet/models/events.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/agenda/session_detail.dart';
@@ -23,7 +24,7 @@ class CloudScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_type == 'general').toList();
+    var eventSessions = events.where((s) => s.event_state == false ).toList();
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
@@ -33,7 +34,7 @@ class CloudScreen extends StatelessWidget {
              homeBloc.dispatch(LoadEventsEvent());
              
              var events = state.eventsData.events;
-             eventSessions = events.where((s) => s.event_type == 'general').toList();
+             eventSessions = events.where((s) => s.event_state == false ).toList();
           _refreshController.refreshCompleted();
         },
         child:buildlist(eventSessions,context)
@@ -58,29 +59,29 @@ class CloudScreen extends StatelessWidget {
         return Card(
           elevation: 0.0,
           child: ListTile(
-            onTap: () {/*
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SessionDetail(
-                    session: allSessions[i],
+                  builder: (context) => EventsDetail(
+                    event: allEvents[i],
                   ),
                 ),
-              );*/
+              );
             },
             // dense: true,
             isThreeLine: true,
             trailing: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: "${allEvents[i].organizer}\n",
+                text: "${allEvents[i].start_time}\n",
                 style: Theme.of(context)
                     .textTheme
                     .title
                     .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                     text: "${allEvents[i].organizer}\n",
+                     text: "${allEvents[i].end_time}\n",
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontSize: 12,
                         ),
@@ -100,11 +101,11 @@ class CloudScreen extends StatelessWidget {
             ),
             title: RichText(
               text: TextSpan(
-                 text: "${allEvents[i].organizer}\n",
+                 text: "${allEvents[i].title}\n",
                 style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
                 children: [
                   TextSpan(
-                       text: "${allEvents[i].organizer}\n",
+                       text: "${allEvents[i].description}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],

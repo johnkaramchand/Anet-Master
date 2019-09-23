@@ -32,7 +32,7 @@ class HomeFront extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(10.0),
-         // height: MediaQuery.of(context).size.height * 0.2,
+          // height: MediaQuery.of(context).size.height * 0.2,
           width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,14 +40,13 @@ class HomeFront extends StatelessWidget {
               new Container(
                 child: Column(
                   children: <Widget>[
-                    new Text("100",
-                        style: TextStyle(
-                          color: Tools.multiColors[Random().nextInt(4)],
-                          fontSize: 40,
-                        ),
-                        ),
-                        
-                        
+                    new Text(
+                      "100",
+                      style: TextStyle(
+                        color: Tools.multiColors[Random().nextInt(4)],
+                        fontSize: 40,
+                      ),
+                    ),
                     new Divider(
                       height: 2,
                     ),
@@ -66,12 +65,13 @@ class HomeFront extends StatelessWidget {
               new Container(
                 child: Column(
                   children: <Widget>[
-                   new Text("200",
-                        style: TextStyle(
-                          color: Tools.multiColors[Random().nextInt(4)],
-                          fontSize: 40,
-                        ),
-                        ),
+                    new Text(
+                      "200",
+                      style: TextStyle(
+                        color: Tools.multiColors[Random().nextInt(4)],
+                        fontSize: 40,
+                      ),
+                    ),
                     new Divider(
                       height: 2,
                     ),
@@ -96,7 +96,7 @@ class HomeFront extends StatelessWidget {
         ),
         SizedBox(
           height: 10,
-        ),/*
+        ), /*
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[

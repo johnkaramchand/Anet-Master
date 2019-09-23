@@ -33,9 +33,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           username: event.username,
           password: event.password,
         );
-
+        if(token == 'nottoken'){
+          yield LoginFailure(error: "Invalid");
+        }
+        else {
         authenticationBloc.dispatch(LoggedIn(token: token));
         yield LoginInitial();
+
+        }
       } catch (error) {
         yield LoginFailure(error: error.toString());
       }

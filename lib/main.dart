@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:anet/config/config_page.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/authentication_bloc/user_repository.dart';
@@ -9,6 +9,13 @@ import 'package:anet/authentication_presentation/splash_screen.dart';
 import 'package:anet/login_bloc/login.dart';
 import 'package:anet/authentication_presentation/home_page.dart';
 import 'package:anet/login_bloc/loading_indicator.dart';
+
+import 'package:flutter/services.dart';
+import 'utils/dependency_injection.dart';
+import 'utils/devfest.dart';
+import 'utils/simple_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -30,7 +37,34 @@ class SimpleBlocDelegate extends BlocDelegate {
   }
 }
 
-void main() {
+void main() async{
+
+//from original mail function
+SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ),
+  );
+
+  //* Forcing only portrait orientation
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+  // * Get Shared Preference Instance for whole app
+  Devfest.prefs = await SharedPreferences.getInstance();
+
+  //* To check the app is running in debug and set some variables for that
+  Devfest.checkDebug();
+
+  //* Time travel debugging to check app states
+  BlocSupervisor.delegate = SimpleBlocDelegate();
+
+  // * Set flavor for your app. For eg - MOCK for offline, REST for some random server calls to your backend, FIREBASE for firebase calls
+  //* Set DataMode.DART to use Dart hardcoded data and DataMode.JSON to use json file for hardcoded data.
+  Injector.configure(Flavor.MOCK, DataMode.JSON);
+
+//end
+
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
   runApp(
@@ -57,7 +91,7 @@ class App extends StatelessWidget {
         builder: (context, state) {
           print(state);
           if (state is AuthenticationAuthenticated) {
-            return HomePage();
+            return ConfigPage();
           }
           if (state is AuthenticationUnauthenticated) {
             return LoginPage(userRepository: userRepository);

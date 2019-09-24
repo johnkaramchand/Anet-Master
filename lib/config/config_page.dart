@@ -1,3 +1,7 @@
+import 'package:anet/agenda/event_details.dart';
+import 'package:anet/comingsoon.dart';
+import 'package:anet/news.dart';
+import 'package:anet/news_details.dart';
 import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,6 +76,10 @@ class _ConfigPageState extends State<ConfigPage> {
              // SpeakerPage.routeName: (context) => SpeakerPage(),
               AgendaPage.routeName: (context) => AgendaPage(),
               RankPage.routeName:(context)=> RankPage(),
+              NewsPage.routeName:(context)=> NewsPage(),
+              ComingSoonPage.routeName:(context)=>ComingSoonPage(),
+              
+              
               /*
               SponsorPage.routeName: (context) => SponsorPage(),
               TeamPage.routeName: (context) => TeamPage(),

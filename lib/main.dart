@@ -1,3 +1,4 @@
+import 'package:anet/config/index.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/config/config_page.dart';
 import 'package:bloc/bloc.dart';
@@ -9,6 +10,12 @@ import 'package:anet/authentication_presentation/splash_screen.dart';
 import 'package:anet/login_bloc/login.dart';
 import 'package:anet/authentication_presentation/home_page.dart';
 import 'package:anet/login_bloc/loading_indicator.dart';
+import 'package:flutter/services.dart';
+import 'utils/dependency_injection.dart';
+import 'utils/devfest.dart';
+import 'utils/simple_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 import 'package:flutter/services.dart';
 import 'utils/dependency_injection.dart';
@@ -37,10 +44,9 @@ class SimpleBlocDelegate extends BlocDelegate {
   }
 }
 
-void main() async{
+void main() async {
 
-//from original mail function
-SystemChrome.setSystemUIOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ),
@@ -63,8 +69,7 @@ SystemChrome.setSystemUIOverlayStyle(
   //* Set DataMode.DART to use Dart hardcoded data and DataMode.JSON to use json file for hardcoded data.
   Injector.configure(Flavor.MOCK, DataMode.JSON);
 
-//end
-
+  
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
   runApp(

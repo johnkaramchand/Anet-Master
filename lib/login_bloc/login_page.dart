@@ -1,9 +1,11 @@
+import 'package:anet/home/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/authentication_bloc/user_repository.dart';
 
 import 'package:anet/authentication_bloc/authentication.dart';
+import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/login_bloc/login.dart';
 
 
@@ -16,11 +18,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
-      body: BlocProvider(
+    return DevScaffold(
+      title: "Login",
+    /*  body: BlocProvider(
         builder: (context) {
           return LoginBloc(
             authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
@@ -28,7 +28,29 @@ class LoginPage extends StatelessWidget {
           );
         },
         child: LoginForm(),
-      ),
+      ),*/
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider<LoginBloc>(
+                  builder: (context) {
+                    return LoginBloc(
+                      authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+                      userRepository: userRepository,
+                    );
+                  }
+              ),
+              BlocProvider<HomeBloc>(
+                  builder: (context) {
+                    return HomeBloc(
+                     // homeBloc: BlocProvider.of<AuthenticationBloc>(context),
+                      //userRepository: userRepository,
+                    );
+                  }
+              ),
+
+          ],
+          child: LoginForm(),
+        ),
     );
   }
 }

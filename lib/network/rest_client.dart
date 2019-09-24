@@ -53,7 +53,8 @@ class RestClient implements IClient {
     var response = await _client.post(resourcePath,
         body: content, headers: customHeaders == true ? authHeaders : headers);
 
-    return await processResponse<T>(response);
+   return await processResponse<T>(response);
+  //return response;
   }
 
   Future<MappedNetworkServiceResponse<T>> processResponse<T>(

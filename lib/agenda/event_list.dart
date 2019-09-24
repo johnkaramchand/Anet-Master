@@ -1,6 +1,7 @@
 import 'dart:math';
 
-import 'package:anet/home/events.dart';
+import 'package:anet/agenda/event_details.dart';
+import 'package:anet/models/events.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/agenda/session_detail.dart';
@@ -21,15 +22,15 @@ class EventList extends StatelessWidget {
         return Card(
           elevation: 0.0,
           child: ListTile(
-            onTap: () {/*
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SessionDetail(
-                    session: allSessions[i],
+                  builder: (context) => EventsDetail(
+                    event: allEvents[i],
                   ),
                 ),
-              );*/
+              );
             },
             // dense: true,
             isThreeLine: true,

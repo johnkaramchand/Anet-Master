@@ -58,8 +58,7 @@ class EventList extends StatelessWidget {
               child: CircleAvatar(
                 radius: 30,
                 backgroundImage:
-                
-                    CachedNetworkImageProvider('https://avatars1.githubusercontent.com/u/12619420?s=400&u=eac38b075e4e4463edfb0f0a8972825cf7803d4c&v=4'),
+                      CachedNetworkImageProvider('https://www.flaticon.com/authors/alfredo-hernandez'),
               ),
             ),
             title: RichText(

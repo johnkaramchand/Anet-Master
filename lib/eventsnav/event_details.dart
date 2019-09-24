@@ -72,33 +72,28 @@ class EventsDetail extends StatelessWidget {
               Center(
                 child: Hero(
                   tag: event.e_id,
-                  child: CircleAvatar(
-                    radius: 100.0,
-                    backgroundImage: CachedNetworkImageProvider(
-                      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0c21b1ac3066ae4d354a3b2e0064c8be&auto=format&fit=crop&w=500&q=60",
-                    ),
-                  ),
+                  child:Image.asset('assets/images/ca.png'),
                 ),
               ),
-              SizedBox(
+             /*  SizedBox(
                 height: 10,
               ),
               Text(
-                "${event.e_id}",
+                "${event.e_title}",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.title.copyWith(
                       fontSize: 14,
                       color: Tools.multiColors[Random().nextInt(4)],
                     ),
-              ),
+              ), */
               SizedBox(
                 height: 20,
               ),
               Text(
-                "${event.e_id}",
+                "${event.e_title}",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.title.copyWith(
-                      fontSize: 20,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -106,14 +101,73 @@ class EventsDetail extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                event.e_title,
+                "${event.e_organizer}",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.title.copyWith(
+                      fontSize: 14,
+                      color: Tools.multiColors[Random().nextInt(4)],
+                    ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[ 
+                      
+                      Column(
+                        children: <Widget>[
+                          Icon(FontAwesomeIcons.calendar,color: Tools.multiColors[Random().nextInt(4)],),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(event.e_date)
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Icon(FontAwesomeIcons.building,color: Tools.multiColors[Random().nextInt(4)],),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(event.e_venue)
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Icon(FontAwesomeIcons.clock,color: Tools.multiColors[Random().nextInt(4)],),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(event.e_start_time.toString())
+                        ],
+                      ),
+                ],
+              )
+              ,
+              SizedBox(
+                height: 15,
+              ),
+               Text(
+                event.e_description,
                 textAlign: TextAlign.center,
                 style:
                     Theme.of(context).textTheme.caption.copyWith(fontSize: 13),
               ),
               SizedBox(
-                height: 20,
+                height: 25,
               ),
+          
+          
+              RaisedButton(
+                onPressed: (){
+
+                },
+                color: Colors.green,
+                
+                shape: StadiumBorder(),
+                child: Text("REGISTER"),
+              )
              // socialActions(context),
             ],
           ),

@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/home/home_page.dart';
 import 'index.dart';
 
-import 'package:anet/eventsnav/agenda_page.dart';
+import 'package:anet/eventsnav/eventsPage.dart';
 
 /*
 import 'package:flutter_devfest/faq/faq_page.dart';
@@ -74,7 +74,7 @@ class _ConfigPageState extends State<ConfigPage> {
               
               HomePage.routeName: (context) => HomePage(),
              // SpeakerPage.routeName: (context) => SpeakerPage(),
-              AgendaPage.routeName: (context) => AgendaPage(),
+              EventsPage.routeName: (context) => EventsPage(),
               RankPage.routeName:(context)=> RankPage(),
               NewsPage.routeName:(context)=> NewsPage(),
               ComingSoonPage.routeName:(context)=>ComingSoonPage(),

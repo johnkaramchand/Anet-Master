@@ -9,7 +9,7 @@ import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/utils/tools.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class AgendaPage extends StatelessWidget {
+class EventsPage extends StatelessWidget {
   static const String routeName = "/agenda";
 
   @override

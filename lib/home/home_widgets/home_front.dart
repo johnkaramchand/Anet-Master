@@ -1,7 +1,7 @@
 import 'package:anet/comingsoon.dart';
 import 'package:anet/news.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/eventsnav/agenda_page.dart';
+import 'package:anet/eventsnav/eventsPage.dart';
 import 'package:anet/config/index.dart';
 import 'package:anet/utils/devfest.dart';
 import 'package:anet/utils/tools.dart';
@@ -100,42 +100,42 @@ class HomeFront extends StatelessWidget {
             shape: StadiumBorder(),
             color: Colors.red,
             colorBrightness: Brightness.dark,
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
           RaisedButton(
             child: Text("EventsSessions"),
             shape: StadiumBorder(),
             color: Colors.green,
             colorBrightness: Brightness.dark,
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
           RaisedButton(
             child: Text("Sponsors"),
             shape: StadiumBorder(),
             color: Colors.orange,
             colorBrightness: Brightness.dark,
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
           RaisedButton(
             child: Text("Team"),
             shape: StadiumBorder(),
             color: Colors.purple,
             colorBrightness: Brightness.dark,
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
           RaisedButton(
             child: Text("FAQ"),
             shape: StadiumBorder(),
             color: Colors.brown,
             colorBrightness: Brightness.dark,
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
           RaisedButton(
             child: Text("Locate Us"),
             shape: StadiumBorder(),
             color: Colors.blue,
             colorBrightness: Brightness.dark,
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
         ],
       );
@@ -149,7 +149,7 @@ class HomeFront extends StatelessWidget {
             icon: FontAwesomeIcons.calendar,
             color: Colors.red,
             title: "Events",
-            onPressed: () => Navigator.pushNamed(context, AgendaPage.routeName),
+            onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
           ActionCard(
             icon: FontAwesomeIcons.newspaper,

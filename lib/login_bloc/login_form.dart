@@ -9,6 +9,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _usernameController = TextEditingController();
+//  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
@@ -18,6 +19,7 @@ class _LoginFormState extends State<LoginForm> {
     _onLoginButtonPressed() {
       loginBloc.dispatch(LoginButtonPressed(
         username: _usernameController.text,
+     //   email: _emailController.text,
         password: _passwordController.text,
       ));
     }
@@ -42,6 +44,10 @@ class _LoginFormState extends State<LoginForm> {
                   decoration: InputDecoration(labelText: 'username'),
                   controller: _usernameController,
                 ),
+              /*  TextFormField(
+                  decoration: InputDecoration(labelText: 'email'),
+                  controller: _emailController,
+                ),*/
                 TextFormField(
                   decoration: InputDecoration(labelText: 'password'),
                   controller: _passwordController,

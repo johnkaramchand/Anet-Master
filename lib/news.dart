@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:anet/news_details.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/agenda/mobile_screen.dart';
 import 'package:anet/agenda/web_screen.dart';
@@ -12,33 +13,33 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 
-class RankPage extends StatelessWidget {
-  static const String routeName = "/rank";
+class NewsPage extends StatelessWidget {
+  static const String routeName = "/news";
 
   @override
   Widget build(BuildContext context) {
     var _homeBloc = HomeBloc();
     return  DevScaffold(
-        title: "Leader Board",
+        title: "News",
        
-        body: RankScreen(
+        body: NewsScreen(
               homeBloc: _homeBloc,
             ),
       );
   }
 }
 
-class RankScreen extends StatelessWidget {
+class NewsScreen extends StatelessWidget {
   final HomeBloc homeBloc;
-   RankScreen({Key key, this.homeBloc}) : super(key: key);
+   NewsScreen({Key key, this.homeBloc}) : super(key: key);
   final RefreshController _refreshController = RefreshController();
 
   
   @override
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
-    var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_state == 'true').toList();
+    var news = state.newsData.news;
+    var newsList = news.where((s) => s.news_id != 0).toList();
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
@@ -47,11 +48,11 @@ class RankScreen extends StatelessWidget {
           print("Pulled down");
              homeBloc.dispatch(LoadEventsEvent());
              
-             var events = state.eventsData.events;
-             eventSessions = events.where((s) => s.event_state == 'true').toList();
+             var news = state.newsData.news;
+             newsList = news.where((s) => s.news_id != 0).toList();
           _refreshController.refreshCompleted();
         },
-        child:buildlist(eventSessions,context)
+        child:buildlist(newsList,context)
         //EventList( allEvents: eventSessions)
         
         
@@ -64,38 +65,38 @@ class RankScreen extends StatelessWidget {
     );*/
   }
 
-  Widget buildlist(var allEvents,context){
+  Widget buildlist(var newsList,context){
     return ListView.builder(
       shrinkWrap: false,
-      itemCount: allEvents.length,
+      itemCount: newsList.length,
       itemBuilder: (c, i) {
         // return Text("sdd");
         return Card(
           elevation: 0.0,
           child: ListTile(
-            onTap: () {/*
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SessionDetail(
-                    session: allSessions[i],
+                  builder: (context) => NewsDetail(
+                    news: newsList[i],
                   ),
                 ),
-              );*/
+              );
             },
             // dense: true,
             isThreeLine: true,
             trailing: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: "${allEvents[i].organizer}\n",
+                text: "${newsList[i].news_id}\n",
                 style: Theme.of(context)
                     .textTheme
                     .title
                     .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                     text: "${allEvents[i].organizer}\n",
+                     text: "${newsList[i].news_id}\n",
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontSize: 12,
                         ),
@@ -105,7 +106,7 @@ class RankScreen extends StatelessWidget {
             ),
             
             leading: Hero(
-              tag: "${allEvents[i].event_id}\n",
+              tag: "${newsList[i].news_id}\n",
               child: CircleAvatar(
                 radius: 30,
                 backgroundImage:
@@ -115,11 +116,11 @@ class RankScreen extends StatelessWidget {
             ),
             title: RichText(
               text: TextSpan(
-                 text: "${allEvents[i].organizer}\n",
+                 text: "${newsList[i].news_id}\n",
                 style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
                 children: [
                   TextSpan(
-                       text: "${allEvents[i].organizer}\n",
+                       text: "${newsList[i].news_id}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],
@@ -129,7 +130,7 @@ class RankScreen extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "${allEvents[i].organizer}\n",
+              "${newsList[i].news_id}\n",
               style: Theme.of(context).textTheme.caption.copyWith(
                     fontSize: 10.0,
                   ),

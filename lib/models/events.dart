@@ -38,6 +38,10 @@ class Event {
   String venue;
   String organizer;
   String description;
+  String registration_link;
+  String photos_link;
+  String medium_link;
+
   
 
   Event(
@@ -49,7 +53,10 @@ class Event {
       this.end_time,
       this.venue,
       this.organizer,
-      this.description,});
+      this.description,
+      this.registration_link,
+      this.photos_link,
+      this.medium_link});
 
   Event.fromJson(Map<String, dynamic> json) {
     event_id = json['event_id'];
@@ -61,7 +68,9 @@ class Event {
     venue = json['venue'];
     organizer = json['organizer'];
     description = json['description'];
-    
+    registration_link = json['registration_link'];
+    photos_link = json['photos_link'];
+    medium_link = json['medium_link'];
   }
 
   Map<String, dynamic> toJson() {
@@ -75,7 +84,9 @@ class Event {
     data['venue'] = this.venue;
     data['organizer'] = this.organizer;
     data['description'] = this.description;
-  
+    data['registration_link'] = this.registration_link;
+    data['photos_link'] = this.photos_link;
+    data['medium_link'] = this.medium_link;
     return data;
   }
 }

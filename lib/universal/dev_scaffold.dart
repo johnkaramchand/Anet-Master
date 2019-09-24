@@ -1,3 +1,4 @@
+import 'package:anet/authentication_bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/config_event.dart';
@@ -32,6 +33,13 @@ class DevScaffold extends StatelessWidget {
             centerTitle: true,
             bottom: tabBar != null ? tabBar : null,
             actions: <Widget>[
+              IconButton(
+                icon: Icon(FontAwesomeIcons.signOutAlt),
+                onPressed: (){
+                  authenticationBloc.dispatch(LoggedOut()) ;
+
+                },
+              ),
               IconButton(
                 icon: Icon(
                   FontAwesomeIcons.signOutAlt,

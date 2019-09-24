@@ -31,9 +31,9 @@ class Event {
   String e_start_time;
   String e_end_time;
   String e_venue;
-  String e_organizer;
+  int e_organizer;
   String e_description;
-  String e_score;
+  int e_score;
   String e_registration_link;
   String e_photos_link;
   String e_medium_link;
@@ -57,8 +57,8 @@ class Event {
   });
 
   Event.fromJson(Map < String, dynamic > json) {
-    e_id = json['e_event_id'];
-    e_state = json['e_event_state'];
+    e_id = json['e_id'];
+    e_state = json['e_state'];
     e_title = json['e_title'];
     e_date = json['e_date'];
     e_start_time = json['e_start_time'];

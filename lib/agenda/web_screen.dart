@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:anet/agenda/session_list.dart';
 import 'package:anet/home/index.dart';
 import 'event_list.dart';
+import 'package:equatable/equatable.dart';
 
 class WebScreen extends StatelessWidget {
   final HomeBloc homeBloc;
@@ -11,7 +12,7 @@ class WebScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_state == 'true').toList();
+    var eventSessions = events.where((s) => s.event_state == true).toList();
     return EventList(
       allEvents: eventSessions,
     );

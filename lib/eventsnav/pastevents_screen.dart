@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/session_list.dart';
+//import 'package:anet/agenda/session_list.dart';
 import 'package:anet/home/index.dart';
 import 'event_list.dart';
 

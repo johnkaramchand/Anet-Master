@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/upcomingevents_screen.dart';
-import 'package:anet/agenda/pastevents_screen.dart';
-import 'package:anet/agenda/web_screen.dart';
+import 'package:anet/eventsnav/upcomingevents_screen.dart';
+import 'package:anet/eventsnav/pastevents_screen.dart';
+
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/utils/tools.dart';

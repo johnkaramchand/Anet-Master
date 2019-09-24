@@ -1,4 +1,4 @@
-import 'package:anet/agenda/event_details.dart';
+import 'package:anet/eventsnav/event_details.dart';
 import 'package:anet/comingsoon.dart';
 import 'package:anet/news.dart';
 import 'package:anet/news_details.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/home/home_page.dart';
 import 'index.dart';
 
-import 'package:anet/agenda/agenda_page.dart';
+import 'package:anet/eventsnav/agenda_page.dart';
 
 /*
 import 'package:flutter_devfest/faq/faq_page.dart';

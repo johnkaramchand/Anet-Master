@@ -1,4 +1,4 @@
-import 'package:anet/agenda/event_details.dart';
+import 'package:anet/eventsnav/event_details.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/home/index.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

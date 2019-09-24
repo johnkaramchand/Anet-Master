@@ -1,7 +1,7 @@
 import 'package:anet/comingsoon.dart';
 import 'package:anet/news.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/agenda_page.dart';
+import 'package:anet/eventsnav/agenda_page.dart';
 import 'package:anet/config/index.dart';
 import 'package:anet/utils/devfest.dart';
 import 'package:anet/utils/tools.dart';

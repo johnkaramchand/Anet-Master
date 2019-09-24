@@ -1,8 +1,8 @@
-import 'dart:math';
+/*import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/session_detail.dart';
+//import 'package:anet/agenda/session_detail.dart';
 import 'package:anet/home/session.dart';
 import 'package:anet/utils/tools.dart';
 
@@ -85,3 +85,4 @@ class SessionList extends StatelessWidget {
     );
   }
 }
+*/

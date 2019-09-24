@@ -37,14 +37,14 @@ class EventList extends StatelessWidget {
             trailing: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: "${allEvents[i].organizer}\n",
+                text: "${allEvents[i].e_organizer}\n",
                 style: Theme.of(context)
                     .textTheme
                     .title
                     .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                     text: "${allEvents[i].organizer}\n",
+                     text: "${allEvents[i].e_organizer}\n",
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontSize: 12,
                         ),
@@ -54,7 +54,7 @@ class EventList extends StatelessWidget {
             ),
             
             leading: Hero(
-              tag: "${allEvents[i].event_id}\n",
+              tag: "${allEvents[i].e_id}\n",
               child: CircleAvatar(
                 radius: 30,
                 backgroundImage:
@@ -64,11 +64,11 @@ class EventList extends StatelessWidget {
             ),
             title: RichText(
               text: TextSpan(
-                 text: "${allEvents[i].organizer}\n",
+                 text: "${allEvents[i].e_organizer}\n",
                 style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
                 children: [
                   TextSpan(
-                       text: "${allEvents[i].organizer}\n",
+                       text: "${allEvents[i].e_organizer}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],
@@ -78,7 +78,7 @@ class EventList extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "${allEvents[i].organizer}\n",
+              "${allEvents[i].e_organizer}\n",
               style: Theme.of(context).textTheme.caption.copyWith(
                     fontSize: 10.0,
                   ),

@@ -55,6 +55,7 @@ class HomeProvider implements IHomeProvider {
         
       
       EventsData res =  EventsData.fromJson(json.decode(response.body));
+      print("RES : ${res.events[0].e_organizer}");
       return res;
     }
     else

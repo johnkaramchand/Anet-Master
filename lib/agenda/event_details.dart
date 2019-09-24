@@ -71,7 +71,7 @@ class EventsDetail extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: Hero(
-                  tag: event.event_id,
+                  tag: event.e_id,
                   child: CircleAvatar(
                     radius: 100.0,
                     backgroundImage: CachedNetworkImageProvider(
@@ -84,7 +84,7 @@ class EventsDetail extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "${event.event_id}",
+                "${event.e_id}",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.title.copyWith(
                       fontSize: 14,
@@ -95,7 +95,7 @@ class EventsDetail extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "${event.event_id}",
+                "${event.e_id}",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.title.copyWith(
                       fontSize: 20,
@@ -106,7 +106,7 @@ class EventsDetail extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                event.title,
+                event.e_title,
                 textAlign: TextAlign.center,
                 style:
                     Theme.of(context).textTheme.caption.copyWith(fontSize: 13),
@@ -119,7 +119,7 @@ class EventsDetail extends StatelessWidget {
           ),
         ),
       ),
-      title: event.title,
+      title: event.e_title,
     );
   }
 }

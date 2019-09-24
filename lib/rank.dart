@@ -38,7 +38,7 @@ class RankScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_state == 'true').toList();
+    var eventSessions = events.where((s) => s.e_state == true).toList();
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
@@ -48,7 +48,7 @@ class RankScreen extends StatelessWidget {
              homeBloc.dispatch(LoadEventsEvent());
              
              var events = state.eventsData.events;
-             eventSessions = events.where((s) => s.event_state == 'true').toList();
+             eventSessions = events.where((s) => s.e_state == true).toList();
           _refreshController.refreshCompleted();
         },
         child:buildlist(eventSessions,context)

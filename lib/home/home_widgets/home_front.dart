@@ -1,19 +1,8 @@
 import 'package:anet/comingsoon.dart';
 import 'package:anet/news.dart';
-import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
-
 import 'package:anet/agenda/agenda_page.dart';
-
 import 'package:anet/config/index.dart';
-/*
-import 'package:flutter_devfest/faq/faq_page.dart';
-import 'package:flutter_devfest/map/map_page.dart';
-import 'package:flutter_devfest/speakers/speaker_page.dart';
-import 'package:flutter_devfest/sponsors/sponsor_page.dart';
-import 'package:flutter_devfest/team/team_page.dart';
-*/
-import 'package:anet/universal/image_card.dart';
 import 'package:anet/utils/devfest.dart';
 import 'package:anet/utils/tools.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,13 +11,6 @@ import 'dart:math';
 
 class HomeFront extends StatelessWidget {
   List<Widget> devFestTexts(context) => [
-        /*
-        Text(
-          Devfest.welcomeText,
-          style: Theme.of(context).textTheme.headline,
-          textAlign: TextAlign.center,
-        ),
-        */
         SizedBox(
           height: 20,
         ),
@@ -42,7 +24,7 @@ class HomeFront extends StatelessWidget {
               new Container(
                 child: Column(
                   children: <Widget>[
-                    new Text("100",
+                    new Text("-",
                         style: TextStyle(
                           color: Tools.multiColors[Random().nextInt(4)],
                           fontSize: 40,
@@ -68,7 +50,7 @@ class HomeFront extends StatelessWidget {
               new Container(
                 child: Column(
                   children: <Widget>[
-                   new Text("200",
+                   new Text("-",
                         style: TextStyle(
                           color: Tools.multiColors[Random().nextInt(4)],
                           fontSize: 40,
@@ -98,166 +80,7 @@ class HomeFront extends StatelessWidget {
         ),
         SizedBox(
           height: 10,
-        ),/*
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            new Container(IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-              child: Column(IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                children: <Widget>[IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                  new Text("100", styleIconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),: Theme.of(context).textTheme.headline),
-                  new Divider(IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                    height: 2,IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                  ),IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                  new Text(IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                    "Events Ateended",IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                    style: Theme.of(conIconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),text).textTheme.body2,
-                    textAlign: TextAligIconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),n.center,
-                  ),IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                ],IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-              ),IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-            ),IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-            new VerticalDivider(IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-              width: 1,IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-              color: Colors.red,IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-            ),IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-            new Container(IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-              child: Column(IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                children: <Widget>[IconButton(
-              icon: Icon(FontAwesomeIcons.meetup),
-              onPressed: () async {
-                await _launchURL("https://meetup.com/");
-              },
-            ),
-                  new Text("200", style: Theme.of(context).textTheme.headline),
-                  new Divider(
-                    height: 2,
-                  ),
-                  new Text(
-                    "Community Score",
-                    style: Theme.of(context).textTheme.body2,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),*/
-        /*
-        SizedBox(
-          height: 5,
-        ), 
-        Text(
-          //   Devfest.descText,
-          "Community score is inclusive all your activites and achievements.",
-          style: Theme.of(context).textTheme.caption,
-          textAlign: TextAlign.center,
-        ),*/
+        ),
       ];
 
   _launchURL(String url) async {

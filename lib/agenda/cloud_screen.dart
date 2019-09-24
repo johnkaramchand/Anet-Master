@@ -24,7 +24,13 @@ class CloudScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_state == false ).toList();
+    for (var i in events){
+      print(i.e_id);
+    }
+    var eventSessions = events.where((s) => s.e_state ==  true ).toList();
+    print("DATA : ${events[0].e_id}");
+    print("DATA : ${eventSessions}");
+    
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
@@ -34,7 +40,7 @@ class CloudScreen extends StatelessWidget {
              homeBloc.dispatch(LoadEventsEvent());
              
              var events = state.eventsData.events;
-             eventSessions = events.where((s) => s.event_state == false ).toList();
+             eventSessions = events.where((s) => s.e_state == false ).toList();
           _refreshController.refreshCompleted();
         },
         child:buildlist(eventSessions,context)
@@ -74,14 +80,14 @@ class CloudScreen extends StatelessWidget {
             trailing: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: "${allEvents[i].start_time}\n",
+                text: "${allEvents[i].e_start_time}\n",
                 style: Theme.of(context)
                     .textTheme
                     .title
                     .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                     text: "${allEvents[i].end_time}\n",
+                     text: "${allEvents[i].e_end_time}\n",
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontSize: 12,
                         ),
@@ -91,7 +97,7 @@ class CloudScreen extends StatelessWidget {
             ),
             
             leading: Hero(
-              tag: "${allEvents[i].event_id}\n",
+              tag: "${allEvents[i].e_title}\n",
               child: CircleAvatar(
                 radius: 30,
                 backgroundImage:
@@ -101,11 +107,11 @@ class CloudScreen extends StatelessWidget {
             ),
             title: RichText(
               text: TextSpan(
-                 text: "${allEvents[i].title}\n",
+                 text: "${allEvents[i].e_title}\n",
                 style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
                 children: [
                   TextSpan(
-                       text: "${allEvents[i].description}\n",
+                       text: "${allEvents[i].e_description}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],
@@ -115,7 +121,7 @@ class CloudScreen extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "${allEvents[i].organizer}\n",
+              "${allEvents[i].e_id}\n",
               style: Theme.of(context).textTheme.caption.copyWith(
                     fontSize: 10.0,
                   ),

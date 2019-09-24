@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/cloud_screen.dart';
-import 'package:anet/agenda/mobile_screen.dart';
+import 'package:anet/agenda/upcomingevents_screen.dart';
+import 'package:anet/agenda/pastevents_screen.dart';
 import 'package:anet/agenda/web_screen.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
@@ -52,10 +52,10 @@ class AgendaPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            CloudScreen(
+            UpcomingEventsScreen(
               homeBloc: _homeBloc,
             ),
-            MobileScreen(
+            PastEventsScreen(
               homeBloc: _homeBloc,
             ),/*
             WebScreen(

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:anet/news_details.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/mobile_screen.dart';
+import 'package:anet/agenda/pastevents_screen.dart';
 import 'package:anet/agenda/web_screen.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';

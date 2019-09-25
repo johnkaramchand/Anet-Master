@@ -1,6 +1,10 @@
+import 'package:anet/config/config_bloc.dart';
 import 'package:anet/eventsnav/event_details.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/home/index.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:anet/utils/tools.dart';
@@ -14,7 +18,32 @@ class UpcomingEventsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = homeBloc.currentState as InHomeState;
+    
+    return BlocBuilder<HomeBloc, HomeState>(
+          bloc: homeBloc,
+          builder: (
+            BuildContext context,
+            HomeState currentState,
+          ) {
+            if (currentState is UnHomeState) {
+              return Center(
+                child: SpinKitChasingDots(
+                  color: Tools.multiColors[Random().nextInt(3)],
+                ),
+              );
+            }
+            if (currentState is ErrorHomeState) {
+              return Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: Text(
+                      currentState.errorMessage ?? 'Error',
+                      textAlign: TextAlign.center,
+                    ),
+                  ));
+            }
+
+            var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
 
     for (var i in events) {
@@ -24,22 +53,23 @@ class UpcomingEventsScreen extends StatelessWidget {
     var eventSessions = events.where((s) => s.e_state == true).toList();
     print("DATA : ${events[0].e_id}");
 
-    return SmartRefresher(
+            return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
         // header: defaultHeader,
         onRefresh: () async {
           print("Pulled down");
-          homeBloc.dispatch(LoadEventsEvent());
+          homeBloc.dispatch(LoadHomeEvent());
 
-          var events = state.eventsData.events;
-          eventSessions = events.where((s) => s.e_state == false).toList();
+         /*  var events = state.eventsData.events;
+          eventSessions = events.where((s) => s.e_state == false).toList(); */
           _refreshController.refreshCompleted();
         },
         child: buildlist(
             eventSessions, context) //EventList( allEvents: eventSessions)
 
         );
+          });
   }
 
   Widget buildlist(var allEvents, context) {
@@ -49,7 +79,10 @@ class UpcomingEventsScreen extends StatelessWidget {
       itemBuilder: (c, i) {
         // return Text("sdd");
         return Card(
-          elevation: 0.5,
+        /*  color: ConfigBloc().darkModeOn
+                                ? Colors.black
+                                : Colors.green,
+         */  elevation: 1,
           child: ListTile(
             onTap: () {
               Navigator.push(
@@ -61,9 +94,33 @@ class UpcomingEventsScreen extends StatelessWidget {
                 ),
               );
             },
+          
             // dense: true,
             isThreeLine: true,
-            trailing: RichText(
+            leading:Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("${allEvents[i].e_date.toString().substring(8,10)} ",
+                      style: Theme.of(context)
+                      .textTheme.title.copyWith(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                        ),
+                        //Text("AUG"),
+                Text("${allEvents[i].e_date.toString().substring(5,7)}"),
+                  ],
+                ),
+                
+                Text("${allEvents[i].e_start_time.toString().substring(0, 5)}")
+              ],
+            ),
+            trailing: Icon(FontAwesomeIcons.circle,color:Colors.blue,),
+           /*  trailing: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
                 text:
@@ -83,7 +140,7 @@ class UpcomingEventsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+            ), */
 
             /* leading: Hero(tag: "${allEvents[i].e_title}\n",
               child: CircleAvatar(radius: 30,
@@ -92,24 +149,30 @@ class UpcomingEventsScreen extends StatelessWidget {
               ),
             ), */
             title: RichText(
+              
               text: TextSpan(
-                text: "${allEvents[i].e_title}\n",
-                style: Theme.of(context).textTheme.title.copyWith(fontSize: 20),
-                /*  children: [
-                  TextSpan(
-                      text: "${allEvents[i].e_organizer}\n",
+                text: "${allEvents[i].e_title}",
+                style: Theme.of(context).textTheme.title.copyWith(fontSize: 20,fontWeight: FontWeight.bold),
+                 children: [
+                   
+                /*   WidgetSpan(
+                    child: Icon(Icons.add_location,size: 18,)
+                  ), */
+            /*       TextSpan(
+                      text: "${allEvents[i].e_venue}",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],
                           ),
-                      children: []),
-                ], */
+                      children: []), */
+                ], 
               ),
             ),
             subtitle: Text(
-              "${allEvents[i].e_description}\n",
+              allEvents[i].e_description.toString(),
+             // 20 <=allEvents[i].e_description.toString().length?"${allEvents[i].e_description.toString().substring(0,30)}":"${allEvents[i].e_description.toString().substring(0,20)}",
               style: Theme.of(context).textTheme.caption.copyWith(
-                    fontSize: 10.0,
+                    fontSize: 14.0,
                   ),
             ),
           ),

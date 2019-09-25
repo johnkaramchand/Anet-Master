@@ -14,7 +14,7 @@ class UserRepository {
 
   Future<String> authenticate({
     @required String username,
-  //  @required String email,
+    //@required String email,
     @required String password 
   }) async {
 
@@ -82,5 +82,42 @@ class UserRepository {
         return false;
   }
 
-}
 
+
+  Future<String> register({
+    @required String username,
+    @required String email,
+    @required String password1,
+    @required String password2,
+    @required String usn,
+    @required int dept,
+    @required int ut_id,
+    @required String phone_number
+  }) async {
+
+
+  var response ;
+    String jsonRequest = '{"username": "$username", "password1":"$password1", "password2":"$password2","email":"$email","usn":"$usn","dept":"$dept","ut_id":"$ut_id","phone_number":"$phone_number"}';
+  //  String jsonRequest = '{"username": "$username", "email": "$email", "password":"$password"}';
+   // String jsonRequest = '{"username": "test1", "email": "test@gmail.com", "password":"whatbro1"}';
+   // await Future.delayed(Duration(seconds: 1)) ;
+    //return 'token' ;
+    try {
+          response =  await http.post('http://139.59.61.35:8000/api/v2/rest-auth/registration/',
+                body:jsonRequest,headers: headers);
+          response = json.decode(response.body);
+          
+
+    }
+    catch(error){
+
+    }
+    print("KEY");
+          if(response['key']!= null){
+           return  response['key'];
+           // persistToken(response['key']);
+          
+          }
+          return 'false';
+    }
+    }

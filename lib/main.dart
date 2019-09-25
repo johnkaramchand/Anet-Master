@@ -15,6 +15,7 @@ import 'utils/dependency_injection.dart';
 import 'utils/devfest.dart';
 import 'utils/simple_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:anet/login_bloc/signup.dart';
 
 
 import 'package:flutter/services.dart';
@@ -91,21 +92,35 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          print(state);
-          if (state is AuthenticationAuthenticated) {
-            return ConfigPage();
-          }
-          if (state is AuthenticationUnauthenticated) {
-            return LoginPage(userRepository: userRepository);
-          }
-          if (state is AuthenticationLoading) {
-            return LoadingIndicator();
-          }
-          return SplashPage();
-        },
+    return MultiBlocProvider(
+          providers: [
+            BlocProvider<LoginBloc>(
+                  builder: (context) {
+                    return LoginBloc(
+                      authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+                      userRepository: userRepository,
+                    );
+                  }
+              ),
+
+          ],
+          child: MaterialApp(
+        home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          builder: (context, state) {
+            print(state);
+            if (state is AuthenticationAuthenticated) {
+              return ConfigPage();
+            }
+            if (state is AuthenticationUnauthenticated) {
+              return LoginPage(userRepository: userRepository);
+            }
+            if (state is AuthenticationLoading) {
+              return LoadingIndicator();
+            }
+            return SplashPage();
+          },
+        ),
+        routes: {SignupPage.routeName: (context) => SignupPage(),},
       ),
     );
   }

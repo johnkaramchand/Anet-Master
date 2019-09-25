@@ -23,3 +23,20 @@ class LoginFailure extends LoginState {
   @override
   String toString() => 'LoginFailure { error: $error }';
 }
+
+class RegistrationDone extends LoginState {
+  @override
+  String toString() {
+    return "Registered" ;
+  }
+}
+
+
+class RegistrationFailure extends LoginState {
+  final String error;
+
+  RegistrationFailure({@required this.error}) : super([error]);
+
+  @override
+  String toString() => 'RegistrationFailure { error: $error }';
+}

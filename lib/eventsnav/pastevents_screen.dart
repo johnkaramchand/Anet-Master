@@ -2,6 +2,7 @@ import 'package:anet/config/config_bloc.dart';
 import 'package:anet/eventsnav/event_details.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/home/index.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -18,35 +19,34 @@ class PastEventsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var events = [];
-     var state ;
-    if(homeBloc.currentState is InHomeState){
-     state = homeBloc.currentState as InHomeState;
-      events = state.eventsData.events;
-    }
-    if (homeBloc.currentState is UnHomeState) {
+   
+     return BlocBuilder<HomeBloc, HomeState>(
+          bloc: homeBloc,
+          builder: (
+            BuildContext context,
+            HomeState currentState,
+          ) {
+            if (currentState is UnHomeState) {
               return Center(
                 child: SpinKitChasingDots(
                   color: Tools.multiColors[Random().nextInt(3)],
                 ),
               );
             }
-            if (homeBloc.currentState is ErrorHomeState) {
+            if (currentState is ErrorHomeState) {
               return Container(
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
                     child: Text(
-                     'Error',
+                      currentState.errorMessage ?? 'Error',
                       textAlign: TextAlign.center,
                     ),
                   ));
             }
 
-            //return HomeFront();
-    
-    /* var state = homeBloc.currentState as InHomeState;
+            var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
- */
+
     for (var i in events) {
       print(i.e_id);
     }
@@ -54,7 +54,7 @@ class PastEventsScreen extends StatelessWidget {
     var eventSessions = events.where((s) => s.e_state == false).toList();
     print("DATA : ${events[0].e_id}");
 
-    return SmartRefresher(
+            return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
         // header: defaultHeader,
@@ -70,6 +70,7 @@ class PastEventsScreen extends StatelessWidget {
             eventSessions, context) //EventList( allEvents: eventSessions)
 
         );
+          });
   }
 
   Widget buildlist(var allEvents, context) {

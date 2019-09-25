@@ -186,7 +186,7 @@ class EventsDetail extends StatelessWidget {
                             FontAwesomeIcons.clock,
                             color: ConfigBloc().darkModeOn
                                 ? Colors.green
-                                : Colors.black,
+                                : Colors.0black,
                           ),
                           SizedBox(
                             height: 15,

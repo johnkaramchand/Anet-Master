@@ -7,6 +7,8 @@ import 'package:anet/eventsnav/pastevents_screen.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/utils/tools.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -34,30 +36,51 @@ class NewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = homeBloc.currentState as InHomeState;
-    var news = state.newsData.news;
-    var newsList = news.where((s) => s.n_id != 0).toList();
-    return SmartRefresher(
-        controller: _refreshController,
-        enablePullDown: true,
-        // header: defaultHeader,
-        onRefresh: () async {
-          print("Pulled down");
-          homeBloc.dispatch(LoadHomeEvent());
+    return BlocBuilder<HomeBloc, HomeState>(
+        bloc: homeBloc,
+        builder: (
+          BuildContext context,
+          HomeState currentState,
+        ) {
+          if (currentState is UnHomeState) {
+            return Center(
+              child: SpinKitChasingDots(
+                color: Tools.multiColors[Random().nextInt(3)],
+              ),
+            );
+          }
+          if (currentState is ErrorHomeState) {
+            return Container(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: Text(
+                    currentState.errorMessage ?? 'Error',
+                    textAlign: TextAlign.center,
+                  ),
+                ));
+          }
 
+          var state = homeBloc.currentState as InHomeState;
           var news = state.newsData.news;
-          newsList = news.where((s) => s.n_id != 0).toList();
-          _refreshController.refreshCompleted();
-        },
-        child: buildlist(newsList, context)
-        //EventList( allEvents: eventSessions)
+          var newsList = news.where((s) => s.n_id != 0).toList();
 
-        );
+          return SmartRefresher(
+              controller: _refreshController,
+              enablePullDown: true,
+              // header: defaultHeader,
+              onRefresh: () async {
+                print("Pulled down");
+                homeBloc.dispatch(LoadHomeEvent());
 
-    /*var cloudSessions = sessions.where((s) => s.track == "cloud").toList();
-    return SessionList(
-      allSessions: cloudSessions,
-    );*/
+                /*  var events = state.eventsData.events;
+          eventSessions = events.where((s) => s.e_state == false).toList(); */
+                _refreshController.refreshCompleted();
+              },
+              child: buildlist(
+                  newsList, context) //EventList( allEvents: eventSessions)
+
+              );
+        });
   }
 
   Widget buildlist(var newsList, context) {
@@ -82,13 +105,12 @@ class NewsScreen extends StatelessWidget {
             // dense: true,
             isThreeLine: true,
             trailing: Container(
-              height:100,
-              width: 100,
-              child:CachedNetworkImage(
-                imageUrl: //"${newsList[i].n_image}",
-                "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg"
-              )), 
-             /*  Image.network(
+                height: 100,
+                width: 100,
+                child: CachedNetworkImage(
+                    imageUrl: //"${newsList[i].n_image}",
+                        "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg")),
+            /*  Image.network(
                   "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg"),
             ), */
             /*     trailing:Container(
@@ -116,18 +138,15 @@ class NewsScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            subtitle: 
-                Text(
-                  "\n${newsList[i].n_author}\n${newsList[i].n_datetime.toString()}",
-                  style: Theme.of(context).textTheme.caption.copyWith(
-                        fontSize: 12.0,
+            subtitle: Text(
+              "\n${newsList[i].n_author}\n${newsList[i].n_datetime.toString()}",
+              style: Theme.of(context).textTheme.caption.copyWith(
+                    fontSize: 12.0,
                     //  /   color: Colors.grey,
-                        fontWeight: FontWeight.w800,
-                      ),
-                  textAlign: TextAlign.start,
-                ),
-               
-             
+                    fontWeight: FontWeight.w800,
+                  ),
+              textAlign: TextAlign.start,
+            ),
           ),
         );
       },

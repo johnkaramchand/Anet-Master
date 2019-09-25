@@ -17,7 +17,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async* {
     yield UnHomeState();
     try {
-      yield await event.applyAsync(currentState: currentState, bloc: this);
+      var x = await event.applyAsync(currentState: currentState, bloc: this);
+      print("JOHN ASKED : ${x.props}");
+      yield x;
     } catch (_, stackTrace) {
       print('$_ $stackTrace');
       yield currentState;

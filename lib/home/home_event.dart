@@ -36,7 +36,7 @@ class LoadHomeEvent extends HomeEvent {
     }
   }
 }
-
+/* 
 class LoadEventsEvent extends HomeEvent {
   final IHomeProvider _homeProvider = HomeProvider();
   @override
@@ -63,4 +63,4 @@ class LoadEventsEvent extends HomeEvent {
       return ErrorHomeState(_?.toString());
     }
   }
-}
+} */

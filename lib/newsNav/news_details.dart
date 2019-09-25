@@ -66,49 +66,51 @@ class NewsDetail extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Center(
-                child: Hero(
-                  tag: news.n_id,
-                  child: CircleAvatar(
-                    radius: 100.0,
-                    backgroundImage: CachedNetworkImageProvider(
-                      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0c21b1ac3066ae4d354a3b2e0064c8be&auto=format&fit=crop&w=500&q=60",
-                    ),
-                  ),
-                ),
+                child: CachedNetworkImage(
+               // imageUrl: "${news.n_image}",
+               imageUrl: "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg",
+              )
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "${news.n_id}",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.title.copyWith(
-                      fontSize: 14,
-                      color: Tools.multiColors[Random().nextInt(4)],
-                    ),
-              ),
+             
               SizedBox(
                 height: 20,
               ),
               Text(
-                "${news.n_id}",
+                
+              "${news.n_title}",
+              style: Theme.of(context).textTheme.title.copyWith(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+            ),
+              SizedBox(
+                height: 10,
+              ),
+               SizedBox(
+                height: 10,
+              ),
+              Text(
+              //  "${news.n_id}",
+              "${news.n_author}\n${news.n_datetime}",
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.title.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                style: Theme.of(context).textTheme.caption.copyWith(
+                      fontSize: 14,
+                     // color: Colors.red,
                     ),
               ),
               SizedBox(
                 height: 10,
-              ),
+              )
+              ,
               Text(
-                news.n_author.toString(),
-                textAlign: TextAlign.center,
+                news.n_desc.toString(),
+                textAlign: TextAlign.justify,
                 style:
-                    Theme.of(context).textTheme.caption.copyWith(fontSize: 13),
+                    Theme.of(context).textTheme.overline.copyWith(fontSize: 18),
               ),
               SizedBox(
                 height: 20,

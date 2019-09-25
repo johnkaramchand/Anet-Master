@@ -45,7 +45,7 @@ class RankScreen extends StatelessWidget {
        // header: defaultHeader,
         onRefresh: () async {
           print("Pulled down");
-             homeBloc.dispatch(LoadEventsEvent());
+             homeBloc.dispatch(LoadHomeEvent());
              
              var events = state.eventsData.events;
              eventSessions = events.where((s) => s.e_state == true).toList();

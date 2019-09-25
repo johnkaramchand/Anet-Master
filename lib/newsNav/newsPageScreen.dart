@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:anet/news_details.dart';
+import 'package:anet/newsNav/news_details.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/pastevents_screen.dart';
 
@@ -12,52 +12,47 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
-class NewsPage extends StatelessWidget {
+class NewsPageScreen extends StatelessWidget {
   static const String routeName = "/news";
 
   @override
   Widget build(BuildContext context) {
     var _homeBloc = HomeBloc();
-    return  DevScaffold(
-        title: "News",
-       
-        body: NewsScreen(
-              homeBloc: _homeBloc,
-            ),
-      );
+    return DevScaffold(
+      title: "News",
+      body: NewsScreen(
+        homeBloc: _homeBloc,
+      ),
+    );
   }
 }
 
 class NewsScreen extends StatelessWidget {
   final HomeBloc homeBloc;
-   NewsScreen({Key key, this.homeBloc}) : super(key: key);
+  NewsScreen({Key key, this.homeBloc}) : super(key: key);
   final RefreshController _refreshController = RefreshController();
 
-  
   @override
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var news = state.newsData.news;
-    var newsList = news.where((s) => s.news_id != 0).toList();
+    var newsList = news.where((s) => s.n_id != 0).toList();
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
-       // header: defaultHeader,
+        // header: defaultHeader,
         onRefresh: () async {
           print("Pulled down");
-             homeBloc.dispatch(LoadEventsEvent());
-             
-             var news = state.newsData.news;
-             newsList = news.where((s) => s.news_id != 0).toList();
+          homeBloc.dispatch(LoadEventsEvent());
+
+          var news = state.newsData.news;
+          newsList = news.where((s) => s.n_id != 0).toList();
           _refreshController.refreshCompleted();
         },
-        child:buildlist(newsList,context)
+        child: buildlist(newsList, context)
         //EventList( allEvents: eventSessions)
-        
-        
-       
-      );
+
+        );
 
     /*var cloudSessions = sessions.where((s) => s.track == "cloud").toList();
     return SessionList(
@@ -65,7 +60,7 @@ class NewsScreen extends StatelessWidget {
     );*/
   }
 
-  Widget buildlist(var newsList,context){
+  Widget buildlist(var newsList, context) {
     return ListView.builder(
       shrinkWrap: false,
       itemCount: newsList.length,
@@ -89,14 +84,15 @@ class NewsScreen extends StatelessWidget {
             trailing: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: "${newsList[i].news_id}\n",
+                //text: "${newsList[i].n_author}\n",
+                text: "cdslkcn",
                 style: Theme.of(context)
                     .textTheme
                     .title
                     .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                     text: "${newsList[i].news_id}\n",
+                    text: "${newsList[i].n_id}\n",
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontSize: 12,
                         ),
@@ -104,23 +100,22 @@ class NewsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            
-            leading: Hero(
-              tag: "${newsList[i].news_id}\n",
+
+            /* leading: Hero(
+              tag: "${newsList[i].n_author}\n",
               child: CircleAvatar(
                 radius: 30,
-                backgroundImage:
-                
-                    CachedNetworkImageProvider('https://avatars1.githubusercontent.com/u/12619420?s=400&u=eac38b075e4e4463edfb0f0a8972825cf7803d4c&v=4'),
+                backgroundImage: CachedNetworkImageProvider(
+                    'https://avatars1.githubusercontent.com/u/12619420?s=400&u=eac38b075e4e4463edfb0f0a8972825cf7803d4c&v=4'),
               ),
-            ),
+            ) ,*/
             title: RichText(
               text: TextSpan(
-                 text: "${newsList[i].news_id}\n",
+                text: "${newsList[i].n_author}\n",
                 style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
                 children: [
                   TextSpan(
-                       text: "${newsList[i].news_id}\n",
+                      text: "${newsList[i].n_id}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],
@@ -130,7 +125,7 @@ class NewsScreen extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "${newsList[i].news_id}\n",
+              "${newsList[i].n_id}\n",
               style: Theme.of(context).textTheme.caption.copyWith(
                     fontSize: 10.0,
                   ),
@@ -139,9 +134,9 @@ class NewsScreen extends StatelessWidget {
         );
       },
     );
-
   }
 }
+
 class RefreshBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -155,4 +150,3 @@ class RefreshBackground extends StatelessWidget {
     );
   }
 }
-

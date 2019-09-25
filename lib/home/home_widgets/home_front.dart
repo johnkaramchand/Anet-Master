@@ -1,5 +1,5 @@
 import 'package:anet/comingsoon.dart';
-import 'package:anet/news.dart';
+import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/eventsPage.dart';
 import 'package:anet/config/index.dart';
@@ -16,7 +16,7 @@ class HomeFront extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(10.0),
-         // height: MediaQuery.of(context).size.height * 0.2,
+          // height: MediaQuery.of(context).size.height * 0.2,
           width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -24,14 +24,13 @@ class HomeFront extends StatelessWidget {
               new Container(
                 child: Column(
                   children: <Widget>[
-                    new Text("-",
-                        style: TextStyle(
-                          color: Tools.multiColors[Random().nextInt(4)],
-                          fontSize: 40,
-                        ),
-                        ),
-                        
-                        
+                    new Text(
+                      "-",
+                      style: TextStyle(
+                        color: Tools.multiColors[Random().nextInt(4)],
+                        fontSize: 40,
+                      ),
+                    ),
                     new Divider(
                       height: 2,
                     ),
@@ -50,12 +49,13 @@ class HomeFront extends StatelessWidget {
               new Container(
                 child: Column(
                   children: <Widget>[
-                   new Text("-",
-                        style: TextStyle(
-                          color: Tools.multiColors[Random().nextInt(4)],
-                          fontSize: 40,
-                        ),
-                        ),
+                    new Text(
+                      "-",
+                      style: TextStyle(
+                        color: Tools.multiColors[Random().nextInt(4)],
+                        fontSize: 40,
+                      ),
+                    ),
                     new Divider(
                       height: 2,
                     ),
@@ -155,26 +155,30 @@ class HomeFront extends StatelessWidget {
             icon: FontAwesomeIcons.newspaper,
             color: Colors.green,
             title: "News",
-            onPressed: () => Navigator.pushNamed(context, NewsPage.routeName),
+            onPressed: () =>
+                Navigator.pushNamed(context, NewsPageScreen.routeName),
           ),
           ActionCard(
             icon: FontAwesomeIcons.trophy,
             color: Colors.amber,
             title: "Rank",
-            onPressed: () => Navigator.pushNamed(context, ComingSoonPage.routeName),
+            onPressed: () =>
+                Navigator.pushNamed(context, ComingSoonPage.routeName),
           ),
           ActionCard(
             icon: FontAwesomeIcons.checkSquare,
             color: Colors.purple,
             title: "Attendance",
-            onPressed: () => Navigator.pushNamed(context, ComingSoonPage.routeName),
+            onPressed: () =>
+                Navigator.pushNamed(context, ComingSoonPage.routeName),
           ),
-           ActionCard(
+          ActionCard(
             icon: FontAwesomeIcons.bars,
             color: Colors.blue,
             title: "Projects",
-            onPressed: () => Navigator.pushNamed(context, ComingSoonPage.routeName),
-          ),/*
+            onPressed: () =>
+                Navigator.pushNamed(context, ComingSoonPage.routeName),
+          ), /*
           ActionCard(
             icon: FontAwesomeIcons.solidNewspaper,
             color: Colors.brown,
@@ -203,10 +207,10 @@ class HomeFront extends StatelessWidget {
             IconButton(
               icon: Icon(FontAwesomeIcons.instagram),
               onPressed: () async {
-                await _launchURL("https://www.instagram.com/cia_together/?hl=en");
+                await _launchURL(
+                    "https://www.instagram.com/cia_together/?hl=en");
               },
             ),
-            
             IconButton(
               icon: Icon(FontAwesomeIcons.twitter),
               onPressed: () async {
@@ -216,13 +220,15 @@ class HomeFront extends StatelessWidget {
             IconButton(
               icon: Icon(FontAwesomeIcons.linkedinIn),
               onPressed: () async {
-                _launchURL("https://www.linkedin.com/company/communities-in-atria");
+                _launchURL(
+                    "https://www.linkedin.com/company/communities-in-atria");
               },
             ),
             IconButton(
               icon: Icon(FontAwesomeIcons.youtube),
               onPressed: () async {
-                await _launchURL("https://www.youtube.com/channel/UCVOsWDAhARY9WnJzkFj4Jrg ");
+                await _launchURL(
+                    "https://www.youtube.com/channel/UCVOsWDAhARY9WnJzkFj4Jrg ");
               },
             ),
             /*
@@ -241,7 +247,6 @@ class HomeFront extends StatelessWidget {
                 await _launchURL(out);
               },
             ),
-            
           ],
         ),
       );

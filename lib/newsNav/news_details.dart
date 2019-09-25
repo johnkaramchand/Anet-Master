@@ -70,7 +70,7 @@ class NewsDetail extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: Hero(
-                  tag: news.news_id,
+                  tag: news.n_id,
                   child: CircleAvatar(
                     radius: 100.0,
                     backgroundImage: CachedNetworkImageProvider(
@@ -83,7 +83,7 @@ class NewsDetail extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "${news.news_id}",
+                "${news.n_id}",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.title.copyWith(
                       fontSize: 14,
@@ -94,7 +94,7 @@ class NewsDetail extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "${news.news_id}",
+                "${news.n_id}",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.title.copyWith(
                       fontSize: 20,
@@ -105,7 +105,7 @@ class NewsDetail extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                news.news_author,
+                news.n_author.toString(),
                 textAlign: TextAlign.center,
                 style:
                     Theme.of(context).textTheme.caption.copyWith(fontSize: 13),
@@ -113,12 +113,12 @@ class NewsDetail extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-             // socialActions(context),
+              // socialActions(context),
             ],
           ),
         ),
       ),
-      title: news.news_author,
+      title: news.n_author.toString(),
     );
   }
 }

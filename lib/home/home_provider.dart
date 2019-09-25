@@ -9,7 +9,6 @@ import 'package:anet/models/news_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 abstract class IHomeProvider {
   Future<SpeakersData> getSpeakers();
   Future<SessionsData> getSessions();
@@ -35,31 +34,26 @@ class HomeProvider implements IHomeProvider {
     _client = Injector().currentClient;
   }
 
-  Future<NewsData> getNews() async{
-    final response = await http.get('http://139.59.61.35:8000/api/v2/events/?format=json');
-    if(response.statusCode == 200){
+  Future<NewsData> getNews() async {
+    final response =
+        await http.get('http://139.59.61.35:8000/api/v2/news/?format=json');
+    if (response.statusCode == 200) {
       print(response.body);
-      NewsData res =  NewsData.fromJson(json.decode(response.body));
+      NewsData res = NewsData.fromJson(json.decode(response.body));
       return res;
-    }
-    else
-    throw Exception('Failed to load events');
+    } else
+      throw Exception('Failed to load events');
   }
 
-
-
-  Future<EventsData> getEvents() async{
-    final response = await http.get('http://139.59.61.35:8000/api/v2/events/?format=json');
-    if(response.statusCode == 200){
-        
-        
-      
-      EventsData res =  EventsData.fromJson(json.decode(response.body));
+  Future<EventsData> getEvents() async {
+    final response =
+        await http.get('http://139.59.61.35:8000/api/v2/events/?format=json');
+    if (response.statusCode == 200) {
+      EventsData res = EventsData.fromJson(json.decode(response.body));
       print("RES : ${res.events[0].e_organizer}");
       return res;
-    }
-    else
-    throw Exception('Failed to load events');
+    } else
+      throw Exception('Failed to load events');
   }
 
   @override

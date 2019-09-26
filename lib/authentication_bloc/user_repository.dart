@@ -8,11 +8,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class UserRepository {
+    //Map<String, String> headers = {"Content-type": "application/x-www-form-urlencoded"};
     Map<String, String> headers = {"Content-type": "application/json"};
     
     
-
-  Future<String> authenticate({
+Future<String> authenticate({
     @required String username,
   //  @required String email,
     @required String password 
@@ -26,9 +26,10 @@ class UserRepository {
    // await Future.delayed(Duration(seconds: 1)) ;
     //return 'token' ;
     try {
-          response =  await http.post('http://139.59.61.35:8000/api/v1/rest-auth/login/',
+          response =  await http.post('http://139.59.61.35:8000/api/v2/api-token-auth/',
                 body:jsonRequest,headers: headers);
           response = json.decode(response.body);
+          print("RESPONSE :  $response");
           
 
     }
@@ -36,8 +37,8 @@ class UserRepository {
 
     }
     print("KEY");
-          if(response['key']!= null){
-           return  response['key'];
+          if(response['token']!= null){
+           return  response['token'];
            // persistToken(response['key']);
           
           }
@@ -80,6 +81,18 @@ class UserRepository {
           return true;
         }
         return false;
+  }
+   getToken() async {
+    //await Future.delayed(Duration(seconds: 1)) ;
+    //return false;
+    final prefs = await SharedPreferences.getInstance();
+        final key = 'communitiesinatria-token';
+        final value = prefs.getString(key) ?? 'false';
+        print('read: $value');
+        if(value != 'false'){
+          return '$value';
+        }
+        return '$value';
   }
 
 }

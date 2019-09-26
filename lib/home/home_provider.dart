@@ -1,6 +1,7 @@
 import 'package:anet/home/session.dart';
 import 'package:anet/home/speaker.dart';
 import 'package:anet/home/team.dart';
+import 'package:anet/models/stat.dart';
 import 'package:anet/network/i_client.dart';
 import 'package:anet/utils/dependency_injection.dart';
 import 'package:anet/utils/devfest.dart';
@@ -9,12 +10,15 @@ import 'package:anet/models/news_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 abstract class IHomeProvider {
   Future<SpeakersData> getSpeakers();
   Future<SessionsData> getSessions();
-  Future<TeamsData> getTeams();
+  //Future<TeamsData> getTeams();
   Future<EventsData> getEvents();
   Future<NewsData> getNews();
+  Future<Stats> getStats();
 }
 
 class HomeProvider implements IHomeProvider {
@@ -79,13 +83,39 @@ class HomeProvider implements IHomeProvider {
   }
 
   @override
-  Future<TeamsData> getTeams() async {
-    var result = await _client.getAsync(kConstGetTeamsUrl);
+  Future<Stats> getStats() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = await prefs.getString('communitiesinatria-token');
+    String token = stringValue;
+    print("INSIDE");
+    Map<String, String> headers = {"Content-type": "application/json"};
+    var response;
+    String jsonRequest =
+        '{"token": "$token"}';
+    //  String jsonRequest = '{"username": "$username", "email": "$email", "password":"$password"}';
+    // String jsonRequest = '{"username": "test1", "email": "test@gmail.com", "password":"whatbro1"}';
+    // await Future.delayed(Duration(seconds: 1)) ;
+    //return 'token' ;
+
+    response = await http.post('http://139.59.61.35:8000/api/v2/getstats/',
+        body: jsonRequest, headers: headers);
+    print("THIS IS RESPONSE ${response.body}");
+    if (json.decode(response.body)['response'] == false) {
+      throw Exception('Failed to load Stats');
+    }
+    Stats res = Stats.fromJson(json.decode(response.body));
+    print("THIS IS $res");
+    return res;
+
+    //print(response.body);
+
+    /*  var result = await _client.getAsync(kConstGetTeamsUrl);
     if (result.networkServiceResponse.success) {
       TeamsData res = TeamsData.fromJson(result.mappedResult);
       return res;
     }
 
-    throw Exception(result.networkServiceResponse.message);
+    throw Exception(result.networkServiceResponse.message); */
   }
 }

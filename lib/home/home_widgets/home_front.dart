@@ -1,5 +1,7 @@
 import 'package:anet/attendanceNav/attendancepagescreen.dart';
 import 'package:anet/comingsoon.dart';
+import 'package:anet/home/home_provider.dart';
+import 'package:anet/home/index.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/eventsPage.dart';
@@ -9,8 +11,34 @@ import 'package:anet/utils/tools.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
+import 'package:anet/home/home_bloc.dart';
 
-class HomeFront extends StatelessWidget {
+
+
+class HomeFront extends StatefulWidget {
+  final HomeBloc _homeBloc;
+  HomeFront(this._homeBloc);
+  @override
+  State<StatefulWidget> createState() {
+    return HomeFrontState(_homeBloc);
+  }
+}
+
+class HomeFrontState extends State<HomeFront> {
+  var statsAttended;
+  var totalsore;
+  final HomeBloc homeBloc;
+  HomeFrontState(this.homeBloc);
+
+ @override
+void initState() {
+    super.initState();
+    var state = homeBloc.currentState as InHomeState;
+    statsAttended = state.stats.total_count;
+    totalsore = state.stats.score_sum;
+
+}
+
   List<Widget> devFestTexts(context) => [
         SizedBox(
           height: 20,
@@ -26,7 +54,7 @@ class HomeFront extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     new Text(
-                      "-",
+                      statsAttended.toString() ?? '-',
                       style: TextStyle(
                         color: Tools.multiColors[Random().nextInt(4)],
                         fontSize: 40,
@@ -51,7 +79,7 @@ class HomeFront extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     new Text(
-                      "-",
+                      totalsore.toString() ?? '-',
                       style: TextStyle(
                         color: Tools.multiColors[Random().nextInt(4)],
                         fontSize: 40,

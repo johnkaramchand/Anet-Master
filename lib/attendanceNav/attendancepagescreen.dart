@@ -31,61 +31,67 @@ class AttendanceScreen extends StatelessWidget {
   final HomeBloc homeBloc;
   AttendanceScreen({Key key, this.homeBloc}) : super(key: key);
   final RefreshController _refreshController = RefreshController();
+  TextEditingController eventCode = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var state = homeBloc.currentState as InHomeState;
-
-    return Padding(
-      padding: EdgeInsets.all(20),
-      child: Center(
-          child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            "CLAIM \nPOINTS ",
-            style: Theme.of(context).textTheme.headline.copyWith(fontSize: 30),
-            textAlign: TextAlign.justify,
-          ),
-          Icon(
-            FontAwesomeIcons.checkSquare,
-          ),
-          SizedBox(
-            height: 60,
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextField(style: TextStyle()),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 1.5,
-            height: 50,
-            child: RaisedButton(
-              onPressed: () {
-                print("clicked");
-                //register(event.e_registration_link);
-              },
-              shape: StadiumBorder(),
-              child: Text(
-                "Claim Attendance",
-                style: TextStyle(
-                    //color: Colors.black,
-                    //  fontFamily: 'Raleway',
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              color: Colors.green,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Center(
+            child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "CLAIM POINTS ",
+              style:
+                  Theme.of(context).textTheme.headline.copyWith(fontSize: 30),
+              textAlign: TextAlign.justify,
             ),
-          ),
-          SizedBox(
-            height: 60,
-          ),
-        ],
-      )),
+            Icon(
+              FontAwesomeIcons.checkSquare,
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(
+                style: TextStyle(),
+                controller: eventCode,
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 1.5,
+              height: 50,
+              child: RaisedButton(
+                onPressed: () {
+                  print("clicked");
+                  print(eventCode.text);
+                  //register(event.e_registration_link);
+                },
+                shape: StadiumBorder(),
+                child: Text(
+                  "Claim Attendance",
+                  style: TextStyle(
+                      //color: Colors.black,
+                      //  fontFamily: 'Raleway',
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                color: Colors.green,
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+          ],
+        )),
+      ),
     );
 
     /*var cloudSessions = sessions.where((s) => s.track == "cloud").toList();

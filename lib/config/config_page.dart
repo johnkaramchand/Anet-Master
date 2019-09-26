@@ -1,3 +1,4 @@
+import 'package:anet/attendanceNav/attendancepagescreen.dart';
 import 'package:anet/eventsnav/event_details.dart';
 import 'package:anet/comingsoon.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
@@ -77,6 +78,8 @@ class _ConfigPageState extends State<ConfigPage> {
               RankPage.routeName: (context) => RankPage(),
               NewsPageScreen.routeName: (context) => NewsPageScreen(),
               ComingSoonPage.routeName: (context) => ComingSoonPage(),
+              AttendancePageScreen.routeName: (context) =>
+                  AttendancePageScreen(),
 
               /*
               SponsorPage.routeName: (context) => SponsorPage(),

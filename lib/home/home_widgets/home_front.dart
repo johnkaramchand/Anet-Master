@@ -1,3 +1,4 @@
+import 'package:anet/attendanceNav/attendancepagescreen.dart';
 import 'package:anet/comingsoon.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +171,7 @@ class HomeFront extends StatelessWidget {
             color: Colors.purple,
             title: "Attendance",
             onPressed: () =>
-                Navigator.pushNamed(context, ComingSoonPage.routeName),
+                Navigator.pushNamed(context, AttendancePageScreen.routeName),
           ),
           ActionCard(
             icon: FontAwesomeIcons.bars,

@@ -3,6 +3,7 @@ import 'package:anet/comingsoon.dart';
 import 'package:anet/home/home_provider.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
+import 'package:anet/projectsNav/projectsPageScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/eventsPage.dart';
 import 'package:anet/config/index.dart';
@@ -12,8 +13,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
 import 'package:anet/home/home_bloc.dart';
-
-
 
 class HomeFront extends StatefulWidget {
   final HomeBloc _homeBloc;
@@ -30,14 +29,13 @@ class HomeFrontState extends State<HomeFront> {
   final HomeBloc homeBloc;
   HomeFrontState(this.homeBloc);
 
- @override
-void initState() {
+  @override
+  void initState() {
     super.initState();
     var state = homeBloc.currentState as InHomeState;
     statsAttended = state.stats.total_count;
     totalsore = state.stats.score_sum;
-
-}
+  }
 
   List<Widget> devFestTexts(context) => [
         SizedBox(
@@ -58,6 +56,7 @@ void initState() {
                       style: TextStyle(
                         color: Tools.multiColors[Random().nextInt(4)],
                         fontSize: 40,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     new Divider(
@@ -81,9 +80,9 @@ void initState() {
                     new Text(
                       totalsore.toString() ?? '-',
                       style: TextStyle(
-                        color: Tools.multiColors[Random().nextInt(4)],
-                        fontSize: 40,
-                      ),
+                          color: Tools.multiColors[Random().nextInt(4)],
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold),
                     ),
                     new Divider(
                       height: 2,
@@ -206,7 +205,7 @@ void initState() {
             color: Colors.blue,
             title: "Projects",
             onPressed: () =>
-                Navigator.pushNamed(context, ComingSoonPage.routeName),
+                Navigator.pushNamed(context, ProjectsPageScreen.routeName),
           ), /*
           ActionCard(
             icon: FontAwesomeIcons.solidNewspaper,

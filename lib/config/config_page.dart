@@ -3,6 +3,7 @@ import 'package:anet/eventsnav/event_details.dart';
 import 'package:anet/comingsoon.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:anet/newsNav/news_details.dart';
+import 'package:anet/projectsNav/projectsPageScreen.dart';
 import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -80,6 +81,7 @@ class _ConfigPageState extends State<ConfigPage> {
               ComingSoonPage.routeName: (context) => ComingSoonPage(),
               AttendancePageScreen.routeName: (context) =>
                   AttendancePageScreen(),
+              ProjectsPageScreen.routeName: (context) => ProjectsPageScreen(),
 
               /*
               SponsorPage.routeName: (context) => SponsorPage(),

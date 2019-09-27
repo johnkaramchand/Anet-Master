@@ -29,9 +29,7 @@ class UserRepository {
           response =  await http.post('http://139.59.61.35:8000/api/v1/rest-auth/login/',
                 body:jsonRequest,headers: headers);
           response = json.decode(response.body);
-          
-
-    }
+     }
     catch(error){
 
     }

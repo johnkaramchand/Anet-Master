@@ -80,100 +80,123 @@ class PastEventsScreen extends StatelessWidget {
       itemBuilder: (c, i) {
         // return Text("sdd");
         return Card(
-        /*  color: ConfigBloc().darkModeOn
+          /*  color: ConfigBloc().darkModeOn
                                 ? Colors.black
                                 : Colors.green,
-         */  elevation: 1,
-          child: ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EventsDetail(
-                    event: allEvents[i],
+         */
+          elevation: 1,
+          child: Padding(
+            padding: EdgeInsets.all(8),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EventsDetail(
+                      event: allEvents[i],
+                    ),
                   ),
-                ),
-              );
-            },
-          
-            // dense: true,
-            isThreeLine: true,
-            leading:Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text("${allEvents[i].e_date.toString().substring(8,10)} ",
-                      style: Theme.of(context)
-                      .textTheme.title.copyWith(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                        ),
-                        //Text("AUG"),
-                Text("${allEvents[i].e_date.toString().substring(5,7)}"),
-                  ],
-                ),
-                
-                Text("${allEvents[i].e_start_time.toString().substring(0, 5)}")
-              ],
-            ),
-            trailing: Icon(FontAwesomeIcons.circle,color:Colors.blue,),
-           /*  trailing: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text:
-                    "${allEvents[i].e_start_time.toString().substring(0, 5)} to ",
-                style: Theme.of(context)
-                    .textTheme
-                    .title
-                    .copyWith(fontSize: 14, fontWeight: FontWeight.w500),
-                children: [
-                  TextSpan(
-                    text:
-                        "${allEvents[i].e_end_time.toString().substring(0, 5)}\n",
-                    style: Theme.of(context).textTheme.subtitle.copyWith(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
+                );
+              },
+
+              // dense: true,
+              isThreeLine: true,
+              leading: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "${allEvents[i].e_date.toString().substring(8, 10)} ",
+                        style: Theme.of(context).textTheme.title.copyWith(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
+                      ),
+                      //Text("AUG"),
+                      Text("${allEvents[i].e_date.toString().substring(5, 7)}",style: TextStyle(color: Colors.grey),),
+                    ],
                   ),
+                  Text(
+                      "${allEvents[i].e_start_time.toString().substring(0, 5)}",style: TextStyle(color: Colors.grey),),
                 ],
               ),
-            ), */
-
-            /* leading: Hero(tag: "${allEvents[i].e_title}\n",
-              child: CircleAvatar(radius: 30,
-                    child: Image.asset('assets/images/ca.png'),
-                //backgroundImage:  CachedNetworkImageProvider('https://www.flaticon.com/authors/alfredo-hernandez'),
+              trailing:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                   Icon(
+                FontAwesomeIcons.angleRight,
+                color: Colors.red,
+                
               ),
-            ), */
-            title: RichText(
-              
-              text: TextSpan(
-                text: "${allEvents[i].e_title}",
-                style: Theme.of(context).textTheme.title.copyWith(fontSize: 20,fontWeight: FontWeight.bold),
-                 children: [
-                   
-                /*   WidgetSpan(
-                    child: Icon(Icons.add_location,size: 18,)
-                  ), */
-            /*       TextSpan(
-                      text: "${allEvents[i].e_venue}",
+             /*  SizedBox(
+                height: 5,
+              )
+              ,
+              Text(
+                "-->",
+                style: TextStyle(color: Colors.red),
+              ) */
+                ],
+              ),
+              /*  trailing: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text:
+                      "${allEvents[i].e_start_time.toString().substring(0, 5)} to ",
+                  style: Theme.of(context)
+                      .textTheme
+                      .title
+                      .copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                  children: [
+                    TextSpan(
+                      text:
+                          "${allEvents[i].e_end_time.toString().substring(0, 5)}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
-                            fontSize: 14,
-                            color: Tools.multiColors[Random().nextInt(4)],
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
                           ),
-                      children: []), */
-                ], 
+                    ),
+                  ],
+                ),
+              ), */
+
+              /* leading: Hero(tag: "${allEvents[i].e_title}\n",
+                child: CircleAvatar(radius: 30,
+                      child: Image.asset('assets/images/ca.png'),
+                  //backgroundImage:  CachedNetworkImageProvider('https://www.flaticon.com/authors/alfredo-hernandez'),
+                ),
+              ), */
+              title: RichText(
+                text: TextSpan(
+                  text: "${allEvents[i].e_title}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .title
+                      .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+                  children: [
+                    /*   WidgetSpan(
+                      child: Icon(Icons.add_location,size: 18,)
+                    ), */
+                    /*       TextSpan(
+                        text: "${allEvents[i].e_venue}",
+                        style: Theme.of(context).textTheme.subtitle.copyWith(
+                              fontSize: 14,
+                              color: Tools.multiColors[Random().nextInt(4)],
+                            ),
+                        children: []), */
+                  ],
+                ),
               ),
-            ),
-            subtitle: Text(
-              20 <=allEvents[i].e_description.toString().length?"${allEvents[i].e_description.toString().substring(0,30)}":"${allEvents[i].e_description.toString().substring(0,20)}",
-              style: Theme.of(context).textTheme.caption.copyWith(
-                    fontSize: 14.0,
-                  ),
+              subtitle: Text(
+                allEvents[i].e_description.toString(), maxLines: 4,
+                // 20 <=allEvents[i].e_description.toString().length?"${allEvents[i].e_description.toString().substring(0,30)}":"${allEvents[i].e_description.toString().substring(0,20)}",
+                style: Theme.of(context).textTheme.caption.copyWith(
+                      fontSize: 14.0,
+                    ),
+              ),
             ),
           ),
         );

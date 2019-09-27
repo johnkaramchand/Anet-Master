@@ -1,6 +1,7 @@
 import 'package:anet/home/session.dart';
 import 'package:anet/home/speaker.dart';
 import 'package:anet/home/team.dart';
+import 'package:anet/models/project_model.dart';
 import 'package:anet/models/stat.dart';
 import 'package:anet/network/i_client.dart';
 import 'package:anet/utils/dependency_injection.dart';
@@ -19,6 +20,7 @@ abstract class IHomeProvider {
   Future<EventsData> getEvents();
   Future<NewsData> getNews();
   Future<Stats> getStats();
+  Future<ProjectData> getProjects();
 }
 
 class HomeProvider implements IHomeProvider {
@@ -44,6 +46,17 @@ class HomeProvider implements IHomeProvider {
     if (response.statusCode == 200) {
       print(response.body);
       NewsData res = NewsData.fromJson(json.decode(response.body));
+      return res;
+    } else
+      throw Exception('Failed to load events');
+  }
+
+    Future<ProjectData> getProjects() async {
+    final response =
+        await http.get('http://139.59.61.35:8000/api/v2/getProjects/?format=json');
+    if (response.statusCode == 200) {
+      print(response.body);
+      ProjectData res = ProjectData.fromJson(json.decode(response.body));
       return res;
     } else
       throw Exception('Failed to load events');
@@ -88,7 +101,7 @@ class HomeProvider implements IHomeProvider {
     //Return String
     String stringValue = await prefs.getString('communitiesinatria-token');
     String token = stringValue;
-    print("INSIDE");
+    print("INSIDE GET STATS");
     Map<String, String> headers = {"Content-type": "application/json"};
     var response;
     String jsonRequest =

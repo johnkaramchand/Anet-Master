@@ -53,6 +53,7 @@ class _ConfigPageState extends State<ConfigPage> {
             title: 'Google Devfest',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+
               //* Custom Google Font
               fontFamily: Devfest.google_sans_family,
               primarySwatch: Colors.red,
@@ -60,7 +61,7 @@ class _ConfigPageState extends State<ConfigPage> {
               disabledColor: Colors.grey,
               cardColor: configBloc.darkModeOn ? Colors.black : Colors.white,
               canvasColor:
-                  configBloc.darkModeOn ? Colors.black : Colors.grey[50],
+                  configBloc.darkModeOn ? Colors.black : Colors.grey[40],
               brightness:
                   configBloc.darkModeOn ? Brightness.dark : Brightness.light,
               buttonTheme: Theme.of(context).buttonTheme.copyWith(

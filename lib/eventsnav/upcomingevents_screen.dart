@@ -111,19 +111,33 @@ class UpcomingEventsScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.title.copyWith(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue),
+                            color: Colors.red),
                       ),
                       //Text("AUG"),
-                      Text("${allEvents[i].e_date.toString().substring(5, 7)}"),
+                      Text("${allEvents[i].e_date.toString().substring(5, 7)}",style: TextStyle(color: Colors.grey[600]),),
                     ],
                   ),
                   Text(
-                      "${allEvents[i].e_start_time.toString().substring(0, 5)}")
+                      "${allEvents[i].e_start_time.toString().substring(0, 5)}",style: TextStyle(color: Colors.grey[600]),),
                 ],
               ),
-              trailing: Icon(
-                FontAwesomeIcons.circle,
-                color: Colors.blue,
+              trailing:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                   Icon(
+                FontAwesomeIcons.angleRight,
+                color: Colors.red,
+                
+              ),
+             /*  SizedBox(
+                height: 5,
+              )
+              ,
+              Text(
+                "-->",
+                style: TextStyle(color: Colors.red),
+              ) */
+                ],
               ),
               /*  trailing: RichText(
                 textAlign: TextAlign.center,

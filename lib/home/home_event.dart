@@ -23,14 +23,17 @@ class LoadHomeEvent extends HomeEvent {
       var sessionsData = await _homeProvider.getSessions();
       //var teamsData = await _homeProvider.getTeams();
       var stats = await _homeProvider.getStats();
+      var projectsData = await _homeProvider.getProjects();
 
       return InHomeState(
         eventsData: eventsData,
         newsData: newsData,
         speakersData: speakersData,
         sessionsData: sessionsData,
+        
       //  teamsData: teamsData,
-        stats: stats
+        stats: stats,
+        projectData: projectsData
       );
     } catch (_, stackTrace) {
       print('$_ $stackTrace');

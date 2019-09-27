@@ -1,5 +1,6 @@
 import 'package:anet/models/events.dart';
 import 'package:anet/models/news_model.dart';
+import 'package:anet/models/project_model.dart';
 import 'package:anet/models/stat.dart';
 import 'package:equatable/equatable.dart';
 import 'package:anet/home/session.dart';
@@ -34,6 +35,7 @@ class InHomeState extends HomeState {
   final EventsData eventsData;
   final NewsData newsData;
   final Stats stats;
+  final ProjectData projectData;
 
   InHomeState(
       {@required this.eventsData,
@@ -41,8 +43,9 @@ class InHomeState extends HomeState {
         @required this.speakersData,
       @required this.sessionsData,
      // @required this.teamsData,
-      @required this.stats})
-      : super([eventsData,newsData,speakersData, sessionsData,stats]);
+      @required this.stats,
+      @required this.projectData})
+      : super([eventsData,newsData,speakersData, sessionsData,stats,projectData]);
   @override
   String toString() => 'InHomeState';
 
@@ -54,7 +57,8 @@ class InHomeState extends HomeState {
         speakersData: this.speakersData,
         sessionsData: this.sessionsData,
        // teamsData: this.teamsData,
-        stats: this.stats);
+        stats: this.stats,
+        projectData: this.projectData);
   }
 }
 

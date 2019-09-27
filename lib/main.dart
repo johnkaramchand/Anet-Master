@@ -105,6 +105,7 @@ class App extends StatelessWidget {
 
           ],
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             print(state);

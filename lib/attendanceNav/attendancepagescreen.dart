@@ -54,6 +54,27 @@ void initState() {
     super.initState();
     getToken();
 }
+
+  attendApi(String token, String eventcode) async {
+    var response;
+    Map<String, String> headers = {"Content-type": "application/json"};
+
+    String jsonRequest = '{"token": "$token", "e_code":"$eventcode"}';
+    try {
+      print('api test');
+      response = await http.post(
+          'http://139.59.61.35:8000/api/v2/attend/',
+          body: jsonRequest,
+          headers: headers);
+      print(response.body);
+    } catch (error) {}
+
+    //var jsonresponse = json.decode(response.body);
+    
+  //  print("response : $jsonresponse");
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return DevScaffold(
@@ -125,24 +146,6 @@ void initState() {
     );*/
   }
 
-  attendApi(String token, String eventcode) async {
-    var response;
-    Map<String, String> headers = {"Content-type": "application/json"};
-
-    String jsonRequest = '{"token": "$token", "e_code":"$eventcode"}';
-    try {
-      print('api test');
-      response = await http.post(
-          'http://139.59.61.35:8000/api/v2/attend/',
-          body: jsonRequest,
-          headers: headers);
-     // print(response.body);
-    } catch (error) {}
-
-    var jsonresponse = json.decode(response.body);
-    
-    print("response : $jsonresponse");
-  }
 
   Future <Null>getToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();

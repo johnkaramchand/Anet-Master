@@ -99,7 +99,7 @@ class EventsDetail extends StatelessWidget {
                     ),
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               Text(
                 //"${event.e_organizer}",
@@ -116,95 +116,114 @@ class EventsDetail extends StatelessWidget {
               Container(
                 child: Padding(
                   padding: EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Icon(
-                            //Icons.date_range,
-                            // color: Colors.red,
-                            FontAwesomeIcons.calendar,
+                  child: Column(children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              //Icons.date_range,
+                              // color: Colors.red,
+                              FontAwesomeIcons.calendar,
 
-                            color: ConfigBloc().darkModeOn
-                                ? Colors.green
-                                : Colors.black,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            event.e_date,
-                            style: Theme.of(context).textTheme.caption.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Icon(
-                            //Icons.location_on
+                              color: ConfigBloc().darkModeOn
+                                  ? Colors.red
+                                  : Colors.redAccent,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              event.e_date,
+                              style:
+                                  Theme.of(context).textTheme.caption.copyWith(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              //Icons.location_on
 
-                            FontAwesomeIcons.building,
-                            color: ConfigBloc().darkModeOn
-                                ? Colors.green
-                                : Colors.black,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            event.e_venue,
-                            style: Theme.of(context).textTheme.caption.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                        ],
+                              FontAwesomeIcons.building,
+                              color: ConfigBloc().darkModeOn
+                                  ? Colors.red
+                                  : Colors.redAccent,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              event.e_venue,
+                              style:
+                                  Theme.of(context).textTheme.caption.copyWith(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              //Icons.access_time
+                              FontAwesomeIcons.clock,
+                              color: ConfigBloc().darkModeOn
+                                  ? Colors.red
+                                  : Colors.redAccent,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              event.e_start_time.toString(),
+                              style:
+                                  Theme.of(context).textTheme.caption.copyWith(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        event.e_description,
+                        textAlign: TextAlign.justify,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            .copyWith(fontSize: 18),
                       ),
-                      Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Icon(
-                            //Icons.access_time
-                            FontAwesomeIcons.clock,
-                            color: ConfigBloc().darkModeOn
-                                ? Colors.green
-                                : Colors.black,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            event.e_start_time.toString(),
-                            style: Theme.of(context).textTheme.caption.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                  ]),
                 ),
                 decoration: BoxDecoration(
                   color: ConfigBloc().darkModeOn
@@ -216,15 +235,6 @@ class EventsDetail extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(
-                height: 25,
-              ),
-              Text(
-                event.e_description,
-                textAlign: TextAlign.center,
-                style:
-                    Theme.of(context).textTheme.caption.copyWith(fontSize: 18),
-              ),
               SizedBox(
                 height: 25,
               ),
@@ -245,7 +255,7 @@ class EventsDetail extends StatelessWidget {
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold),
                   ),
-                  color: Colors.green,
+                  color: Colors.red,
                 ),
               ),
 

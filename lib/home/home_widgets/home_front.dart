@@ -52,7 +52,7 @@ class HomeFrontState extends State<HomeFront> {
                 child: Column(
                   children: <Widget>[
                     new Text(
-                      "100",
+                      statsAttended.toString() ?? '-',
                       style: TextStyle(
                         color: Tools.multiColors[Random().nextInt(4)],
                         fontSize: 40,

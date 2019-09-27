@@ -25,6 +25,7 @@ class DevScaffold extends StatelessWidget {
       duration: Duration(milliseconds: 500),
       color: ConfigBloc().darkModeOn ? Colors.grey[800] : Colors.white,
       child: SafeArea(
+        
         top: false,
         bottom: false,
         child: Scaffold(
@@ -33,22 +34,6 @@ class DevScaffold extends StatelessWidget {
             centerTitle: true,
             bottom: tabBar != null ? tabBar : null,
             actions: <Widget>[
-              IconButton(
-                icon: Icon(FontAwesomeIcons.signOutAlt),
-                onPressed: (){
-                  authenticationBloc.dispatch(LoggedOut()) ;
-
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.signOutAlt,
-                  size: 20,
-                ),
-                onPressed: () {
-                    authenticationBloc.dispatch(LoggedOut());
-                },
-              ),
               IconButton(
                 icon: Icon(
                   ConfigBloc().darkModeOn
@@ -61,6 +46,8 @@ class DevScaffold extends StatelessWidget {
                       .dispatch(DarkModeEvent(!ConfigBloc().darkModeOn));
                 },
               ),
+              
+              
               IconButton(
                 onPressed: () => Share.share(
                     "Download the new DevFest App and share with your tech friends.\nPlayStore -  http://bit.ly/2GDr18N"),
@@ -69,6 +56,14 @@ class DevScaffold extends StatelessWidget {
                   size: 20,
                 ),
               ),
+              IconButton(
+                icon: Icon(Icons.exit_to_app,size: 20,),
+                onPressed: (){
+                  authenticationBloc.dispatch(LoggedOut()) ;
+
+                },
+              ),
+              
             ],
           ),
           body: body,

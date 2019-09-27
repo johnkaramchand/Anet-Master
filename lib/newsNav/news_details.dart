@@ -68,52 +68,83 @@ class NewsDetail extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Center(
-                child: CachedNetworkImage(
-               // imageUrl: "${news.n_image}",
-               imageUrl: "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg",
-              )
-              ),
-             
+             /*  Center(
+                  child: CachedNetworkImage(
+                // imageUrl: "${news.n_image}",
+                imageUrl:
+                    "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg",
+              )), */
+
               SizedBox(
                 height: 20,
               ),
               Text(
-                
-              "${news.n_title}",
-              style: Theme.of(context).textTheme.title.copyWith(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-            ),
+                "${news.n_title}",
+                style: Theme.of(context).textTheme.title.copyWith(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
               SizedBox(
                 height: 10,
               ),
-               SizedBox(
+              SizedBox(
                 height: 10,
               ),
               Text(
-              //  "${news.n_id}",
-              "${news.n_author}\n${news.n_datetime}",
+                //  "${news.n_id}",
+                "${news.n_author}\n${news.n_datetime}",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.caption.copyWith(
                       fontSize: 14,
-                     // color: Colors.red,
+                      color: Colors.green,
                     ),
               ),
               SizedBox(
                 height: 10,
-              )
-              ,
-              Text(
-                news.n_desc.toString(),
-                textAlign: TextAlign.justify,
-                style:
-                    Theme.of(context).textTheme.overline.copyWith(fontSize: 18),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  news.n_desc.toString(),
+                  textAlign: TextAlign.justify,
+                  style: Theme.of(context)
+                      .textTheme
+                      .caption
+                      .copyWith(fontSize: 18),
+                ),
               ),
               SizedBox(
                 height: 20,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 1.5,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: () {
+                    print("clicked");
+                    _register(news.n_link);
+                  },
+                  shape: StadiumBorder(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                    Text(
+                      "open",
+                      style: TextStyle(
+                          //color: Colors.black,
+                          //  fontFamily: 'Raleway',
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(Icons.open_in_browser)
+                  ]),
+                  color: Colors.green,
+                ),
               ),
               // socialActions(context),
             ],
@@ -122,5 +153,14 @@ class NewsDetail extends StatelessWidget {
       ),
       title: news.n_author.toString(),
     );
+  }
+
+   _register(String url) async {
+    print("URL :  $url");
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

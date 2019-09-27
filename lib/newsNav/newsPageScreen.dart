@@ -104,12 +104,13 @@ class NewsScreen extends StatelessWidget {
             },
             // dense: true,
             isThreeLine: true,
-            trailing: Container(
+            trailing: Icon(FontAwesomeIcons.newspaper,color: Colors.green,), 
+            /* Container(
                 height: 100,
                 width: 100,
                 child: CachedNetworkImage(
                     imageUrl: //"${newsList[i].n_image}",
-                        "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg")),
+                        "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg")) */
             /*  Image.network(
                   "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg"),
             ), */
@@ -136,15 +137,19 @@ class NewsScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.title.copyWith(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
+                    
                   ),
             ),
             subtitle: Text(
               "\n${newsList[i].n_author}\n${newsList[i].n_datetime.toString()}",
+              
               style: Theme.of(context).textTheme.caption.copyWith(
                     fontSize: 12.0,
                     //  /   color: Colors.grey,
                     fontWeight: FontWeight.w800,
+                    
                   ),
+                  
               textAlign: TextAlign.start,
             ),
           ),

@@ -3,8 +3,6 @@ import 'dart:math';
 import 'package:anet/newsNav/news_details.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/pastevents_screen.dart';
-import 'package:collection/iterable_zip.dart';
-
 
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
@@ -23,7 +21,7 @@ class ProjectsPageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var _homeBloc = HomeBloc();
     return DevScaffold(
-      title: "Projects",
+      title: "projects",
       body: ProjectScreen(
         homeBloc: _homeBloc,
       ),
@@ -63,8 +61,8 @@ class ProjectScreen extends StatelessWidget {
           }
 
           var state = homeBloc.currentState as InHomeState;
-          var news = state.projectData.project;
-          var newsList = news.where((s) => s.p_id != 0).toList();
+          var news = state.newsData.news;
+          var newsList = news.where((s) => s.n_id != 0).toList();
 
           return SmartRefresher(
               controller: _refreshController,
@@ -78,23 +76,25 @@ class ProjectScreen extends StatelessWidget {
           eventSessions = events.where((s) => s.e_state == false).toList(); */
                 _refreshController.refreshCompleted();
               },
-              child: buildlist(
-                  newsList, context) //EventList( allEvents: eventSessions)
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: buildlist(newsList, context),
+              ) //EventList( allEvents: eventSessions)
 
               );
         });
   }
- Widget buildlist(var projectList, context) {
-   print(projectList);
+
+  Widget buildlist(var newsList, context) {
     return ListView.builder(
       shrinkWrap: false,
-      itemCount: projectList.length,
+      itemCount: newsList.length,
       itemBuilder: (c, i) {
         // return Text("sdd");
         return ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Card(
-            elevation: 0.0,
+            elevation: 1.0,
             child: Padding(
               padding: EdgeInsets.all(5),
               child: ListTile(
@@ -103,7 +103,7 @@ class ProjectScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => NewsDetail(
-                          news: projectList[i],
+                          news: newsList[i],
                         ),
                       ),
                     );
@@ -111,25 +111,22 @@ class ProjectScreen extends StatelessWidget {
                   leading: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.transparent,
-                    child: Icon(Icons.radio_button_checked,color: Colors.blue,),
-                   /*  backgroundImage: NetworkImage(
-                        "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg")),
-                    */ /*  child: CachedNetworkImage(
+                    backgroundImage: NetworkImage(
+                        "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg"),
+                    /*  child: CachedNetworkImage(
                       fit: BoxFit.fill,
                       imageUrl: //"${newsList[i].n_image}",
                           "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg"), */
                   ),
                   // dense: true,
                   isThreeLine: true,
-                  trailing: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  trailing: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      
-                      Icon(Icons.play_arrow,color: Colors.blue,),
+                      Icon(Icons.more_horiz),
                       Text(
-                        "ONGOING",
-                        style: TextStyle(color:Colors.grey[500]),
+                        "ongoing",
+                        style: TextStyle(decoration: TextDecoration.underline),
                       )
                     ],
                   ),
@@ -156,37 +153,33 @@ class ProjectScreen extends StatelessWidget {
                 ) ,*/
                   title: Text(
                     //"${newsList[i].n_title}",
-                    projectList[i].p_title ?? 'title',
+                    "Hydroponics",
                     style: Theme.of(context).textTheme.title.copyWith(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   subtitle: new RichText(
-                    maxLines: 5,
                     text: new TextSpan(
-                      text: projectList[i].p_datetime.toString() ?? 'datetime',
+                      text: 'This item costs ]n',
                       style: new TextStyle(
-                        color: Colors.blueAccent,
-                        //decoration: TextDecoration.lineThrough,
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
                       ),
                       children: <TextSpan>[
                         new TextSpan(
-                          text: '\n${projectList[i].p_desc.toString()}' ?? 'description',
-                          
+                          text: 'iu dfvfdn nfnv fgnnvgfub\n',
                           style: new TextStyle(
-                            
                             color: Colors.grey,
-                           
-                            
+                            decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                       /*  new TextSpan(
-                            text: '....',
+                        new TextSpan(
+                            text: '123123213213',
                             style: new TextStyle(
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
-                            )), */
+                            )),
                       ],
                     ),
                   ) /* Text(

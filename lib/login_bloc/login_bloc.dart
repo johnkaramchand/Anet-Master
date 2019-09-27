@@ -29,7 +29,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginLoading();
 
       try {
-
         
         final token = await userRepository.authenticate(
           username: event.username,
@@ -46,6 +45,34 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       } catch (error) {
         yield LoginFailure(error: error.toString());
       }
+    }
+    if(event is RegisterButtonPressed){
+      try {
+        
+      
+          final registrationkey = await userRepository.register(
+          username: event.username,
+          email: event.email,
+          password1: event.password1,
+          password2: event.password2,
+          usn: event.usn,
+          dept: event.dept,
+          ut_id: event.ut_id,
+          phone_number: event.phone_number
+        );
+        if(registrationkey == 'false'){
+           yield RegistrationFailure(error: "failed");
+        }
+        else{
+        authenticationBloc.dispatch(LoggedIn(token: registrationkey));
+        yield RegistrationDone();
+        }
+      } 
+      
+      catch (error) {
+        yield RegistrationFailure(error: error.toString());
+      }
+
     }
   }
 }

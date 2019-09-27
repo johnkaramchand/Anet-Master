@@ -19,7 +19,6 @@ class DevScaffold extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-
         final AuthenticationBloc authenticationBloc =
         BlocProvider.of<AuthenticationBloc>(context);
     return AnimatedContainer(
@@ -39,6 +38,15 @@ class DevScaffold extends StatelessWidget {
                 onPressed: (){
                   authenticationBloc.dispatch(LoggedOut()) ;
 
+                },
+              ),
+              IconButton(
+                icon: Icon(
+                  FontAwesomeIcons.signOutAlt,
+                  size: 20,
+                ),
+                onPressed: () {
+                    authenticationBloc.dispatch(LoggedOut());
                 },
               ),
               IconButton(

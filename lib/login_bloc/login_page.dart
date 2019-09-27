@@ -18,8 +18,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DevScaffold(
-      title: "Login",
+    return Scaffold(
     /*  body: BlocProvider(
         builder: (context) {
           return LoginBloc(

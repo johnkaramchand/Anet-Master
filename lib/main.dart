@@ -1,6 +1,6 @@
 import 'package:anet/config/index.dart';
 import 'package:flutter/material.dart';
-
+import 'package:anet/config/config_page.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/authentication_bloc/user_repository.dart';
@@ -10,6 +10,14 @@ import 'package:anet/authentication_presentation/splash_screen.dart';
 import 'package:anet/login_bloc/login.dart';
 import 'package:anet/authentication_presentation/home_page.dart';
 import 'package:anet/login_bloc/loading_indicator.dart';
+import 'package:flutter/services.dart';
+import 'utils/dependency_injection.dart';
+import 'utils/devfest.dart';
+import 'utils/simple_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:anet/login_bloc/signup.dart';
+
+
 import 'package:flutter/services.dart';
 import 'utils/dependency_injection.dart';
 import 'utils/devfest.dart';
@@ -84,21 +92,35 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          print(state);
-          if (state is AuthenticationAuthenticated) {
-            return ConfigPage();
-          }
-          if (state is AuthenticationUnauthenticated) {
-            return LoginPage(userRepository: userRepository);
-          }
-          if (state is AuthenticationLoading) {
-            return LoadingIndicator();
-          }
-          return SplashPage();
-        },
+    return MultiBlocProvider(
+          providers: [
+            BlocProvider<LoginBloc>(
+                  builder: (context) {
+                    return LoginBloc(
+                      authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+                      userRepository: userRepository,
+                    );
+                  }
+              ),
+
+          ],
+          child: MaterialApp(
+        home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          builder: (context, state) {
+            print(state);
+            if (state is AuthenticationAuthenticated) {
+              return ConfigPage();
+            }
+            if (state is AuthenticationUnauthenticated) {
+              return LoginPage(userRepository: userRepository);
+            }
+            if (state is AuthenticationLoading) {
+              return LoadingIndicator();
+            }
+            return SplashPage();
+          },
+        ),
+        routes: {SignupPage.routeName: (context) => SignupPage(),},
       ),
     );
   }

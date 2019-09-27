@@ -52,11 +52,10 @@ class HomeFrontState extends State<HomeFront> {
                 child: Column(
                   children: <Widget>[
                     new Text(
-                      statsAttended.toString() ?? '-',
+                      "100",
                       style: TextStyle(
                         color: Tools.multiColors[Random().nextInt(4)],
                         fontSize: 40,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     new Divider(

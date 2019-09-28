@@ -36,29 +36,40 @@ class InHomeState extends HomeState {
   final NewsData newsData;
   final Stats stats;
   final ProjectData projectData;
+  final String username;
 
   InHomeState(
       {@required this.eventsData,
       @required this.newsData,
-        @required this.speakersData,
+      @required this.speakersData,
       @required this.sessionsData,
-     // @required this.teamsData,
+      // @required this.teamsData,
       @required this.stats,
-      @required this.projectData})
-      : super([eventsData,newsData,speakersData, sessionsData,stats,projectData]);
+      @required this.projectData,
+      @required this.username})
+      : super([
+          eventsData,
+          newsData,
+          speakersData,
+          sessionsData,
+          stats,
+          projectData,
+          username,
+        ]);
   @override
   String toString() => 'InHomeState';
 
   @override
   HomeState getStateCopy() {
     return InHomeState(
-      eventsData: this.eventsData,
-      newsData: this.newsData,
+        eventsData: this.eventsData,
+        newsData: this.newsData,
         speakersData: this.speakersData,
         sessionsData: this.sessionsData,
-       // teamsData: this.teamsData,
+        // teamsData: this.teamsData,
         stats: this.stats,
-        projectData: this.projectData);
+        projectData: this.projectData,
+        username: username);
   }
 }
 

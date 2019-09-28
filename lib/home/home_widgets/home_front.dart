@@ -26,6 +26,7 @@ class HomeFront extends StatefulWidget {
 class HomeFrontState extends State<HomeFront> {
   var statsAttended;
   var totalsore;
+  var username;
   final HomeBloc homeBloc;
   HomeFrontState(this.homeBloc);
 
@@ -35,6 +36,8 @@ class HomeFrontState extends State<HomeFront> {
     var state = homeBloc.currentState as InHomeState;
     statsAttended = state.stats.total_count;
     totalsore = state.stats.score_sum;
+    username = state.username;
+    print(username);
   }
 
   List<Widget> devFestTexts(context) => [
@@ -305,7 +308,7 @@ class HomeFrontState extends State<HomeFront> {
       ),*/
             ),
             Text(
-              "Hey, Surya Murugan",
+              "Hey, $username",
               style: Theme.of(context).textTheme.headline,
               textAlign: TextAlign.center,
             ),

@@ -53,7 +53,6 @@ class _ConfigPageState extends State<ConfigPage> {
             title: 'Google Devfest',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-
               //* Custom Google Font
               fontFamily: Devfest.google_sans_family,
               primarySwatch: Colors.red,
@@ -77,9 +76,10 @@ class _ConfigPageState extends State<ConfigPage> {
               HomePage.routeName: (context) => HomePage(),
               // SpeakerPage.routeName: (context) => SpeakerPage(),
               EventsPage.routeName: (context) => EventsPage(),
+              ComingSoonPage.routeName: (context) => ComingSoonPage(),
               RankPage.routeName: (context) => RankPage(),
               NewsPageScreen.routeName: (context) => NewsPageScreen(),
-              ComingSoonPage.routeName: (context) => ComingSoonPage(),
+
               AttendancePageScreen.routeName: (context) =>
                   AttendancePageScreen(),
               ProjectsPageScreen.routeName: (context) => ProjectsPageScreen(),

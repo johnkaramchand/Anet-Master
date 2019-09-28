@@ -21,6 +21,7 @@ abstract class IHomeProvider {
   Future<NewsData> getNews();
   Future<Stats> getStats();
   Future<ProjectData> getProjects();
+  Future<String> getUsername();
 }
 
 class HomeProvider implements IHomeProvider {
@@ -51,9 +52,9 @@ class HomeProvider implements IHomeProvider {
       throw Exception('Failed to load events');
   }
 
-    Future<ProjectData> getProjects() async {
-    final response =
-        await http.get('http://139.59.61.35:8000/api/v2/getProjects/?format=json');
+  Future<ProjectData> getProjects() async {
+    final response = await http
+        .get('http://139.59.61.35:8000/api/v2/getProjects/?format=json');
     if (response.statusCode == 200) {
       print(response.body);
       ProjectData res = ProjectData.fromJson(json.decode(response.body));
@@ -71,6 +72,14 @@ class HomeProvider implements IHomeProvider {
       return res;
     } else
       throw Exception('Failed to load events');
+  }
+
+  Future<String> getUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = await prefs.getString('communitiesinatria-username');
+
+    return stringValue;
   }
 
   @override
@@ -102,10 +111,10 @@ class HomeProvider implements IHomeProvider {
     String stringValue = await prefs.getString('communitiesinatria-token');
     String token = stringValue;
     print("INSIDE GET STATS");
+    print(token);
     Map<String, String> headers = {"Content-type": "application/json"};
     var response;
-    String jsonRequest =
-        '{"token": "$token"}';
+    String jsonRequest = '{"token": "$token"}';
     //  String jsonRequest = '{"username": "$username", "email": "$email", "password":"$password"}';
     // String jsonRequest = '{"username": "test1", "email": "test@gmail.com", "password":"whatbro1"}';
     // await Future.delayed(Duration(seconds: 1)) ;

@@ -16,7 +16,6 @@ class LoadHomeEvent extends HomeEvent {
   @override
   Future<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async {
     try {
-
       var eventsData = await _homeProvider.getEvents();
       var newsData = await _homeProvider.getNews();
       var speakersData = await _homeProvider.getSpeakers();
@@ -24,17 +23,18 @@ class LoadHomeEvent extends HomeEvent {
       //var teamsData = await _homeProvider.getTeams();
       var stats = await _homeProvider.getStats();
       var projectsData = await _homeProvider.getProjects();
+      var username = await _homeProvider.getUsername();
 
       return InHomeState(
-        eventsData: eventsData,
-        newsData: newsData,
-        speakersData: speakersData,
-        sessionsData: sessionsData,
-        
-      //  teamsData: teamsData,
-        stats: stats,
-        projectData: projectsData
-      );
+          eventsData: eventsData,
+          newsData: newsData,
+          speakersData: speakersData,
+          sessionsData: sessionsData,
+
+          //  teamsData: teamsData,
+          stats: stats,
+          projectData: projectsData,
+          username: username);
     } catch (_, stackTrace) {
       print('$_ $stackTrace');
       return ErrorHomeState(_?.toString());

@@ -1,14 +1,16 @@
-import 'package:anet/agenda/event_details.dart';
+import 'package:anet/attendanceNav/attendancepagescreen.dart';
+import 'package:anet/eventsnav/event_details.dart';
 import 'package:anet/comingsoon.dart';
-import 'package:anet/news.dart';
-import 'package:anet/news_details.dart';
+import 'package:anet/newsNav/newsPageScreen.dart';
+import 'package:anet/newsNav/news_details.dart';
+import 'package:anet/projectsNav/projectsPageScreen.dart';
 import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/home/home_page.dart';
 import 'index.dart';
 
-import 'package:anet/agenda/agenda_page.dart';
+import 'package:anet/eventsnav/eventsPage.dart';
 
 /*
 import 'package:flutter_devfest/faq/faq_page.dart';
@@ -58,7 +60,7 @@ class _ConfigPageState extends State<ConfigPage> {
               disabledColor: Colors.grey,
               cardColor: configBloc.darkModeOn ? Colors.black : Colors.white,
               canvasColor:
-                  configBloc.darkModeOn ? Colors.black : Colors.grey[50],
+                  configBloc.darkModeOn ? Colors.black : Colors.grey[40],
               brightness:
                   configBloc.darkModeOn ? Brightness.dark : Brightness.light,
               buttonTheme: Theme.of(context).buttonTheme.copyWith(
@@ -71,15 +73,17 @@ class _ConfigPageState extends State<ConfigPage> {
             ),
             home: HomePage(),
             routes: {
-              
               HomePage.routeName: (context) => HomePage(),
-             // SpeakerPage.routeName: (context) => SpeakerPage(),
-              AgendaPage.routeName: (context) => AgendaPage(),
-              RankPage.routeName:(context)=> RankPage(),
-              NewsPage.routeName:(context)=> NewsPage(),
-              ComingSoonPage.routeName:(context)=>ComingSoonPage(),
-              
-              
+              // SpeakerPage.routeName: (context) => SpeakerPage(),
+              EventsPage.routeName: (context) => EventsPage(),
+              ComingSoonPage.routeName: (context) => ComingSoonPage(),
+              RankPage.routeName: (context) => RankPage(),
+              NewsPageScreen.routeName: (context) => NewsPageScreen(),
+
+              AttendancePageScreen.routeName: (context) =>
+                  AttendancePageScreen(),
+              ProjectsPageScreen.routeName: (context) => ProjectsPageScreen(),
+
               /*
               SponsorPage.routeName: (context) => SponsorPage(),
               TeamPage.routeName: (context) => TeamPage(),

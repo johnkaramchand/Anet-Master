@@ -79,7 +79,7 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                   ));
             }
-            return HomeFront();
+            return HomeFront(_homeBloc);
           }),
     );
   }

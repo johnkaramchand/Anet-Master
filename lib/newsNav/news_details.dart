@@ -66,59 +66,101 @@ class NewsDetail extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Center(
-                child: Hero(
-                  tag: news.news_id,
-                  child: CircleAvatar(
-                    radius: 100.0,
-                    backgroundImage: CachedNetworkImageProvider(
-                      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0c21b1ac3066ae4d354a3b2e0064c8be&auto=format&fit=crop&w=500&q=60",
+             /*  Center(
+                  child: CachedNetworkImage(
+                // imageUrl: "${news.n_image}",
+                imageUrl:
+                    "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg",
+              )), */
+
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "${news.n_title}",
+                style: Theme.of(context).textTheme.title.copyWith(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                //  "${news.n_id}",
+                "${news.n_author}\n${news.n_datetime}",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.caption.copyWith(
+                      fontSize: 14,
+                      color: Colors.green,
+                    ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  news.n_desc.toString(),
+                  textAlign: TextAlign.justify,
+                  style: Theme.of(context)
+                      .textTheme
+                      .caption
+                      .copyWith(fontSize: 18),
                 ),
               ),
               SizedBox(
-                height: 10,
-              ),
-              Text(
-                "${news.news_id}",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.title.copyWith(
-                      fontSize: 14,
-                      color: Tools.multiColors[Random().nextInt(4)],
-                    ),
-              ),
-              SizedBox(
                 height: 20,
               ),
-              Text(
-                "${news.news_id}",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.title.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 1.5,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: () {
+                    print("clicked");
+                    _register(news.n_link);
+                  },
+                  shape: StadiumBorder(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                    Text(
+                      "open",
+                      style: TextStyle(
+                          //color: Colors.black,
+                          //  fontFamily: 'Raleway',
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(Icons.open_in_browser)
+                  ]),
+                  color: Colors.green,
+                ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                news.news_author,
-                textAlign: TextAlign.center,
-                style:
-                    Theme.of(context).textTheme.caption.copyWith(fontSize: 13),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-             // socialActions(context),
+              // socialActions(context),
             ],
           ),
         ),
       ),
-      title: news.news_author,
+      title: news.n_author.toString(),
     );
+  }
+
+   _register(String url) async {
+    print("URL :  $url");
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

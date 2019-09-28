@@ -1,20 +1,19 @@
-import 'dart:math';
+/*import 'dart:math';
 
+import 'package:anet/models/news_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/home/session.dart';
-import 'package:anet/home/speaker.dart';
 import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/utils/tools.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SessionDetail extends StatelessWidget {
-  static const String routeName = "/session_detail";
-  final Session session;
+class NewsDetail extends StatelessWidget {
+  static const String routeName = "/news_details";
+  final News news;
 
-  SessionDetail({Key key, @required this.session}) : super(key: key);
-
+  NewsDetail({Key key, @required this.news}) : super(key: key);
+/*
   Widget socialActions(context) => FittedBox(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,7 +57,7 @@ class SessionDetail extends StatelessWidget {
           ],
         ),
       );
-
+*/
   @override
   Widget build(BuildContext context) {
     // var _homeBloc = HomeBloc();
@@ -67,59 +66,62 @@ class SessionDetail extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Center(
-                child: Hero(
-                  tag: session.speakerImage,
-                  child: CircleAvatar(
-                    radius: 100.0,
-                    backgroundImage: CachedNetworkImageProvider(
-                      session.speakerImage,
-                    ),
+                child: CachedNetworkImage(
+               // imageUrl: "${news.n_image}",
+               imageUrl: "https://img.etimg.com/thumb/msid-68333505,width-643,imgsize-204154,resizemode-4/googlechrome.jpg",
+              )
+              ),
+             
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                
+              "${news.n_title}",
+              style: Theme.of(context).textTheme.title.copyWith(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
-              ),
+                  textAlign: TextAlign.center,
+            ),
               SizedBox(
                 height: 10,
               ),
+               SizedBox(
+                height: 10,
+              ),
               Text(
-                "${session.speakerDesc}",
+              //  "${news.n_id}",
+              "${news.n_author}\n${news.n_datetime}",
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.title.copyWith(
+                style: Theme.of(context).textTheme.caption.copyWith(
                       fontSize: 14,
-                      color: Tools.multiColors[Random().nextInt(4)],
-                    ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "${session.sessionTitle}",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.title.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                     // color: Colors.red,
                     ),
               ),
               SizedBox(
                 height: 10,
-              ),
+              )
+              ,
               Text(
-                session.sessionDesc,
-                textAlign: TextAlign.center,
+                news.n_desc.toString(),
+                textAlign: TextAlign.justify,
                 style:
-                    Theme.of(context).textTheme.caption.copyWith(fontSize: 13),
+                    Theme.of(context).textTheme.overline.copyWith(fontSize: 18),
               ),
               SizedBox(
                 height: 20,
               ),
-              socialActions(context),
+              // socialActions(context),
             ],
           ),
         ),
       ),
-      title: session.speakerName,
+      title: news.n_author.toString(),
     );
   }
 }
+*/

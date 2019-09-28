@@ -16,27 +16,32 @@ class LoadHomeEvent extends HomeEvent {
   @override
   Future<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async {
     try {
-
       var eventsData = await _homeProvider.getEvents();
       var newsData = await _homeProvider.getNews();
       var speakersData = await _homeProvider.getSpeakers();
       var sessionsData = await _homeProvider.getSessions();
-      var teamsData = await _homeProvider.getTeams();
+      //var teamsData = await _homeProvider.getTeams();
+      var stats = await _homeProvider.getStats();
+      var projectsData = await _homeProvider.getProjects();
+      var username = await _homeProvider.getUsername();
 
       return InHomeState(
-        eventsData: eventsData,
-        newsData: newsData,
-        speakersData: speakersData,
-        sessionsData: sessionsData,
-        teamsData: teamsData,
-      );
+          eventsData: eventsData,
+          newsData: newsData,
+          speakersData: speakersData,
+          sessionsData: sessionsData,
+
+          //  teamsData: teamsData,
+          stats: stats,
+          projectData: projectsData,
+          username: username);
     } catch (_, stackTrace) {
       print('$_ $stackTrace');
       return ErrorHomeState(_?.toString());
     }
   }
 }
-
+/* 
 class LoadEventsEvent extends HomeEvent {
   final IHomeProvider _homeProvider = HomeProvider();
   @override
@@ -63,4 +68,4 @@ class LoadEventsEvent extends HomeEvent {
       return ErrorHomeState(_?.toString());
     }
   }
-}
+} */

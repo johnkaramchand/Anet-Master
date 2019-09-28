@@ -4,15 +4,15 @@ class NewsData {
   NewsData({this.news});
 
   //EventsData.fromJson(Map<String, dynamic> json) {
-    NewsData.fromJson(List<dynamic> json) {
+  NewsData.fromJson(List<dynamic> json) {
     //if (json['events'] != null) {
-      print("Inside");
-      news = new List<News>();
-      for(var v in json){
-         news.add(News.fromJson(v));
-      }
-      print(news);
-            /*
+    print("Inside");
+    news = new List<News>();
+    for (var v in json) {
+      news.add(News.fromJson(v));
+    }
+    print(news);
+    /*
       json['events'].forEach((v) {
         events.add(Event.fromJson(v));
       });*/
@@ -29,36 +29,42 @@ class NewsData {
 }
 
 class News {
-  int news_id;
-  String news_title;
-  String news_author;
-  String news_datetime;
-  String news_image;
-  
+  int n_id;
+  String n_title;
+  String n_desc;
+  int n_author;
+  String n_datetime;
+  String n_image;
+  String n_link;
 
   News(
-      {this.news_id,
-      this.news_title,
-      this.news_author,
-      this.news_datetime,
-      this.news_image});
+      {this.n_id,
+      this.n_title,
+      this.n_desc,
+      this.n_author,
+      this.n_datetime,
+      this.n_image,
+      this.n_link});
 
   News.fromJson(Map<String, dynamic> json) {
-    news_id = json['news_id'];
-    news_title = json['news_title'];
-    news_author = json['news_author'];
-    news_datetime = json['news_datetime'];
-    news_image = json['news_image'];
-    
+    n_id = json['n_id'];
+    n_title = json['n_title'];
+    n_desc = json['n_desc'];
+    n_author = json['n_author'];
+    n_datetime = json['n_datetime'];
+    n_image = json['n_image'];
+    n_link = json['n_link'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['news_id'] = this.news_id;
-    data['news_title'] = this.news_title;
-    data['news_author'] = this.news_author;
-    data['news_datetime'] = this.news_datetime;
-    data['news_image'] = this.news_image;
+    data['n_id'] = this.n_id;
+    data['n_title'] = this.n_title;
+    data['n_desc'] = this.n_desc;
+    data['n_author'] = this.n_author;
+    data['n_datetime'] = this.n_datetime;
+    data['n_image'] = this.n_image;
+    data['n_link'] = this.n_link;
     return data;
   }
 }

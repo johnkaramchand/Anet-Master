@@ -1,4 +1,5 @@
 import 'package:anet/config/index.dart';
+import 'package:anet/login_bloc/loading_indicator.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:anet/config/config_page.dart';
 import 'package:bloc/bloc.dart';
@@ -17,13 +18,12 @@ import 'utils/simple_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:anet/login_bloc/signup.dart';
 
-
 import 'package:flutter/services.dart';
 import 'utils/dependency_injection.dart';
 import 'utils/devfest.dart';
 import 'utils/simple_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'login_bloc/loading_indicator.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -46,8 +46,7 @@ class SimpleBlocDelegate extends BlocDelegate {
 }
 
 void main() async {
-
-    SystemChrome.setSystemUIOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ),
@@ -70,7 +69,6 @@ void main() async {
   //* Set DataMode.DART to use Dart hardcoded data and DataMode.JSON to use json file for hardcoded data.
   Injector.configure(Flavor.MOCK, DataMode.JSON);
 
-  
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
   runApp(
@@ -93,18 +91,16 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-          providers: [
-            BlocProvider<LoginBloc>(
-                  builder: (context) {
-                    return LoginBloc(
-                      authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
-                      userRepository: userRepository,
-                    );
-                  }
-              ),
-
-          ],
-          child: MaterialApp(
+      providers: [
+        BlocProvider<LoginBloc>(builder: (context) {
+          return LoginBloc(
+            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+            userRepository: userRepository,
+          );
+        }),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             print(state);
@@ -115,12 +111,14 @@ class App extends StatelessWidget {
               return LoginPage(userRepository: userRepository);
             }
             if (state is AuthenticationLoading) {
-              return LoadingIndicator();
+              return prefix0.LoadingIndicator();
             }
             return SplashPage();
           },
         ),
-        routes: {SignupPage.routeName: (context) => SignupPage(),},
+        routes: {
+          SignupPage.routeName: (context) => SignupPage(),
+        },
       ),
     );
   }

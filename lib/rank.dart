@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/mobile_screen.dart';
-import 'package:anet/agenda/web_screen.dart';
+import 'package:anet/eventsnav/pastevents_screen.dart';
+
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/utils/tools.dart';
@@ -38,17 +38,17 @@ class RankScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
     var events = state.eventsData.events;
-    var eventSessions = events.where((s) => s.event_state == 'true').toList();
+    var eventSessions = events.where((s) => s.e_state == true).toList();
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
        // header: defaultHeader,
         onRefresh: () async {
           print("Pulled down");
-             homeBloc.dispatch(LoadEventsEvent());
+             homeBloc.dispatch(LoadHomeEvent());
              
              var events = state.eventsData.events;
-             eventSessions = events.where((s) => s.event_state == 'true').toList();
+             eventSessions = events.where((s) => s.e_state == true).toList();
           _refreshController.refreshCompleted();
         },
         child:buildlist(eventSessions,context)

@@ -1,20 +1,22 @@
 import 'dart:math';
 
+import 'package:anet/eventsnav/event_details.dart';
+import 'package:anet/models/events.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/agenda/session_detail.dart';
+//import 'package:anet/eventsnav/session_detail.dart';
 import 'package:anet/home/session.dart';
 import 'package:anet/utils/tools.dart';
 
-class SessionList extends StatelessWidget {
-  final List<Session> allSessions;
+class EventList extends StatelessWidget {
+  final List<Event> allEvents;
 
-  const SessionList({Key key, @required this.allSessions}) : super(key: key);
+  const EventList({Key key, @required this.allEvents}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: false,
-      itemCount: allSessions.length,
+      itemCount: allEvents.length,
       itemBuilder: (c, i) {
         // return Text("sdd");
         return Card(
@@ -24,8 +26,8 @@ class SessionList extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SessionDetail(
-                    session: allSessions[i],
+                  builder: (context) => EventsDetail(
+                    event: allEvents[i],
                   ),
                 ),
               );
@@ -35,14 +37,14 @@ class SessionList extends StatelessWidget {
             trailing: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: "${allSessions[i].sessionTotalTime}\n",
+                text: "csscr",//"${allEvents[i].e_organizer}\n",
                 style: Theme.of(context)
                     .textTheme
                     .title
                     .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                    text: allSessions[i].sessionStartTime,
+                     text:"csscr",//"${allEvents[i].e_organizer}\n",
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontSize: 12,
                         ),
@@ -50,21 +52,22 @@ class SessionList extends StatelessWidget {
                 ],
               ),
             ),
+            
             leading: Hero(
-              tag: allSessions[i].speakerImage,
+              tag: "${allEvents[i].e_id}\n",
               child: CircleAvatar(
                 radius: 30,
                 backgroundImage:
-                    CachedNetworkImageProvider(allSessions[i].speakerImage),
+                      CachedNetworkImageProvider('https://www.flaticon.com/authors/alfredo-hernandez'),
               ),
             ),
             title: RichText(
               text: TextSpan(
-                text: "${allSessions[i].sessionTitle}\n",
+                 text: "${allEvents[i].e_organizer}\n",
                 style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
                 children: [
                   TextSpan(
-                      text: allSessions[i].speakerName,
+                       text: "${allEvents[i].e_organizer}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],
@@ -74,7 +77,8 @@ class SessionList extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              allSessions[i].speakerDesc,
+              
+              "${allEvents[i].e_organizer}\n",
               style: Theme.of(context).textTheme.caption.copyWith(
                     fontSize: 10.0,
                   ),

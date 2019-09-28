@@ -109,7 +109,7 @@ class UserRepository {
     //return 'token' ;
     try {
       response = await http.post(
-          'http://139.59.61.35:8000/api/v2/rest-auth/registration/',
+          'http://139.59.61.35:8000/api/v1/custom/register/',
           body: jsonRequest,
           headers: headers);
       response = json.decode(response.body);

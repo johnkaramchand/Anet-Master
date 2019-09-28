@@ -50,7 +50,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
     if (event is RegisterButtonPressed) {
       try {
-        final registrationkey = await userRepository.register(
+        LoginResponse registerResponse = await userRepository.register(
             username: event.username,
             email: event.email,
             password1: event.password1,
@@ -59,7 +59,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             dept: event.dept,
             ut_id: event.ut_id,
             phone_number: event.phone_number);
-        if (registrationkey == 'false') {
+        if (registerResponse.status == 'false') {
           yield RegistrationFailure(error: "failed");
         } else {
           //  authenticationBloc.dispatch(LoggedIn(loginResponse: lo));

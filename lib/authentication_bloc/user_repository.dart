@@ -91,7 +91,7 @@ class UserRepository {
     return '$value';
   }
 
-  Future<String> register(
+  Future<LoginResponse> register(
       {@required String username,
       @required String email,
       @required String password1,
@@ -101,6 +101,7 @@ class UserRepository {
       @required int ut_id,
       @required String phone_number}) async {
     var response;
+    var res;
     String jsonRequest =
         '{"username": "$username", "password1":"$password1", "password2":"$password2","email":"$email","usn":"$usn","dept":"$dept","ut_id":"$ut_id","phone_number":"$phone_number"}';
     //  String jsonRequest = '{"username": "$username", "email": "$email", "password":"$password"}';
@@ -112,14 +113,14 @@ class UserRepository {
           'http://139.59.61.35:8000/api/v1/custom/register/',
           body: jsonRequest,
           headers: headers);
-      response = json.decode(response.body);
+      res = json.decode(response.body);
     } catch (error) {}
     print("KEY");
-    if (response['key'] != null) {
-      return response['key'];
+    if (res['status'] != null) {
+      LoginResponse loginResponse = LoginResponse.fromJson(res);
+      return loginResponse;
       // persistToken(response['key']);
 
     }
-    return 'false';
   }
 }

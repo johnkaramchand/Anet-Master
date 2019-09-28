@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1025908020667",
+    "firebase_url": "https://ciaflutter.firebaseio.com",
+    "project_id": "ciaflutter",
+    "storage_bucket": "ciaflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025908020667:android:cbace25bd714df6f5ca09e",
+        "android_client_info": {
+          "package_name": "s.anet.anet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025908020667-7dk84mvj491c80qv7i2ufgjjs2a7fsot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdcshN8FCrSi8uaFjFVCxJq3KWXBGHGkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025908020667-7dk84mvj491c80qv7i2ufgjjs2a7fsot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

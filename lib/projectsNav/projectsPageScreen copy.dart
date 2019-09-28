@@ -99,14 +99,15 @@ class ProjectScreen extends StatelessWidget {
               padding: EdgeInsets.all(5),
               child: ListTile(
                   onTap: () {
-                    Navigator.push(
+                    print("Clicked");
+                    /* Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => NewsDetail(
                           news: newsList[i],
                         ),
                       ),
-                    );
+                    ); */
                   },
                   leading: CircleAvatar(
                     radius: 20,

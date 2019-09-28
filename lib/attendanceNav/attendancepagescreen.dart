@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:anet/dialogs/error_dialog.dart';
 import 'package:anet/login_bloc/loading_indicator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -73,19 +74,53 @@ class AttendanceScreen extends State<AttendancePageScreen> {
           body: jsonRequest, headers: headers);
       print(response.body);
       var res = json.decode(response.body);
-      if (res['response'] == 'true') {
-        setState(() {
-          current = true;
-        });
+      print(res);
+      if (res['response'] == true) {
+        print("True");
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => Dialog(
+            error: 'Attendence Confirmed',
+            onTap: () {
+              setState(() {
+                current = true;
+              });
+              //_homeBloc.dispatch(LoadHomeEvent());
+            },
+          ),
+        );
       } else {
-        setState(() {
-          current = true;
-          Scaffold.of(context).showSnackBar(snackBar);
-        });
-
-        print("mdfinvfn");
+        print("Failed");
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => Dialog(
+            error: 'ERROR',
+            onTap: () {
+              setState(() {
+                current = true;
+              });
+              //_homeBloc.dispatch(LoadHomeEvent());
+            },
+          ),
+        );
       }
-    } catch (error) {}
+    } catch (error) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Dialog(
+          error: 'Error',
+          onTap: () {
+            setState(() {
+              current = true;
+            });
+            //_homeBloc.dispatch(LoadHomeEvent());
+          },
+        ),
+      );
+    }
 
     //var jsonresponse = json.decode(response.body);
 
@@ -95,7 +130,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
   @override
   Widget build(BuildContext context) {
     return DevScaffold(
-      title: 'Attend',
+      title: 'Attendance',
       body: current ? _attendancescreen() : _loadScreen(),
     );
 
@@ -112,7 +147,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
   }
 
   Widget _attendancescreen() {
-    return SingleChildScrollView(
+    return Center(
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Center(
@@ -121,21 +156,29 @@ class AttendanceScreen extends State<AttendancePageScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "CLAIM POINTS ",
-              style:
-                  Theme.of(context).textTheme.headline.copyWith(fontSize: 30),
+              "Proof that you were here!",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline
+                  .copyWith(fontSize: 30, fontWeight: FontWeight.bold),
               textAlign: TextAlign.justify,
             ),
-            Icon(
-              FontAwesomeIcons.checkSquare,
+            SizedBox(
+              height: 30,
+            ),
+            /*  Icon(
+              FontAwesomeIcons.save,
+              size: 50,
             ),
             SizedBox(
-              height: 60,
-            ),
+              height: 30,
+            ), */
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
                 style: TextStyle(),
+                decoration:
+                    InputDecoration(hintText: "ENTER YOUR EVENT CODE HERE"),
                 controller: eventCode,
               ),
             ),
@@ -143,7 +186,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
               height: 25,
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 1.5,
+              width: MediaQuery.of(context).size.width / 2,
               height: 50,
               child: RaisedButton(
                 onPressed: () {
@@ -154,13 +197,26 @@ class AttendanceScreen extends State<AttendancePageScreen> {
                   attendApi(token.toString(), eventCode.text);
                 },
                 shape: StadiumBorder(),
-                child: Text(
-                  "Claim Attendance",
-                  style: TextStyle(
-                      //color: Colors.black,
-                      //  fontFamily: 'Raleway',
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    /*    Icon(Icons.book),
+                    SizedBox(
+                      width: 10,
+                    ), */
+                    Text(
+                      "CLAIM",
+                      style: TextStyle(
+                          //color: Colors.black,
+                          //  fontFamily: 'Raleway',
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(Icons.open_in_new),
+                  ],
                 ),
                 color: Colors.green,
               ),
@@ -180,5 +236,53 @@ class AttendanceScreen extends State<AttendancePageScreen> {
     String stringValue = await prefs.getString('communitiesinatria-token');
     token = stringValue;
     //Return bool
+  }
+}
+
+class Dialog extends StatelessWidget {
+  final Widget child;
+  final error;
+  final Function onTap;
+
+  Dialog({Key key, this.child, this.error = 'okay', this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(error),
+                SizedBox(
+                  height: 10,
+                ),
+                RaisedButton(
+                  shape: StadiumBorder(),
+                  colorBrightness: Brightness.dark,
+                  child: Text('okay'),
+                  color: Colors.red,
+                  onPressed: () {
+                    Navigator.pop(context);
+                    if (onTap != null) {
+                      onTap();
+                    }
+                  },
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

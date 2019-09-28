@@ -4,7 +4,7 @@ import 'package:anet/newsNav/news_details.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/pastevents_screen.dart';
 import 'package:collection/iterable_zip.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
@@ -84,8 +84,9 @@ class ProjectScreen extends StatelessWidget {
               );
         });
   }
- Widget buildlist(var projectList, context) {
-   print(projectList);
+
+  Widget buildlist(var projectList, context) {
+    print(projectList);
     return ListView.builder(
       shrinkWrap: false,
       itemCount: projectList.length,
@@ -99,6 +100,8 @@ class ProjectScreen extends StatelessWidget {
               padding: EdgeInsets.all(5),
               child: ListTile(
                   onTap: () {
+                    openProject(projectList[i].p_github_link);
+                    /* 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -106,13 +109,16 @@ class ProjectScreen extends StatelessWidget {
                           news: projectList[i],
                         ),
                       ),
-                    );
+                    ); */
                   },
                   leading: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.transparent,
-                    child: Icon(Icons.radio_button_checked,color: Colors.blue,),
-                   /*  backgroundImage: NetworkImage(
+                    child: Icon(
+                      Icons.radio_button_checked,
+                      color: Colors.blue,
+                    ),
+                    /*  backgroundImage: NetworkImage(
                         "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg")),
                     */ /*  child: CachedNetworkImage(
                       fit: BoxFit.fill,
@@ -125,11 +131,13 @@ class ProjectScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      
-                      Icon(Icons.play_arrow,color: Colors.blue,),
+                      Icon(
+                        Icons.play_arrow,
+                        color: Colors.blue,
+                      ),
                       Text(
                         "ONGOING",
-                        style: TextStyle(color:Colors.grey[500]),
+                        style: TextStyle(color: Colors.grey[500]),
                       )
                     ],
                   ),
@@ -172,16 +180,13 @@ class ProjectScreen extends StatelessWidget {
                       ),
                       children: <TextSpan>[
                         new TextSpan(
-                          text: '\n${projectList[i].p_desc.toString()}' ?? 'description',
-                          
+                          text: '\n${projectList[i].p_desc.toString()}' ??
+                              'description',
                           style: new TextStyle(
-                            
                             color: Colors.grey,
-                           
-                            
                           ),
                         ),
-                       /*  new TextSpan(
+                        /*  new TextSpan(
                             text: '....',
                             style: new TextStyle(
                               color: Colors.grey,
@@ -205,6 +210,15 @@ class ProjectScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  openProject(String url) async {
+    print("URL :  $url");
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

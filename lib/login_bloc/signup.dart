@@ -59,222 +59,223 @@ class _SignupPageState extends State<SignupPage> {
             return new Scaffold(
                 resizeToAvoidBottomPadding: true,
                 body: SingleChildScrollView(
+                  padding: EdgeInsets.all(20),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Container(
-                          child: Stack(
-                            children: <Widget>[
-                              Container(
-                                padding:
-                                    EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                                child: Text(
-                                  'Signup',
-                                  style: TextStyle(
-                                      fontSize: 80.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Container(
-                                padding:
-                                    EdgeInsets.fromLTRB(260.0, 125.0, 0.0, 0.0),
-                                child: Text(
-                                  '.',
-                                  style: TextStyle(
-                                      fontSize: 80.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.green),
-                                ),
-                              )
-                            ],
-                          ),
+                        SizedBox(
+                          height: 20,
                         ),
-                        Container(
-                            padding: EdgeInsets.only(
-                                top: 35.0, left: 20.0, right: 20.0),
-                            child: Form(
-                              //autovalidate: false,
-                              key: key,
-                              child: Column(
-                                children: <Widget>[
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        labelText: 'Username',
-                                        labelStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                        // hintText: 'EMAIL',
-                                        // hintStyle: ,
-                                        focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.green))),
-                                    controller: _usernameController,
-                                    validator: (value) => value.isEmpty
-                                        ? "Field cannot be empty"
-                                        : null,
-                                    //onSaved: (value) => name = value,
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        labelText: 'Password ',
-                                        labelStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                        focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.green))),
-                                    controller: _password1Controller,
-                                    obscureText: true,
-                                    validator: (value) => value.isEmpty
-                                        ? "Field cannot be empty"
-                                        : null,
-                                    //onSaved: (value) => name = value,
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        labelText: 'Re-enter Password ',
-                                        labelStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                        focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.green))),
-                                    controller: _password2Controller,
-                                    validator: (value) => value.isEmpty
-                                        ? "Field cannot be empty"
-                                        : null,
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        labelText: 'Email',
-                                        labelStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                        focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.green))),
-                                    controller: _emailController,
-                                    validator: (value) => value.isEmpty
-                                        ? "Field cannot be empty"
-                                        : null,
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        labelText: 'USN',
-                                        labelStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                        focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.green))),
-                                    controller: _usnController,
-                                    validator: (value) => value.isEmpty
-                                        ? "Field cannot be empty"
-                                        : null,
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        labelText: 'Department',
-                                        labelStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                        focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.green))),
-                                    controller: _usnController,
-                                    validator: (value) => value.isEmpty
-                                        ? "Field cannot be empty"
-                                        : null,
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        labelText: 'Phone Number',
-                                        labelStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
-                                        focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.green))),
-                                    controller: _phone_numberController,
-                                    validator: (value) => value.isEmpty
-                                        ? "Field cannot be empty"
-                                        : null,
-                                  ),
-                                  SizedBox(height: 50.0),
-                                  Container(
-                                      height: 40.0,
-                                      child: Material(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                        shadowColor: Colors.greenAccent,
-                                        color: Colors.green,
-                                        elevation: 7.0,
-                                        child: SizedBox.expand(
-                                          child: RaisedButton(
-                                            onPressed: () {
-                                              if (key.currentState.validate()) {
-                                                print(
-                                                    "Hi.... KAKAKEKETUKETUKE!!");
-                                                onRegisterButtonPressed();
-                                                //Navigator.of(context).pop();
-                                              }
-                                            },
-                                            child: Text(
-                                              'SIGNUP',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Montserrat'),
-                                            ),
-                                            shape: StadiumBorder(),
-                                            color: Colors.green,
-                                            splashColor: Colors.greenAccent,
-                                            colorBrightness: Brightness.dark,
-                                          ),
-                                        ),
-                                      )),
-                                  SizedBox(height: 20.0),
-                                  Container(
-                                    height: 40.0,
-                                    color: Colors.transparent,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.black,
-                                              style: BorderStyle.solid,
-                                              width: 1.0),
-                                          color: Colors.transparent,
-                                          borderRadius:
-                                              BorderRadius.circular(20.0)),
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
+                        Text(
+                          'You\'re a form away from being a part of',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.start,
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              'CommunitiesIN',
+                              style: TextStyle(
+                                  fontSize: 30.0, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.start,
+                            ),
+                            Text(
+                              'Atria',
+                              style: TextStyle(
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Form(
+                          //autovalidate: false,
+                          key: key,
+                          child: Column(
+                            children: <Widget>[
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'Username',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                    // hintText: 'EMAIL',
+                                    // hintStyle: ,
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.green))),
+                                controller: _usernameController,
+                                validator: (value) => value.isEmpty
+                                    ? "Field cannot be empty"
+                                    : null,
+                                //onSaved: (value) => name = value,
+                              ),
+                              SizedBox(height: 10.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'Password ',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.green))),
+                                controller: _password1Controller,
+                                obscureText: true,
+                                validator: (value) => value.isEmpty
+                                    ? "Field cannot be empty"
+                                    : null,
+                                //onSaved: (value) => name = value,
+                              ),
+                              SizedBox(height: 10.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'Re-enter Password ',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.green))),
+                                controller: _password2Controller,
+                                validator: (value) => value.isEmpty
+                                    ? "Field cannot be empty"
+                                    : null,
+                              ),
+                              SizedBox(height: 10.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'Email',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.green))),
+                                controller: _emailController,
+                                validator: (value) => value.isEmpty
+                                    ? "Field cannot be empty"
+                                    : null,
+                              ),
+                              SizedBox(height: 10.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'USN',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.green))),
+                                controller: _usnController,
+                                validator: (value) => value.isEmpty
+                                    ? "Field cannot be empty"
+                                    : null,
+                              ),
+                              SizedBox(height: 10.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'Department',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.green))),
+                                controller: _usnController,
+                                validator: (value) => value.isEmpty
+                                    ? "Field cannot be empty"
+                                    : null,
+                              ),
+                              SizedBox(height: 10.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'Phone Number',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.green))),
+                                controller: _phone_numberController,
+                                validator: (value) => value.isEmpty
+                                    ? "Field cannot be empty"
+                                    : null,
+                              ),
+                              SizedBox(height: 50.0),
+                              Container(
+                                  height: 40.0,
+                                  child: Material(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    shadowColor: Colors.greenAccent,
+                                    color: Colors.green,
+                                    elevation: 7.0,
+                                    child: SizedBox.expand(
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          if (key.currentState.validate()) {
+                                            print("Hi.... KAKAKEKETUKETUKE!!");
+                                            onRegisterButtonPressed();
+                                            //Navigator.of(context).pop();
+                                          }
                                         },
-                                        child: Center(
-                                          child: Text('Go Back',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Montserrat')),
+                                        child: Text(
+                                          'SIGNUP',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Montserrat'),
                                         ),
+                                        shape: StadiumBorder(),
+                                        color: Colors.green,
+                                        splashColor: Colors.greenAccent,
+                                        colorBrightness: Brightness.dark,
                                       ),
                                     ),
+                                  )),
+                              SizedBox(height: 20.0),
+                              Container(
+                                height: 40.0,
+                                color: Colors.transparent,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black,
+                                          style: BorderStyle.solid,
+                                          width: 1.0),
+                                      color: Colors.transparent,
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Center(
+                                      child: Text('Go Back',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Montserrat')),
+                                    ),
                                   ),
-                                ],
+                                ),
                               ),
-                            )),
+                            ],
+                          ),
+                        )
                       ]),
                 ));
           },

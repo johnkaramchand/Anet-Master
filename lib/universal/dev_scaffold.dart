@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:anet/authentication_bloc/authentication.dart';
 
-
 class DevScaffold extends StatelessWidget {
   final String title;
   final Widget body;
@@ -19,13 +18,12 @@ class DevScaffold extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-        final AuthenticationBloc authenticationBloc =
+    final AuthenticationBloc authenticationBloc =
         BlocProvider.of<AuthenticationBloc>(context);
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       color: ConfigBloc().darkModeOn ? Colors.grey[800] : Colors.white,
       child: SafeArea(
-        
         top: false,
         bottom: false,
         child: Scaffold(
@@ -46,8 +44,6 @@ class DevScaffold extends StatelessWidget {
                       .dispatch(DarkModeEvent(!ConfigBloc().darkModeOn));
                 },
               ),
-              
-              
               IconButton(
                 onPressed: () => Share.share(
                     "Download the new DevFest App and share with your tech friends.\nPlayStore -  http://bit.ly/2GDr18N"),
@@ -56,14 +52,13 @@ class DevScaffold extends StatelessWidget {
                   size: 20,
                 ),
               ),
-              IconButton(
+              /*  IconButton(
                 icon: Icon(Icons.exit_to_app,size: 20,),
                 onPressed: (){
                   authenticationBloc.dispatch(LoggedOut()) ;
 
                 },
-              ),
-              
+              ), */
             ],
           ),
           body: body,

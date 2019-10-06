@@ -28,6 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
+    print("THIS IS EVENT TYPE : $event");
     if (event is LoginButtonPressed) {
       yield LoginLoading();
 
@@ -47,8 +48,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       } catch (error) {
         yield LoginFailure(error: error.toString());
       }
-    }
-    if (event is RegisterButtonPressed) {
+    } else if (event is RegisterButtonPressed) {
+      print("BUTTON PRESSED !");
+      yield LoginLoading();
       try {
         LoginResponse registerResponse = await userRepository.register(
             username: event.username,
@@ -62,8 +64,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (registerResponse.status == 'false') {
           yield RegistrationFailure(error: "failed");
         } else {
-          //  authenticationBloc.dispatch(LoggedIn(loginResponse: lo));
-          yield RegistrationDone();
+          LoginResponse loginResponse = LoginResponse(
+              email: registerResponse.email,
+              username: registerResponse.username,
+              status: registerResponse.status,
+              key: registerResponse.key);
+          authenticationBloc
+              .dispatch(LoggedIn(loginResponse: registerResponse));
+          yield LoginInitial();
         }
       } catch (error) {
         yield RegistrationFailure(error: error.toString());

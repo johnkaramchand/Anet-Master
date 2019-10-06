@@ -18,7 +18,7 @@ import 'utils/dependency_injection.dart';
 import 'utils/devfest.dart';
 import 'utils/simple_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:anet/login_bloc/signup.dart';
+import 'package:anet/login_bloc/signup_page.dart';
 import 'package:anet/attendanceNav/attendancepagescreen.dart';
 import 'package:anet/eventsnav/event_details.dart';
 import 'package:anet/comingsoon.dart';
@@ -190,7 +190,10 @@ class AppState extends State<App> {
                   AttendancePageScreen(),
               ProjectsPageScreen.routeName: (context) => ProjectsPageScreen(),
 
-              SignupPage.routeName: (context) => SignupPage(),
+              SignupPage.routeName: (context) => SignupPage(
+                    userRepository:
+                        RepositoryProvider.of<UserRepository>(context),
+                  ),
             },
           );
         }));

@@ -27,10 +27,9 @@ class LoginFailure extends LoginState {
 class RegistrationDone extends LoginState {
   @override
   String toString() {
-    return "Registered" ;
+    return "Registered";
   }
 }
-
 
 class RegistrationFailure extends LoginState {
   final String error;
@@ -39,4 +38,9 @@ class RegistrationFailure extends LoginState {
 
   @override
   String toString() => 'RegistrationFailure { error: $error }';
+}
+
+class RegisterLoading extends LoginState {
+  @override
+  String toString() => 'RegisterLoading';
 }

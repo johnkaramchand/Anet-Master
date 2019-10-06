@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/login_bloc/login.dart';
-import 'package:anet/login_bloc/signup.dart';
+import 'package:anet/login_bloc/signup_page.dart';
 /*
 class LoginForm extends StatefulWidget {
   @override State < LoginForm > createState() => _LoginFormState();
@@ -83,6 +83,7 @@ class _LoginFormState extends State<LoginForm> {
     final loginBloc = BlocProvider.of<LoginBloc>(context);
 
     _onLoginButtonPressed() {
+      print(_usernameController.text);
       loginBloc.dispatch(LoginButtonPressed(
         username: _usernameController.text,
         password: _passwordController.text,

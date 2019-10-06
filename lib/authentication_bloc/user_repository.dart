@@ -109,13 +109,14 @@ class UserRepository {
     // await Future.delayed(Duration(seconds: 1)) ;
     //return 'token' ;
     try {
+      print("SURYA THIS IS THE DATA : $jsonRequest");
       response = await http.post(
           'http://139.59.61.35:8000/api/v1/custom/register/',
           body: jsonRequest,
           headers: headers);
       res = json.decode(response.body);
     } catch (error) {}
-    print("KEY");
+    print("KEY: $res");
     if (res['status'] != null) {
       LoginResponse loginResponse = LoginResponse.fromJson(res);
       return loginResponse;

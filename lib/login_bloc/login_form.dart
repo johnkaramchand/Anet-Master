@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/login_bloc/login.dart';
 import 'package:anet/login_bloc/signup_page.dart';
+import 'package:anet/authentication_bloc/authentication.dart';
 /*
 class LoginForm extends StatefulWidget {
   @override State < LoginForm > createState() => _LoginFormState();
@@ -81,6 +82,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final loginBloc = BlocProvider.of<LoginBloc>(context);
+    final authbloc = BlocProvider.of<AuthenticationBloc>(context);
 
     _onLoginButtonPressed() {
       print(_usernameController.text);
@@ -239,7 +241,8 @@ class _LoginFormState extends State<LoginForm> {
                   SizedBox(width: 5.0),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).pushNamed('/signup');
+                      // Navigator.of(context).pushNamed('/tempsignup');
+                      authbloc.dispatch(Register());
                     },
                     child: Text(
                       'Register',

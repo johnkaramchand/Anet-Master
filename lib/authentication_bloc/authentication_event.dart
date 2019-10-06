@@ -25,5 +25,5 @@ class LoggedOut extends AuthenticationEvent {
 
 class Register extends AuthenticationEvent {
   @override
-  String toString() => 'Logged Out';
+  String toString() => 'Register Event';
 }

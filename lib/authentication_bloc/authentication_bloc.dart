@@ -28,11 +28,16 @@ class AuthenticationBloc
         yield AuthenticationAuthenticated();
       } else {
         if (event is Register) {
+          print("REGISTER BRO");
           yield AuthenticationUnauthenticatedRegister();
         } else {
           yield AuthenticationUnauthenticated();
         }
       }
+    }
+    if (event is Register) {
+      print("REGISTER BRO");
+      yield AuthenticationUnauthenticatedRegister();
     }
 
     if (event is LoggedIn) {

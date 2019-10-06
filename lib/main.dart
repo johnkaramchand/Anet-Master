@@ -2,6 +2,7 @@ import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/index.dart';
 import 'package:anet/home/index.dart' as prefix1;
 import 'package:anet/login_bloc/loading_indicator.dart' as prefix0;
+import 'package:anet/login_bloc/tempsignup.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/config/config_page.dart';
 import 'package:bloc/bloc.dart';
@@ -172,6 +173,11 @@ class AppState extends State<App> {
                       userRepository:
                           RepositoryProvider.of<UserRepository>(context));
                 }
+                if (state is AuthenticationUnauthenticatedRegister) {
+                  return SignupPage(
+                      userRepository:
+                          RepositoryProvider.of<UserRepository>(context));
+                }
                 if (state is AuthenticationLoading) {
                   return prefix0.LoadingIndicator();
                 }
@@ -189,11 +195,14 @@ class AppState extends State<App> {
               AttendancePageScreen.routeName: (context) =>
                   AttendancePageScreen(),
               ProjectsPageScreen.routeName: (context) => ProjectsPageScreen(),
-
-              SignupPage.routeName: (context) => SignupPage(
+              TempSignupPage.routeName: (context) => TempSignupPage(
                     userRepository:
                         RepositoryProvider.of<UserRepository>(context),
                   ),
+              /*   SignupPage.routeName: (context) => SignupPage(
+                    userRepository:
+                        RepositoryProvider.of<UserRepository>(context),
+                  ), */
             },
           );
         }));

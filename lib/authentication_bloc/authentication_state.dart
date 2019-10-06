@@ -24,5 +24,5 @@ class AuthenticationLoading extends AuthenticationState {
 
 class AuthenticationUnauthenticatedRegister extends AuthenticationState {
   @override
-  String toString() => 'AuthenticationLoading';
+  String toString() => 'AuthenticationUnauthenticatedRegister';
 }

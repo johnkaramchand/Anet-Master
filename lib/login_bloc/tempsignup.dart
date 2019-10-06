@@ -4,13 +4,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/authentication_bloc/authentication.dart';
+import 'package:anet/home/home_bloc.dart';
 
-class SignupForm extends StatefulWidget {
+class TempSignupPage extends StatelessWidget {
+  static const String routeName = "/tempsignup";
+  final UserRepository userRepository;
+
+  TempSignupPage({Key key, @required this.userRepository})
+      : assert(userRepository != null),
+        super(key: key);
+
   @override
-  _SignupFormState createState() => _SignupFormState();
+  Widget build(BuildContext context) {
+    print("inside TEMP");
+    return DevScaffold(
+      title: 'ola',
+      /*  body: BlocProvider(
+        builder: (context) {
+          return LoginBloc(
+            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+            userRepository: userRepository,
+          );
+        },
+        child: LoginForm(),
+      ),*/
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<LoginBloc>(builder: (context) {
+            return LoginBloc(
+              authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+              userRepository: userRepository,
+            );
+          }),
+          BlocProvider<HomeBloc>(builder: (context) {
+            return HomeBloc(
+                // homeBloc: BlocProvider.of<AuthenticationBloc>(context),
+                //userRepository: userRepository,
+                );
+          }),
+        ],
+        child: TempSignupForm(),
+      ),
+    );
+  }
 }
 
-class _SignupFormState extends State<SignupForm> {
+class TempSignupForm extends StatefulWidget {
+  @override
+  _TempSignupFormState createState() => _TempSignupFormState();
+}
+
+class _TempSignupFormState extends State<TempSignupForm> {
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _password1Controller = TextEditingController();
@@ -52,7 +96,7 @@ class _SignupFormState extends State<SignupForm> {
           );
         }
       },
-      child: BlocBuilder<LoginBloc, LoginState>(
+      child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           return SingleChildScrollView(
             padding: EdgeInsets.all(20),
@@ -209,6 +253,7 @@ class _SignupFormState extends State<SignupForm> {
                               child: SizedBox.expand(
                                 child: RaisedButton(
                                   onPressed: () {
+                                    //authbloc.dispatch(LoginLoading());
                                     if (key.currentState.validate()) {
                                       print("Hi.... KAKAKEKETUKETUKE!!");
                                       onRegisterButtonPressed();
@@ -243,8 +288,7 @@ class _SignupFormState extends State<SignupForm> {
                                 borderRadius: BorderRadius.circular(20.0)),
                             child: InkWell(
                               onTap: () {
-                                //Navigator.of(context).pop();
-                                authbloc.dispatch(LoggedOut());
+                                Navigator.of(context).pop();
                               },
                               child: Center(
                                 child: Text('Go Back',

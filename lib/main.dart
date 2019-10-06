@@ -72,13 +72,18 @@ void main() async {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
   runApp(
-    BlocProvider<AuthenticationBloc>(
+    RepositoryProvider(
       builder: (context) {
-        return AuthenticationBloc(userRepository: userRepository)
-          //..dispatch(LoggedIn(token: "vlfdnvdfn"));
-          ..dispatch(appStarted());
+        return UserRepository();
       },
-      child: App(userRepository: userRepository),
+      child: BlocProvider<AuthenticationBloc>(
+        builder: (context) {
+          return AuthenticationBloc(userRepository: userRepository)
+            //..dispatch(LoggedIn(token: "vlfdnvdfn"));
+            ..dispatch(appStarted());
+        },
+        child: App(userRepository: userRepository),
+      ),
     ),
   );
 }

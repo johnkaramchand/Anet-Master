@@ -68,7 +68,7 @@ class NewsDetail extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-             /*  Center(
+              /*  Center(
                   child: CachedNetworkImage(
                 // imageUrl: "${news.n_image}",
                 imageUrl:
@@ -118,34 +118,36 @@ class NewsDetail extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 1.5,
-                height: 50,
-                child: RaisedButton(
-                  onPressed: () {
-                    print("clicked");
-                    _register(news.n_link);
-                  },
-                  shape: StadiumBorder(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                    Text(
-                      "open",
-                      style: TextStyle(
-                          //color: Colors.black,
-                          //  fontFamily: 'Raleway',
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(Icons.open_in_browser)
-                  ]),
-                  color: Colors.green,
-                ),
-              ),
+              news.n_link.toString().length > 5
+                  ? SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      height: 50,
+                      child: RaisedButton(
+                        onPressed: () {
+                          print("clicked");
+                          _register(news.n_link);
+                        },
+                        shape: StadiumBorder(),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "open",
+                                style: TextStyle(
+                                    //color: Colors.black,
+                                    //  fontFamily: 'Raleway',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(Icons.open_in_browser)
+                            ]),
+                        color: Colors.green,
+                      ),
+                    )
+                  : SizedBox(),
               // socialActions(context),
             ],
           ),
@@ -155,7 +157,7 @@ class NewsDetail extends StatelessWidget {
     );
   }
 
-   _register(String url) async {
+  _register(String url) async {
     print("URL :  $url");
     if (await canLaunch(url)) {
       await launch(url);

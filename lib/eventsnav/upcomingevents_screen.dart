@@ -50,6 +50,7 @@ class UpcomingEventsScreen extends StatelessWidget {
           }
 
           var eventSessions = events.where((s) => s.e_state == true).toList();
+          eventSessions.sort((a, b) => b.e_date.compareTo(a.e_date));
           print("DATA : ${events[0].e_id}");
 
           return SmartRefresher(
@@ -114,22 +115,26 @@ class UpcomingEventsScreen extends StatelessWidget {
                             color: Colors.red),
                       ),
                       //Text("AUG"),
-                      Text("${allEvents[i].e_date.toString().substring(5, 7)}",style: TextStyle(color: Colors.grey[600]),),
+                      Text(
+                        "${allEvents[i].e_date.toString().substring(5, 7)}",
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
                     ],
                   ),
                   Text(
-                      "${allEvents[i].e_start_time.toString().substring(0, 5)}",style: TextStyle(color: Colors.grey[600]),),
+                    "${allEvents[i].e_start_time.toString().substring(0, 5)}",
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
                 ],
               ),
-              trailing:Column(
+              trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                   Icon(
-                FontAwesomeIcons.angleRight,
-                color: Colors.red,
-                
-              ),
-             /*  SizedBox(
+                  Icon(
+                    FontAwesomeIcons.angleRight,
+                    color: Colors.red,
+                  ),
+                  /*  SizedBox(
                 height: 5,
               )
               ,

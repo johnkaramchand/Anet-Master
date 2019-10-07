@@ -1,5 +1,6 @@
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/index.dart';
+import 'package:anet/eventsnav/event_detailspast.dart';
 import 'package:anet/home/index.dart' as prefix1;
 import 'package:anet/login_bloc/loading_indicator.dart' as prefix0;
 import 'package:anet/login_bloc/tempsignup.dart';
@@ -199,6 +200,7 @@ class AppState extends State<App> {
                     userRepository:
                         RepositoryProvider.of<UserRepository>(context),
                   ),
+
               /*   SignupPage.routeName: (context) => SignupPage(
                     userRepository:
                         RepositoryProvider.of<UserRepository>(context),

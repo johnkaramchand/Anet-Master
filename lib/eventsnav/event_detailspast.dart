@@ -10,11 +10,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:anet/models/events.dart';
 import 'package:anet/config/config_bloc.dart';
 
-class EventsDetail extends StatelessWidget {
-  static const String routeName = "/events_details";
+class EventsDetailPast extends StatelessWidget {
+  static const String routeName = "/events_details_past";
   final Event event;
 
-  EventsDetail({Key key, @required this.event}) : super(key: key);
+  EventsDetailPast({Key key, @required this.event}) : super(key: key);
+
 /*
   Widget socialActions(context) => FittedBox(
         child: Row(
@@ -234,11 +235,10 @@ class EventsDetail extends StatelessWidget {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 25,
               ),
-              SizedBox(
+              /*   SizedBox(
                 width: MediaQuery.of(context).size.width / 1.5,
                 height: 50,
                 child: RaisedButton(
@@ -248,7 +248,7 @@ class EventsDetail extends StatelessWidget {
                   },
                   shape: StadiumBorder(),
                   child: Text(
-                    "REGISTER",
+                    "Photos",
                     style: TextStyle(
                         //color: Colors.black,
                         //  fontFamily: 'Raleway',
@@ -257,15 +257,113 @@ class EventsDetail extends StatelessWidget {
                   ),
                   color: Colors.redAccent,
                 ),
-              ),
-
-              // socialActions(context),
+              ), */
+              event.e_photos_link.toString().length > 5 ||
+                      event.e_medium_link.toString().length > 5
+                  ? Text("For more info smash these icons.")
+                  : SizedBox(),
+              socialActions(context),
             ],
           ),
         ),
       ),
       title: event.e_title,
     );
+  }
+
+  Widget socialActions(context) => SizedBox(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            event.e_photos_link.toString().length > 5
+                ? IconButton(
+                    icon: Icon(
+                      FontAwesomeIcons.image,
+                      size: 40,
+                    ),
+                    onPressed: () async {
+                      if (event.e_photos_link.toString().length > 5) {
+                        await _launchURL("${event.e_photos_link}");
+                      } else {
+                        print("NO DATA");
+                      }
+                    },
+                  )
+                : SizedBox(
+                    width: 0,
+                  ),
+            SizedBox(
+              width: 20,
+            ),
+            event.e_medium_link.toString().length > 5
+                ? IconButton(
+                    icon: Icon(
+                      FontAwesomeIcons.medium,
+                      size: 40,
+                    ),
+                    onPressed: () async {
+                      if (event.e_medium_link.toString().length > 5) {
+                        await _launchURL("${event.e_medium_link}");
+                      } else {
+                        print("NO DATA");
+                      }
+                    },
+                  )
+                : SizedBox(
+                    width: 0,
+                  ),
+            SizedBox(
+              width: 20,
+            ),
+            /*  IconButton(
+              icon: Icon(
+                FontAwesomeIcons.github,
+                size: 40,
+              ),
+              onPressed: () async {
+                await _launchURL("${event.e_github_link}");
+              },
+            ), */ /* 
+            IconButton(
+              icon: Icon(FontAwesomeIcons.linkedinIn),
+              onPressed: () async {
+                _launchURL(
+                    "https://www.linkedin.com/company/communities-in-atria");
+              },
+            ),
+            IconButton(
+              icon: Icon(FontAwesomeIcons.youtube),
+              onPressed: () async {
+                await _launchURL(
+                    "https://www.youtube.com/channel/UCVOsWDAhARY9WnJzkFj4Jrg ");
+              },
+            ),
+            /*
+            IconButton(
+              icon: Icon(FontAwesomeIcons.meetup),
+              onPressed: () async {
+                await _launchURL("https://meetup.com/");
+              },
+            ),*/
+            IconButton(
+              icon: Icon(FontAwesomeIcons.envelope),
+              onPressed: () async {
+                var emailUrl =
+                    '''mailto:communities.atria@gmail.com?subject=We love CIA-CommunitiesInAtria&body=Communities are great !!!''';
+                var out = Uri.encodeFull(emailUrl);
+                await _launchURL(out);
+              }, 
+            ),*/
+          ],
+        ),
+      );
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   _register(String url) async {

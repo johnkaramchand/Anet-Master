@@ -1,5 +1,6 @@
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/eventsnav/event_details.dart';
+import 'package:anet/eventsnav/event_detailspast.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/home/index.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,59 +19,58 @@ class PastEventsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<HomeBloc, HomeState>(
+        bloc: homeBloc,
+        builder: (
+          BuildContext context,
+          HomeState currentState,
+        ) {
+          if (currentState is UnHomeState) {
+            return Center(
+              child: SpinKitChasingDots(
+                color: Tools.multiColors[Random().nextInt(3)],
+              ),
+            );
+          }
+          if (currentState is ErrorHomeState) {
+            return Container(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: Text(
+                    currentState.errorMessage ?? 'Error',
+                    textAlign: TextAlign.center,
+                  ),
+                ));
+          }
 
-   
-     return BlocBuilder<HomeBloc, HomeState>(
-          bloc: homeBloc,
-          builder: (
-            BuildContext context,
-            HomeState currentState,
-          ) {
-            if (currentState is UnHomeState) {
-              return Center(
-                child: SpinKitChasingDots(
-                  color: Tools.multiColors[Random().nextInt(3)],
-                ),
-              );
-            }
-            if (currentState is ErrorHomeState) {
-              return Container(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: Text(
-                      currentState.errorMessage ?? 'Error',
-                      textAlign: TextAlign.center,
-                    ),
-                  ));
-            }
+          var state = homeBloc.currentState as InHomeState;
+          var events = state.eventsData.events;
 
-            var state = homeBloc.currentState as InHomeState;
-    var events = state.eventsData.events;
+          for (var i in events) {
+            print(i.e_id);
+          }
 
-    for (var i in events) {
-      print(i.e_id);
-    }
+          var eventSessions = events.where((s) => s.e_state == false).toList();
+          eventSessions.sort((a, b) => b.e_date.compareTo(a.e_date));
+          print("DATA : ${events[0].e_id}");
 
-    var eventSessions = events.where((s) => s.e_state == false).toList();
-    print("DATA : ${events[0].e_id}");
+          return SmartRefresher(
+              controller: _refreshController,
+              enablePullDown: true,
+              // header: defaultHeader,
+              onRefresh: () async {
+                print("Pulled down");
+                homeBloc.dispatch(LoadHomeEvent());
 
-            return SmartRefresher(
-        controller: _refreshController,
-        enablePullDown: true,
-        // header: defaultHeader,
-        onRefresh: () async {
-          print("Pulled down");
-          homeBloc.dispatch(LoadHomeEvent());
-
-         /*  var events = state.eventsData.events;
+                /*  var events = state.eventsData.events;
           eventSessions = events.where((s) => s.e_state == false).toList(); */
-          _refreshController.refreshCompleted();
-        },
-        child: buildlist(
-            eventSessions, context) //EventList( allEvents: eventSessions)
+                _refreshController.refreshCompleted();
+              },
+              child: buildlist(
+                  eventSessions, context) //EventList( allEvents: eventSessions)
 
-        );
-          });
+              );
+        });
   }
 
   Widget buildlist(var allEvents, context) {
@@ -92,7 +92,7 @@ class PastEventsScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EventsDetail(
+                    builder: (context) => EventsDetailPast(
                       event: allEvents[i],
                     ),
                   ),
@@ -116,22 +116,26 @@ class PastEventsScreen extends StatelessWidget {
                             color: Colors.red),
                       ),
                       //Text("AUG"),
-                      Text("${allEvents[i].e_date.toString().substring(5, 7)}",style: TextStyle(color: Colors.grey),),
+                      Text(
+                        "${allEvents[i].e_date.toString().substring(5, 7)}",
+                        style: TextStyle(color: Colors.grey),
+                      ),
                     ],
                   ),
                   Text(
-                      "${allEvents[i].e_start_time.toString().substring(0, 5)}",style: TextStyle(color: Colors.grey),),
+                    "${allEvents[i].e_start_time.toString().substring(0, 5)}",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 ],
               ),
-              trailing:Column(
+              trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                   Icon(
-                FontAwesomeIcons.angleRight,
-                color: Colors.red,
-                
-              ),
-             /*  SizedBox(
+                  Icon(
+                    FontAwesomeIcons.angleRight,
+                    color: Colors.red,
+                  ),
+                  /*  SizedBox(
                 height: 5,
               )
               ,

@@ -34,7 +34,7 @@ class RegisterButtonPressed extends LoginEvent {
   final String password1;
   final String password2;
   final String usn;
-  final int dept = 1;
+  final int dept;
   final int ut_id = 1;
   final String phone_number;
 
@@ -44,10 +44,10 @@ class RegisterButtonPressed extends LoginEvent {
       @required this.password1,
       @required this.password2,
       @required this.usn,
-      //@required this.dept,
+      @required this.dept,
       //@required this.ut_id,
       @required this.phone_number})
-      : super([username, email, password1, password2, usn, phone_number]);
+      : super([username, email, password1, password2, usn, phone_number, dept]);
 
   @override
   String toString() =>

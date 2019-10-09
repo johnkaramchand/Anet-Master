@@ -66,6 +66,8 @@ class _TempSignupFormState extends State<TempSignupForm> {
 
   final key = GlobalKey<FormState>();
 
+  var departmentValue = 1;
+
   @override
   Widget build(BuildContext context) {
     final loginBloc = BlocProvider.of<LoginBloc>(context);
@@ -77,7 +79,7 @@ class _TempSignupFormState extends State<TempSignupForm> {
           password1: _password1Controller.text,
           email: _emailController.text,
           usn: _usnController.text,
-          //dept: _deptController.text,
+          dept: int.parse(departmentValue.toString()),
           //ut_id: _ut_idController.text,
           phone_number: _phone_numberController.text,
           password2: _password2Controller.text));
@@ -215,7 +217,7 @@ class _TempSignupFormState extends State<TempSignupForm> {
                               value.isEmpty ? "Field cannot be empty" : null,
                         ),
                         SizedBox(height: 10.0),
-                        TextFormField(
+                        /*  TextFormField(
                           decoration: InputDecoration(
                               labelText: 'Department',
                               labelStyle: TextStyle(
@@ -227,6 +229,59 @@ class _TempSignupFormState extends State<TempSignupForm> {
                           controller: _usnController,
                           validator: (value) =>
                               value.isEmpty ? "Field cannot be empty" : null,
+                        ), */
+                        DropdownButtonFormField(
+                          items: [
+                            DropdownMenuItem<String>(
+                              value: "1",
+                              child: Text(
+                                "Computer Science & Engineering",
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: "2",
+                              child: Text(
+                                "Information Science  & Engineering",
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: "3",
+                              child: Text(
+                                "Electronics & Communication Engineering",
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: "4",
+                              child: Text(
+                                "Mechanical Engineering",
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: "5",
+                              child: Text(
+                                "Civil Engineering",
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: "6",
+                              child: Text(
+                                "MBA",
+                              ),
+                            ),
+                          ],
+                          onChanged: (value) {
+                            print("value: $value");
+                            setState(() {
+                              departmentValue = value;
+                            });
+                          },
+                          value: departmentValue,
+                          hint: Text(
+                            "Please select the number!",
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
                         SizedBox(height: 10.0),
                         TextFormField(

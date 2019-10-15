@@ -19,6 +19,7 @@ class AuthenticationBloc
   @override
   Stream<AuthenticationState> mapEventToState(
       AuthenticationEvent event) async* {
+    print("EVENT:  \n\n\n\n $event\n\n\n\n\n");
     if (event is appStarted) {
       //print("this is happening") ;
       final bool hasToken = await userRepository.hasToken();

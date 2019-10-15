@@ -24,7 +24,7 @@ class Injector {
   IClient get currentClient {
     switch (_flavor) {
       case Flavor.MOCK:
-        return MockClient();
+      //  return MockClient();
       case Flavor.FIREBASE:
         //* Yet to add
         return FirebaseClient();

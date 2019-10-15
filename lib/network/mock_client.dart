@@ -1,4 +1,4 @@
-// *  Not needed as of now
+/* // *  Not needed as of now
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -66,3 +66,4 @@ class MockClient implements IClient {
     return jsonDecode(res);
   }
 }
+ */

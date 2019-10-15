@@ -29,8 +29,8 @@ class UnHomeState extends HomeState {
 
 /// Initialized
 class InHomeState extends HomeState {
-  final SpeakersData speakersData;
-  final SessionsData sessionsData;
+  //final SpeakersData speakersData;
+  //final SessionsData sessionsData;
 //  final TeamsData teamsData;
   final EventsData eventsData;
   final NewsData newsData;
@@ -41,8 +41,8 @@ class InHomeState extends HomeState {
   InHomeState(
       {@required this.eventsData,
       @required this.newsData,
-      @required this.speakersData,
-      @required this.sessionsData,
+      //@required this.speakersData,
+      //  @required this.sessionsData,
       // @required this.teamsData,
       @required this.stats,
       @required this.projectData,
@@ -50,8 +50,8 @@ class InHomeState extends HomeState {
       : super([
           eventsData,
           newsData,
-          speakersData,
-          sessionsData,
+          //  speakersData,
+          //sessionsData,
           stats,
           projectData,
           username,
@@ -64,8 +64,8 @@ class InHomeState extends HomeState {
     return InHomeState(
         eventsData: this.eventsData,
         newsData: this.newsData,
-        speakersData: this.speakersData,
-        sessionsData: this.sessionsData,
+        // speakersData: this.speakersData,
+        // sessionsData: this.sessionsData,
         // teamsData: this.teamsData,
         stats: this.stats,
         projectData: this.projectData,

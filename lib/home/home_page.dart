@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
+import 'package:anet/authentication_bloc/authentication.dart';
 
 class HomePage extends StatelessWidget {
   static const String routeName = "/home";
 
   @override
   Widget build(BuildContext context) {
-    var _homeBloc = HomeBloc();
     // BorderRadiusGeometry radius = BorderRadius.only(
     //   topLeft: Radius.circular(24.0),
     //   topRight: Radius.circular(24.0),
     // );
 
+    var homeBloc = BlocProvider.of<HomeBloc>(context);
+    //var auth = BlocProvider.of<AuthenticationBloc>(context);
+
     return DevScaffold(
-      body: HomeScreen(homeBloc: _homeBloc),
+      body: HomeScreen(homeBloc: homeBloc),
       // body: SlidingUpPanel(
       //   parallaxEnabled: true,
       //   backdropEnabled: true,

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:anet/authentication_bloc/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/dialogs/error_dialog.dart';
@@ -33,6 +34,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
     this._homeBloc.dispatch(LoadHomeEvent());
     firebaseCloudMessaging_Listeners();
   }
@@ -113,14 +115,15 @@ class HomeScreenState extends State<HomeScreen> {
             BuildContext context,
             HomeState currentState,
           ) {
-            if (currentState is UnHomeState) {
+            if (currentState is InHomeState) {
+              return HomeFront(_homeBloc);
+            } else if (currentState is UnHomeState) {
               return Center(
                 child: SpinKitChasingDots(
                   color: Tools.multiColors[Random().nextInt(3)],
                 ),
               );
-            }
-            if (currentState is ErrorHomeState) {
+            } else if (currentState is ErrorHomeState) {
               return Container(
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
@@ -129,6 +132,8 @@ class HomeScreenState extends State<HomeScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ));
+            } else {
+              return HomeFront(_homeBloc);
             }
             return HomeFront(_homeBloc);
           }),

@@ -28,6 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
+    print("EVENT:  \n\n\n\n $event\n\n\n\n\n");
     print("THIS IS EVENT TYPE : $event");
     if (event is LoginButtonPressed) {
       yield LoginLoading();
@@ -42,8 +43,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (loginResponse.status == 'false') {
           yield LoginFailure(error: "failed");
         } else {
-          authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));
           yield LoginInitial();
+          authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));
+          //authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));
+
         }
       } catch (error) {
         yield LoginFailure(error: error.toString());

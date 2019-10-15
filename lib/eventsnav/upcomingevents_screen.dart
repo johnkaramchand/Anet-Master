@@ -50,7 +50,8 @@ class UpcomingEventsScreen extends StatelessWidget {
           }
 
           var eventSessions = events.where((s) => s.e_state == true).toList();
-          eventSessions.sort((a, b) => b.e_date.compareTo(a.e_date));
+          // Uncomment if you want to reverse the list
+          //  eventSessions.sort((a, b) => b.e_date.compareTo(a.e_date));
           print("DATA : ${events[0].e_id}");
 
           return SmartRefresher(

@@ -15,21 +15,31 @@ class LoadHomeEvent extends HomeEvent {
 
   @override
   Future<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async {
+    var eventsData = await _homeProvider.getEvents();
+    var newsData = await _homeProvider.getNews();
+    // var speakersData = await _homeProvider.getSpeakers();
+    //var sessionsData = await _homeProvider.getSessions();
+    //var teamsData = await _homeProvider.getTeams();
+    var stats = await _homeProvider.getStats();
+    var projectsData = await _homeProvider.getProjects();
+    var username = await _homeProvider.getUsername();
+
     try {
       var eventsData = await _homeProvider.getEvents();
       var newsData = await _homeProvider.getNews();
-      var speakersData = await _homeProvider.getSpeakers();
-      var sessionsData = await _homeProvider.getSessions();
+      // var speakersData = await _homeProvider.getSpeakers();
+      //var sessionsData = await _homeProvider.getSessions();
       //var teamsData = await _homeProvider.getTeams();
       var stats = await _homeProvider.getStats();
       var projectsData = await _homeProvider.getProjects();
       var username = await _homeProvider.getUsername();
 
+      print("\n\n\n\nABOUT TO RETURN IN HOME");
       return InHomeState(
           eventsData: eventsData,
           newsData: newsData,
-          speakersData: speakersData,
-          sessionsData: sessionsData,
+          //  speakersData: speakersData,
+          //  sessionsData: sessionsData,
 
           //  teamsData: teamsData,
           stats: stats,
@@ -39,6 +49,12 @@ class LoadHomeEvent extends HomeEvent {
       print('$_ $stackTrace');
       return ErrorHomeState(_?.toString());
     }
+    return InHomeState(
+        newsData: newsData,
+        eventsData: eventsData,
+        stats: stats,
+        projectData: projectsData,
+        username: username);
   }
 }
 /* 

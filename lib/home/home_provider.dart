@@ -14,8 +14,6 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class IHomeProvider {
-  Future<SpeakersData> getSpeakers();
-  Future<SessionsData> getSessions();
   //Future<TeamsData> getTeams();
   Future<EventsData> getEvents();
   Future<NewsData> getNews();
@@ -25,22 +23,6 @@ abstract class IHomeProvider {
 }
 
 class HomeProvider implements IHomeProvider {
-  IClient _client;
-
-  static final String kConstGetSpeakersUrl =
-      "${Devfest.baseUrl}/speaker-kol.json";
-
-  //! Not Working
-  static final String kConstGetSessionsUrl =
-      "${Devfest.baseUrl}/session-kol.json";
-
-  //! Not Working
-  static final String kConstGetTeamsUrl = "${Devfest.baseUrl}/team-kol.json";
-
-  HomeProvider() {
-    _client = Injector().currentClient;
-  }
-
   Future<NewsData> getNews() async {
     final response =
         await http.get('http://139.59.61.35:8000/api/v2/news/?format=json');
@@ -75,33 +57,10 @@ class HomeProvider implements IHomeProvider {
   }
 
   Future<String> getUsername() async {
+    print("\n\n\n TO GET USER \n\n");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    String stringValue = await prefs.getString('communitiesinatria-username');
-
-    return stringValue;
-  }
-
-  @override
-  Future<SpeakersData> getSpeakers() async {
-    var result = await _client.getAsync(kConstGetSpeakersUrl);
-    if (result.networkServiceResponse.success) {
-      SpeakersData res = SpeakersData.fromJson(result.mappedResult);
-      return res;
-    }
-
-    throw Exception(result.networkServiceResponse.message);
-  }
-
-  @override
-  Future<SessionsData> getSessions() async {
-    var result = await _client.getAsync(kConstGetSessionsUrl);
-    if (result.networkServiceResponse.success) {
-      SessionsData res = SessionsData.fromJson(result.mappedResult);
-      return res;
-    }
-
-    throw Exception(result.networkServiceResponse.message);
+    return prefs.getString('communitiesinatria-username');
   }
 
   @override

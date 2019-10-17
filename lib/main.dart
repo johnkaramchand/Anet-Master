@@ -167,28 +167,38 @@ class AppState extends State<App> {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-              builder: (context, state) {
-                print(state);
-                if (state is AuthenticationAuthenticated) {
-                  print("\n\n\n\n\n YAY!!!!!! LOADING HOME");
-                  return HomePage();
-                }
-                if (state is AuthenticationUnauthenticated) {
-                  return LoginPage(
-                      userRepository:
-                          RepositoryProvider.of<UserRepository>(context));
-                }
-                if (state is AuthenticationUnauthenticatedRegister) {
-                  return SignupPage(
-                      userRepository:
-                          RepositoryProvider.of<UserRepository>(context));
-                }
-                if (state is AuthenticationLoading) {
-                  return prefix0.LoadingIndicator();
-                }
-                return SplashPage();
-              },
+            home: MultiBlocListener(
+              listeners: [
+                BlocListener<HomeBloc, HomeState>(
+                  listener: (context, state) {},
+                ),
+                BlocListener<AuthenticationBloc, AuthenticationState>(
+                  listener: (context, state) {},
+                ),
+              ],
+              child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                builder: (context, state) {
+                  print(state);
+                  if (state is AuthenticationAuthenticated) {
+                    print("\n\n\n\n\n YAY!!!!!! LOADING HOME");
+                    return HomePage();
+                  }
+                  if (state is AuthenticationUnauthenticated) {
+                    return LoginPage(
+                        userRepository:
+                            RepositoryProvider.of<UserRepository>(context));
+                  }
+                  if (state is AuthenticationUnauthenticatedRegister) {
+                    return SignupPage(
+                        userRepository:
+                            RepositoryProvider.of<UserRepository>(context));
+                  }
+                  if (state is AuthenticationLoading) {
+                    return prefix0.LoadingIndicator();
+                  }
+                  return SplashPage();
+                },
+              ),
             ),
             routes: {
               HomePage.routeName: (context) => HomePage(),

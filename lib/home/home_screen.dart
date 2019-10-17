@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:anet/authentication_bloc/authentication.dart';
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/dialogs/error_dialog.dart';
@@ -35,7 +36,7 @@ class HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    this._homeBloc.dispatch(LoadHomeEvent());
+    _homeBloc.dispatch(LoadHomeEvent());
     firebaseCloudMessaging_Listeners();
   }
 
@@ -107,6 +108,8 @@ class HomeScreenState extends State<HomeScreen> {
               },
             ),
           );
+        } else if (state is InHomeState) {
+          print("\n\n\n\nBro I guess it will work now\n\n\n\n");
         }
       },
       child: BlocBuilder<HomeBloc, HomeState>(
@@ -115,9 +118,11 @@ class HomeScreenState extends State<HomeScreen> {
             BuildContext context,
             HomeState currentState,
           ) {
+            print("\n\n\n INSIDE BLOCK BUILDER BRO $currentState");
             if (currentState is InHomeState) {
               return HomeFront(_homeBloc);
             } else if (currentState is UnHomeState) {
+              print("SPINNING BRO");
               return Center(
                 child: SpinKitChasingDots(
                   color: Tools.multiColors[Random().nextInt(3)],

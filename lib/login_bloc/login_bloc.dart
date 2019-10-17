@@ -44,7 +44,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           yield LoginFailure(error: "failed");
         } else {
           yield LoginInitial();
+          await userRepository.persistToken(loginResponse);
           authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));
+
           //authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));
 
         }

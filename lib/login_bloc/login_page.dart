@@ -36,12 +36,6 @@ class LoginPage extends StatelessWidget {
               userRepository: userRepository,
             );
           }),
-          BlocProvider<HomeBloc>(builder: (context) {
-            return HomeBloc(
-                // homeBloc: BlocProvider.of<AuthenticationBloc>(context),
-                //userRepository: userRepository,
-                );
-          }),
         ],
         child: LoginForm(),
       ),

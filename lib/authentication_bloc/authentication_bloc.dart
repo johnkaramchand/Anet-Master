@@ -42,12 +42,11 @@ class AuthenticationBloc
     }
 
     if (event is LoggedIn) {
-      yield AuthenticationLoading();
-      await userRepository.persistToken(event.loginResponse);
-      yield AuthenticationAuthenticated();
-    }
+      // yield AuthenticationLoading();
 
-    if (event is LoggedOut) {
+      // await Future.delayed(Duration(milliseconds: 250), () {});
+      yield AuthenticationAuthenticated();
+    } else if (event is LoggedOut) {
       yield AuthenticationLoading();
       await userRepository.deleteToken();
       yield AuthenticationUnauthenticated();

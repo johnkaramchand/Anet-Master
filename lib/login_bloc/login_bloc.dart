@@ -81,8 +81,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               username: registerResponse.username,
               status: registerResponse.status,
               key: registerResponse.key);
-          authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));
-          yield LoginInitial();
+          authenticationBloc.dispatch(LoggedOut());
+        yield LoginFailure(error: "");
+         // yield LoginInitial();
         }
       } catch (error) {
         yield RegistrationFailure(error: error.toString());

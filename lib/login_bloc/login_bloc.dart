@@ -42,7 +42,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         if (loginResponse.status == 'false') {
           yield LoginFailure(error: "failed");
-        } else {
+        }
+        else if(loginResponse.status == 'ACTIVATE'){
+          yield LoginFailure(error: "Please activate your account");
+        }
+        else if(loginResponse.status == 'WRONG'){
+          yield LoginFailure(error: "Invalid Credentials");
+        }
+        else {
           yield LoginInitial();
           await userRepository.persistToken(loginResponse);
           authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));

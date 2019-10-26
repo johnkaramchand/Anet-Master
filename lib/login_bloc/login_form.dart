@@ -98,7 +98,7 @@ class _LoginFormState extends State<LoginForm> {
           Scaffold.of(context).showSnackBar(
             SnackBar(
               //content: Text('${state.error}'),
-              content: Text('something went wrong!'),
+              content: Text('${state.error}'),
               backgroundColor: Colors.red,
             ),
           );

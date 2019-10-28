@@ -62,6 +62,7 @@ class SimpleBlocDelegate extends BlocDelegate {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,

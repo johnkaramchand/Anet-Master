@@ -65,7 +65,7 @@ class HomeFrontState extends State<HomeFront> {
                       height: 2,
                     ),
                     new Text(
-                      "Events Ateended",
+                      "Events Attended",
                       style: Theme.of(context).textTheme.body2,
                       textAlign: TextAlign.center,
                     ),

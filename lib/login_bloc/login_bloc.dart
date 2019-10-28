@@ -73,8 +73,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (registerResponse.status == 'false') {
           yield RegistrationFailure(error: "failed");
         } else if (registerResponse.status == 'ACTIVATE') {
+          authenticationBloc.dispatch(Registered());
           yield RegistrationFailure(error: 'Registered');
-          authenticationBloc.dispatch(LoggedOut());
         } else {
           /*LoginResponse loginResponse = LoginResponse(
               email: registerResponse.email,

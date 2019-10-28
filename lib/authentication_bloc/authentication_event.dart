@@ -23,6 +23,11 @@ class LoggedOut extends AuthenticationEvent {
   String toString() => 'Logged Out';
 }
 
+class Registered extends AuthenticationEvent {
+  @override
+  String toString() => 'Registered';
+}
+
 class Register extends AuthenticationEvent {
   @override
   String toString() => 'Register Event';

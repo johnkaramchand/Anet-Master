@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:anet/authentication_bloc/authentication_event.dart';
 import 'package:anet/authentication_bloc/authentication_state.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:anet/authentication_bloc/user_repository.dart';
@@ -39,6 +40,9 @@ class AuthenticationBloc
     if (event is Register) {
       print("REGISTER BRO");
       yield AuthenticationUnauthenticatedRegister();
+    }
+    if (event is Registered) {
+      yield AuthenticationUnauthenticatedRegistered();
     }
 
     if (event is LoggedIn) {

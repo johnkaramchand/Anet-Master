@@ -30,28 +30,22 @@ class UserRepository {
 
       print("\n\n\n\n\nThis is login response bro  : ");
       print(res);
-
     } catch (error) {}
     print("KEY");
 
-   if((res['non_field_errors'][0]== 'User account is disabled.' )){
-
-    LoginResponse loginResponse = LoginResponse(status: 'ACTIVATE');
-    return loginResponse;
-
-    }
-    else if(res['non_field_errors'][0] == 'Unable to log in with provided credentials.'){
+    if ((res['non_field_errors'][0] == 'User account is disabled.')) {
+      LoginResponse loginResponse = LoginResponse(status: 'ACTIVATE');
+      return loginResponse;
+    } else if (res['non_field_errors'][0] ==
+        'Unable to log in with provided credentials.') {
       LoginResponse loginResponse = LoginResponse(status: 'WRONG');
       return loginResponse;
-    }
-    else if (res['non_field_errors'][0]== 'NONE') {
-    LoginResponse loginResponse = LoginResponse.fromJson(res);
-    return loginResponse;
-    // persistToken(response['key']);
+    } else if (res['non_field_errors'][0] == 'NONE') {
+      LoginResponse loginResponse = LoginResponse.fromJson(res);
+      return loginResponse;
+      // persistToken(response['key']);
 
     }
-
-
 
     // return LoginResponse(
     //   username: '', email: '', status: 'failed', key: 'null');

@@ -1,3 +1,4 @@
+import 'package:anet/authentication_presentation/Registered.dart';
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/index.dart';
 import 'package:anet/eventsnav/event_detailspast.dart';
@@ -188,6 +189,9 @@ class AppState extends State<App> {
                     return LoginPage(
                         userRepository:
                             RepositoryProvider.of<UserRepository>(context));
+                  }
+                  if (state is AuthenticationUnauthenticatedRegistered) {
+                    return RegisteredPage();
                   }
                   if (state is AuthenticationUnauthenticatedRegister) {
                     return SignupPage(

@@ -42,14 +42,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         if (loginResponse.status == 'false') {
           yield LoginFailure(error: "failed");
-        }
-        else if(loginResponse.status == 'ACTIVATE'){
+        } else if (loginResponse.status == 'ACTIVATE') {
           yield LoginFailure(error: "Please activate your account");
-        }
-        else if(loginResponse.status == 'WRONG'){
+        } else if (loginResponse.status == 'WRONG') {
           yield LoginFailure(error: "Invalid Credentials");
-        }
-        else {
+        } else {
           yield LoginInitial();
           await userRepository.persistToken(loginResponse);
           authenticationBloc.dispatch(LoggedIn(loginResponse: loginResponse));
@@ -75,15 +72,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             phone_number: event.phone_number);
         if (registerResponse.status == 'false') {
           yield RegistrationFailure(error: "failed");
+        } else if (registerResponse.status == 'ACTIVATE') {
+          yield RegistrationFailure(error: 'Registered');
+          authenticationBloc.dispatch(LoggedOut());
         } else {
-          LoginResponse loginResponse = LoginResponse(
+          /*LoginResponse loginResponse = LoginResponse(
               email: registerResponse.email,
               username: registerResponse.username,
               status: registerResponse.status,
               key: registerResponse.key);
-          authenticationBloc.dispatch(LoggedOut());
-        yield LoginFailure(error: "");
-         // yield LoginInitial();
+          authenticationBloc.dispatch(LoggedOut());*/
+          yield LoginFailure(error: "");
+          // yield LoginInitial();
         }
       } catch (error) {
         yield RegistrationFailure(error: error.toString());

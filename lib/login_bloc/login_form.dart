@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/login_bloc/login.dart';
 import 'package:anet/login_bloc/signup_page.dart';
 import 'package:anet/authentication_bloc/authentication.dart';
+import 'package:url_launcher/url_launcher.dart';
 /*
 class LoginForm extends StatefulWidget {
   @override State < LoginForm > createState() => _LoginFormState();
@@ -168,6 +169,9 @@ class _LoginFormState extends State<LoginForm> {
                 alignment: Alignment(1.0, 0.0),
                 padding: EdgeInsets.only(top: 15.0, left: 20.0),
                 child: InkWell(
+                  onTap: () async {
+                    await _launchURL("https://twitter.com/cia_together");
+                  },
                   child: Text(
                     //'Forgot Password',
 
@@ -260,6 +264,14 @@ class _LoginFormState extends State<LoginForm> {
         );
       }),
     );
+  }
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

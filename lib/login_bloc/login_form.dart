@@ -4,6 +4,8 @@ import 'package:anet/login_bloc/login.dart';
 import 'package:anet/login_bloc/signup_page.dart';
 import 'package:anet/authentication_bloc/authentication.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:http/http.dart' as http;
 /*
 class LoginForm extends StatefulWidget {
   @override State < LoginForm > createState() => _LoginFormState();
@@ -85,8 +87,14 @@ class _LoginFormState extends State<LoginForm> {
     final loginBloc = BlocProvider.of<LoginBloc>(context);
     final authbloc = BlocProvider.of<AuthenticationBloc>(context);
 
-    _onLoginButtonPressed() {
+    _onLoginButtonPressed() async {
       print(_usernameController.text);
+      /*var response;
+      Map<String, String> headers = {"Content-type": "application/json"};
+      String jsonRequest = '{"email": "test@gmail.com", "password":"whatbro1"}';
+      response = await http.post('https://cia.atria.edu/rest/login/',
+          body: jsonRequest, headers: headers);
+      print(response.body);*/
       loginBloc.dispatch(LoginButtonPressed(
         username: _usernameController.text,
         password: _passwordController.text,
@@ -154,7 +162,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 TextField(
                   decoration: InputDecoration(
-                      labelText: 'USERNAME',
+                      labelText: 'EMAIL',
                       labelStyle: TextStyle(
                           //fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold,

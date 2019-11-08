@@ -16,22 +16,23 @@ class UserRepository {
       @required String password}) async {
     var res;
     var response;
-    String jsonRequest = '{"username": "$username", "password":"$password"}';
+    String jsonRequest =
+        '{"email": "${username.trim()}", "password":"$password"}';
+    print("THIS IS JSON REQUEST $jsonRequest");
     //  String jsonRequest = '{"username": "$username", "email": "$email", "password":"$password"}';
     // String jsonRequest = '{"username": "test1", "email": "test@gmail.com", "password":"whatbro1"}';
     // await Future.delayed(Duration(seconds: 1)) ;
     //return 'token' ;
     try {
-      response = await http.post(
-          'http://139.59.61.35:8000/api/v1/custom/login/',
-          body: jsonRequest,
-          headers: headers);
+      response = await http.post('https://cia.atria.edu/rest/login/',
+          body: jsonRequest, headers: headers);
       res = json.decode(response.body);
 
       print("\n\n\n\n\nThis is login response bro  : ");
       print(res);
     } catch (error) {}
     print("KEY");
+    print(res['non_field_errors'][0]);
 
     if ((res['non_field_errors'][0] == 'User account is disabled.')) {
       LoginResponse loginResponse = LoginResponse(status: 'ACTIVATE');
@@ -115,17 +116,17 @@ class UserRepository {
     var response;
     var res;
     String jsonRequest =
-        '{"username": "$username", "password1":"$password1", "password2":"$password2","email":"$email","usn":"$usn","dept":"$dept","ut_id":"$ut_id","phone_number":"$phone_number"}';
+        '{"username": "${username.trim()}", "password1":"${password1.trim()}", "password2":"${password2.trim()}","email":"${email.trim()}","usn":"${usn.trim()}","dept":"$dept","ut_id":"$ut_id","phone_number":"${phone_number.trim()}"}';
     //  String jsonRequest = '{"username": "$username", "email": "$email", "password":"$password"}';
     // String jsonRequest = '{"username": "test1", "email": "test@gmail.com", "password":"whatbro1"}';
     // await Future.delayed(Duration(seconds: 1)) ;
     //return 'token' ;
+    print("SURYA THIS IS THE DATA : $jsonRequest");
+
     try {
-      print("SURYA THIS IS THE DATA : $jsonRequest");
-      response = await http.post(
-          'http://139.59.61.35:8000/api/v1/custom/register/',
-          body: jsonRequest,
-          headers: headers);
+      print("STHIS IS THE DATA : $jsonRequest");
+      response = await http.post('https://cia.atria.edu/rest/register/',
+          body: jsonRequest, headers: headers);
       res = json.decode(response.body);
     } catch (error) {}
     print("KEY: $res");

@@ -1,11 +1,5 @@
-import 'package:anet/home/session.dart';
-import 'package:anet/home/speaker.dart';
-import 'package:anet/home/team.dart';
 import 'package:anet/models/project_model.dart';
 import 'package:anet/models/stat.dart';
-import 'package:anet/network/i_client.dart';
-import 'package:anet/utils/dependency_injection.dart';
-import 'package:anet/utils/devfest.dart';
 import 'package:anet/models/events.dart';
 import 'package:anet/models/news_model.dart';
 import 'package:http/http.dart' as http;
@@ -25,7 +19,7 @@ abstract class IHomeProvider {
 class HomeProvider implements IHomeProvider {
   Future<NewsData> getNews() async {
     final response =
-        await http.get('http://139.59.61.35:8000/api/v2/news/?format=json');
+        await http.get('https://cia.atria.edu/api/v2/news/?format=json');
     if (response.statusCode == 200) {
       print(response.body);
       NewsData res = NewsData.fromJson(json.decode(response.body));
@@ -35,8 +29,8 @@ class HomeProvider implements IHomeProvider {
   }
 
   Future<ProjectData> getProjects() async {
-    final response = await http
-        .get('http://139.59.61.35:8000/api/v2/getProjects/?format=json');
+    final response =
+        await http.get('https://cia.atria.edu/api/v2/getProjects/?format=json');
     if (response.statusCode == 200) {
       print(response.body);
       ProjectData res = ProjectData.fromJson(json.decode(response.body));
@@ -47,7 +41,7 @@ class HomeProvider implements IHomeProvider {
 
   Future<EventsData> getEvents() async {
     final response =
-        await http.get('http://139.59.61.35:8000/api/v2/events/?format=json');
+        await http.get('https://cia.atria.edu/api/v2/events/?format=json');
     if (response.statusCode == 200) {
       EventsData res = EventsData.fromJson(json.decode(response.body));
       print("RES : ${res.events[0].e_organizer}");
@@ -79,7 +73,7 @@ class HomeProvider implements IHomeProvider {
     // await Future.delayed(Duration(seconds: 1)) ;
     //return 'token' ;
 
-    response = await http.post('http://139.59.61.35:8000/api/v2/getstats/',
+    response = await http.post('https://cia.atria.edu/api/v2/getstats/',
         body: jsonRequest, headers: headers);
     print("THIS IS RESPONSE ${response.body}");
     if (json.decode(response.body)['response'] == false) {

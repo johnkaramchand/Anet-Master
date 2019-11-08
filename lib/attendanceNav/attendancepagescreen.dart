@@ -1,23 +1,9 @@
-import 'dart:math';
-
-import 'package:anet/dialogs/error_dialog.dart';
-import 'package:anet/login_bloc/loading_indicator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:anet/network/rest_client.dart';
-
-import 'package:anet/newsNav/news_details.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/eventsnav/pastevents_screen.dart';
-
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
-import 'package:anet/utils/tools.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:anet/authentication_bloc/user_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AttendancePageScreen extends StatefulWidget {
@@ -70,7 +56,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
     String jsonRequest = '{"token": "$token", "e_code":"$eventcode"}';
     try {
       print('api test');
-      response = await http.post('http://139.59.61.35:8000/api/v2/attend/',
+      response = await http.post('https://cia.atria.edu/api/v2/attend/',
           body: jsonRequest, headers: headers);
       print(response.body);
       var res = json.decode(response.body);

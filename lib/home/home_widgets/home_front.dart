@@ -208,7 +208,8 @@ class HomeFrontState extends State<HomeFront> {
             title: "Projects",
             onPressed: () =>
                 Navigator.pushNamed(context, ProjectsPageScreen.routeName),
-          ), /*
+          ),
+          /*
           ActionCard(
             icon: FontAwesomeIcons.solidNewspaper,
             color: Colors.brown,

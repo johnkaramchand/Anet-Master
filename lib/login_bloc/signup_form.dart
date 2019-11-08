@@ -29,9 +29,10 @@ class _SignupFormState extends State<SignupForm> {
     final authbloc = BlocProvider.of<AuthenticationBloc>(context);
 
     onRegisterButtonPressed() {
+      print("Register Button Clicked");
       loginBloc.dispatch(RegisterButtonPressed(
-          username: _usernameController.text,
-          password1: _password1Controller.text,
+          username: _usernameController.text.trim(),
+          password1: _password1Controller.text.trim(),
           email: _emailController.text,
           usn: _usnController.text,
           dept: departmentValue,
@@ -273,7 +274,9 @@ class _SignupFormState extends State<SignupForm> {
                           child: SizedBox.expand(
                             child: RaisedButton(
                               onPressed: () {
+                                print("hi");
                                 if (key.currentState.validate()) {
+                                  print("ih");
                                   print("Hi.... KAKAKEKETUKETUKE!!");
                                   onRegisterButtonPressed();
                                   //Navigator.of(context).pop();
@@ -330,13 +333,13 @@ class _SignupFormState extends State<SignupForm> {
   }
 
   String validateEmail(String value) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
-    if (!regex.hasMatch(value))
-      return 'Enter Valid Email';
-    else
-      return null;
+    //Pattern pattern = r'^*';
+    //r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    //RegExp regex = new RegExp(pattern);
+    //if (!regex.hasMatch(value))
+    // return 'Enter Valid Email';
+    //else
+    return null;
   }
 
   String validateMobile(String value) {

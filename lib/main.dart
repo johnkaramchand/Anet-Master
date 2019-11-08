@@ -1,45 +1,31 @@
 import 'package:anet/authentication_presentation/Registered.dart';
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/index.dart';
-import 'package:anet/eventsnav/event_detailspast.dart';
 import 'package:anet/home/index.dart';
-import 'package:anet/login_bloc/loading_indicator.dart';
 import 'package:anet/login_bloc/login.dart' as prefix0;
 import 'package:anet/login_bloc/tempsignup.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/config/config_page.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/authentication_bloc/user_repository.dart';
-
 import 'package:anet/authentication_bloc/authentication.dart';
 import 'package:anet/authentication_presentation/splash_screen.dart';
 import 'package:anet/login_bloc/login.dart';
-
-import 'package:anet/login_bloc/loading_indicator.dart';
 import 'package:flutter/services.dart';
-import 'utils/dependency_injection.dart';
 import 'utils/devfest.dart';
-import 'utils/simple_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:anet/login_bloc/signup_page.dart';
 import 'package:anet/attendanceNav/attendancepagescreen.dart';
-import 'package:anet/eventsnav/event_details.dart';
 import 'package:anet/comingsoon.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
-import 'package:anet/newsNav/news_details.dart';
 import 'package:anet/projectsNav/projectsPageScreen.dart';
 import 'package:anet/rank.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:anet/eventsnav/eventsPage.dart';
 import 'package:flutter/services.dart';
-import 'utils/dependency_injection.dart';
 import 'utils/devfest.dart';
-import 'utils/simple_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'login_bloc/loading_indicator.dart';
 import 'package:anet/home/home_bloc.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {

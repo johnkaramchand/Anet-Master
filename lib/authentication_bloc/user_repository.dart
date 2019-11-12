@@ -1,9 +1,7 @@
 import 'package:anet/models/login_response.dart';
-import 'package:anet/network/i_client.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:anet/network/rest_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepository {

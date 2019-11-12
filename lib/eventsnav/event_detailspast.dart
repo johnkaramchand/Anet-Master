@@ -1,7 +1,3 @@
-import 'dart:math';
-
-import 'package:anet/models/news_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/utils/tools.dart';

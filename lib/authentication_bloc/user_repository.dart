@@ -22,13 +22,15 @@ class UserRepository {
     // await Future.delayed(Duration(seconds: 1)) ;
     //return 'token' ;
     try {
-      response = await http.post('https://cia.atria.edu/rest/login/',
+      response = await http.post('http://test.ciadev.ninja/rest/login/',
           body: jsonRequest, headers: headers);
       res = json.decode(response.body);
 
       print("\n\n\n\n\nThis is login response bro  : ");
       print(res);
-    } catch (error) {}
+    } catch (error) {
+      print("Something went wrong");
+    }
     print("KEY");
     print(res['non_field_errors'][0]);
 
@@ -123,7 +125,7 @@ class UserRepository {
 
     try {
       print("STHIS IS THE DATA : $jsonRequest");
-      response = await http.post('https://cia.atria.edu/rest/register/',
+      response = await http.post('https://test.ciadev.ninja/rest/register/',
           body: jsonRequest, headers: headers);
       res = json.decode(response.body);
     } catch (error) {}

@@ -19,7 +19,7 @@ abstract class IHomeProvider {
 class HomeProvider implements IHomeProvider {
   Future<NewsData> getNews() async {
     final response =
-        await http.get('https://cia.atria.edu/api/v2/news/?format=json');
+        await http.get('http://test.ciadev.ninja/api/v2/news/?format=json');
     if (response.statusCode == 200) {
       print(response.body);
       NewsData res = NewsData.fromJson(json.decode(response.body));
@@ -30,7 +30,7 @@ class HomeProvider implements IHomeProvider {
 
   Future<ProjectData> getProjects() async {
     final response =
-        await http.get('https://cia.atria.edu/api/v2/getProjects/?format=json');
+        await http.get('http://test.ciadev.ninja/api/v2/getProjects/?format=json');
     if (response.statusCode == 200) {
       print(response.body);
       ProjectData res = ProjectData.fromJson(json.decode(response.body));
@@ -41,7 +41,7 @@ class HomeProvider implements IHomeProvider {
 
   Future<EventsData> getEvents() async {
     final response =
-        await http.get('https://cia.atria.edu/api/v2/events/?format=json');
+        await http.get('http://test.ciadev.ninja/api/v2/events/?format=json');
     if (response.statusCode == 200) {
       EventsData res = EventsData.fromJson(json.decode(response.body));
       print("RES : ${res.events[0].e_organizer}");
@@ -73,7 +73,7 @@ class HomeProvider implements IHomeProvider {
     // await Future.delayed(Duration(seconds: 1)) ;
     //return 'token' ;
 
-    response = await http.post('https://cia.atria.edu/api/v2/getstats/',
+    response = await http.post('http://test.ciadev.ninja/api/v2/getstats/',
         body: jsonRequest, headers: headers);
     print("THIS IS RESPONSE ${response.body}");
     if (json.decode(response.body)['response'] == false) {

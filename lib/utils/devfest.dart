@@ -7,8 +7,10 @@ class Devfest {
   static const int app_version_code = 1;
   static const String app_color = "#ffd7167";
   static Color primaryAppColor = Colors.white;
-  static Color secondaryAppColor = Colors.black;
+  //static Color secondaryAppColor = Colors.black;
+  static Color secondaryAppColor = Color.fromRGBO(20, 20, 20, 1);
   static const String google_sans_family = "GoogleSans";
+  static const String josefin_sans_family = "GoogleSans";
   static bool isDebugMode = false;
 
   // * Url related

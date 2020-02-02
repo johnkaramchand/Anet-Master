@@ -4,6 +4,7 @@ import 'package:anet/config/index.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/login_bloc/login.dart' as prefix0;
 import 'package:anet/login_bloc/tempsignup.dart';
+import 'package:anet/utils/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -137,13 +138,13 @@ class AppState extends State<App> {
           return MaterialApp(
             theme: ThemeData(
               //* Custom Google Font
-              fontFamily: Devfest.google_sans_family,
+              fontFamily: Devfest.josefin_sans_family,
               primarySwatch: Colors.red,
-              primaryColor: configBloc.darkModeOn ? Colors.black : Colors.white,
+              primaryColor: configBloc.darkModeOn ? Tools.multiColors[5] : Colors.white,
               disabledColor: Colors.grey,
-              cardColor: configBloc.darkModeOn ? Colors.black : Colors.white,
+              cardColor: configBloc.darkModeOn ?Tools.multiColors[5]: Colors.white,
               canvasColor:
-                  configBloc.darkModeOn ? Colors.black : Colors.grey[40],
+                  configBloc.darkModeOn ? Tools.multiColors[5] : Colors.grey[40],
               brightness:
                   configBloc.darkModeOn ? Brightness.dark : Brightness.light,
               buttonTheme: Theme.of(context).buttonTheme.copyWith(

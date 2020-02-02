@@ -52,7 +52,7 @@ class _ConfigPageState extends State<ConfigPage> {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               //* Custom Google Font
-              fontFamily: Devfest.google_sans_family,
+              fontFamily: Devfest.josefin_sans_family,
               primarySwatch: Colors.red,
               primaryColor: configBloc.darkModeOn ? Colors.black : Colors.white,
               disabledColor: Colors.grey,

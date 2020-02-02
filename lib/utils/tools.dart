@@ -10,5 +10,7 @@ class Tools {
     Colors.amber,
     Colors.green,
     Colors.blue,
+    Color.fromRGBO(97, 226, 171, 1),
+    Color.fromRGBO(20, 20, 20, 1),
   ];
 }

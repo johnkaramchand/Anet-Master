@@ -71,6 +71,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    
     - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -88,7 +89,11 @@ flutter:
     - family: GoogleSans
       fonts:
         - asset: assets/fonts/GoogleSansRegular.ttf
-
+    - family: JosefinSans
+      fonts:
+        - asset: assets/fonts/JosefinSans-Bold.ttf
+        - asset: assets/fonts/JosefinSans-Regular.ttf
+        - asset: assets/fonts/JosefinSans-SemiBold.ttf
 
   # fonts:
   #   - family: Schyler

@@ -18,6 +18,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
+      resizeToAvoidBottomPadding: false,
       ///title: 'Login',
       /*  body: BlocProvider(
         builder: (context) {

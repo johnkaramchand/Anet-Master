@@ -177,9 +177,38 @@ class HomeFrontState extends State<HomeFront> {
         children: <Widget>[
           ActionCard(
             icon: FontAwesomeIcons.calendar,
-            color: Colors.red,
+            color: Colors.blueAccent,
             title: "Events",
             onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
+          ),
+          ActionCard(
+            icon: FontAwesomeIcons.solidHeart,
+            color: Colors.redAccent,
+            title: "Interest\nGroups",
+            onPressed: () async {
+               await _launchURL(
+                    "http://test.ciadev.ninja/interest-groups/");
+            }
+                //Navigator.pushNamed(context, ProjectsPageScreen.routeName),
+          ),
+          ActionCard(
+            icon: FontAwesomeIcons.database,
+            color: Colors.redAccent,
+            title: "Projects",
+            onPressed: () =>
+                Navigator.pushNamed(context, ProjectsPageScreen.routeName),
+          ),
+          
+           ActionCard(
+            icon: FontAwesomeIcons.microchip,
+            color: Colors.amber,
+            title: "Atria Iot Lab",
+            onPressed: ()async {
+               await _launchURL(
+                    "http://iot.atria.edu");
+
+            }
+              
           ),
           ActionCard(
             icon: FontAwesomeIcons.newspaper,
@@ -195,6 +224,7 @@ class HomeFrontState extends State<HomeFront> {
             onPressed: () =>
                 Navigator.pushNamed(context, ComingSoonPage.routeName),
           ),
+
           ActionCard(
             icon: FontAwesomeIcons.checkSquare,
             color: Colors.purple,
@@ -202,13 +232,7 @@ class HomeFrontState extends State<HomeFront> {
             onPressed: () =>
                 Navigator.pushNamed(context, AttendancePageScreen.routeName),
           ),
-          ActionCard(
-            icon: FontAwesomeIcons.bars,
-            color: Colors.blue,
-            title: "Projects",
-            onPressed: () =>
-                Navigator.pushNamed(context, ProjectsPageScreen.routeName),
-          ),
+          
           /*
           ActionCard(
             icon: FontAwesomeIcons.solidNewspaper,

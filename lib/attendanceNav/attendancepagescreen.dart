@@ -1,3 +1,4 @@
+import 'package:anet/utils/tools.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -116,7 +117,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
   @override
   Widget build(BuildContext context) {
     return DevScaffold(
-      title: 'Attendance',
+      title: 'Rewards',
       body: current ? _attendancescreen() : _loadScreen(),
     );
 
@@ -141,14 +142,19 @@ class AttendanceScreen extends State<AttendancePageScreen> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+
+            Image.asset(
+                      "assets/images/winners.png",
+                     
+                    ),
+            /* Text(
               "Proof that you were here!",
               style: Theme.of(context)
                   .textTheme
                   .headline
                   .copyWith(fontSize: 30, fontWeight: FontWeight.bold),
               textAlign: TextAlign.justify,
-            ),
+            ), */
             SizedBox(
               height: 30,
             ),
@@ -164,7 +170,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
               child: TextField(
                 style: TextStyle(),
                 decoration:
-                    InputDecoration(hintText: "ENTER YOUR EVENT CODE HERE"),
+                    InputDecoration(hintText: "ENTER CODE HERE"),
                 controller: eventCode,
               ),
             ),
@@ -204,7 +210,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
                     Icon(Icons.open_in_new),
                   ],
                 ),
-                color: Colors.green,
+                color: Tools.multiColors[4],
               ),
             ),
             SizedBox(

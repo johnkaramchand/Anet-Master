@@ -300,16 +300,30 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
                     ),
                   ), */
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            /*  Text(
-                          'New to CIA platform ?',
-                          style: TextStyle(fontFamily: 'Montserrat'),
-                        ), */
+                       
                             SizedBox(width: 5.0),
-                            InkWell(
+                           Container(
+                          //alignment: Alignment(1.0, 0.0),
+                          alignment: Alignment.centerRight,
+                          padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                          child: InkWell(
+                            onTap: ()  {
+                              authbloc.dispatch(Register());
+                            },
+                            child: Text(
+                                'Sign up ?',
+                                style: TextStyle(
+                                    color: Tools.multiColors[4],
+                                    fontFamily: 'JosefinSans',
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
+                                    fontSize: 18),
+                              ),
+                          ),
+                        ),
+                           /*  InkWell(
                               onTap: () {
+                              print("Tapped");
                                 // Navigator.of(context).pushNamed('/tempsignup');
                                 authbloc.dispatch(Register());
                               },
@@ -322,9 +336,9 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
                                     decoration: TextDecoration.underline,
                                     fontSize: 18),
                               ),
-                            )
-                          ],
-                        )
+                            ) */
+                          
+                        
                       ],
                     ),
                   )

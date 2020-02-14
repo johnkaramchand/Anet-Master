@@ -125,7 +125,7 @@ class UserRepository {
 
     try {
       print("STHIS IS THE DATA : $jsonRequest");
-      response = await http.post('https://test.ciadev.ninja/rest/register/',
+      response = await http.post('http://test.ciadev.ninja/rest/register/',
           body: jsonRequest, headers: headers);
       res = json.decode(response.body);
     } catch (error) {}

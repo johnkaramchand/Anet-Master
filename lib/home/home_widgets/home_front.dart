@@ -228,7 +228,7 @@ class HomeFrontState extends State<HomeFront> {
           ActionCard(
             icon: FontAwesomeIcons.checkSquare,
             color: Colors.purple,
-            title: "Attendance",
+            title: "Rewards",
             onPressed: () =>
                 Navigator.pushNamed(context, AttendancePageScreen.routeName),
           ),

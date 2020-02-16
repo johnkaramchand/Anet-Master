@@ -108,6 +108,7 @@ class PastEventsScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      
                       Text(
                         "${allEvents[i].e_date.toString().substring(8, 10)} ",
                         style: Theme.of(context).textTheme.title.copyWith(

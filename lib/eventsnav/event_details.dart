@@ -14,7 +14,9 @@ class EventsDetail extends StatelessWidget {
   static const String routeName = "/events_details";
   final Event event;
 
+
   EventsDetail({Key key, @required this.event}) : super(key: key);
+
 /*
   Widget socialActions(context) => FittedBox(
         child: Row(
@@ -62,6 +64,7 @@ class EventsDetail extends StatelessWidget {
 */
   @override
   Widget build(BuildContext context) {
+    print(event.e_image);
     // var _homeBloc = HomeBloc();
     return DevScaffold(
       body: SingleChildScrollView(
@@ -87,6 +90,14 @@ class EventsDetail extends StatelessWidget {
                       color: Tools.multiColors[Random().nextInt(4)],
                     ),
               ), */
+              
+                Center(
+                child: CachedNetworkImage(
+               // imageUrl: "${news.n_image}",
+               imageUrl: event.e_image,
+              )
+              ),
+             
               SizedBox(
                 height: 20,
               ),

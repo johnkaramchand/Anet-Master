@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:anet/models/events.dart';
 import 'package:anet/config/config_bloc.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 class EventsDetailPast extends StatelessWidget {
   static const String routeName = "/events_details_past";
@@ -84,6 +86,14 @@ class EventsDetailPast extends StatelessWidget {
                       color: Tools.multiColors[Random().nextInt(4)],
                     ),
               ), */
+                Center(
+                child: CachedNetworkImage(
+               // imageUrl: "${news.n_image}",
+               imageUrl: event.e_image,
+              )
+              ),
+             
+
               SizedBox(
                 height: 20,
               ),

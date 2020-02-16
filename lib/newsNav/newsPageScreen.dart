@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -93,6 +94,10 @@ class NewsScreen extends StatelessWidget {
           elevation: 0.0,
           child: ListTile(
             onTap: () {
+
+              launchurl(newsList[i].n_link);
+              
+/* 
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -100,7 +105,7 @@ class NewsScreen extends StatelessWidget {
                     news: newsList[i],
                   ),
                 ),
-              );
+              ); */
             },
             // dense: true,
             isThreeLine: true,
@@ -157,6 +162,15 @@ class NewsScreen extends StatelessWidget {
       },
     );
   }
+
+     launchurl(String url) async {
+    print("URL :  $url");
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }
 
 class RefreshBackground extends StatelessWidget {
@@ -171,4 +185,6 @@ class RefreshBackground extends StatelessWidget {
       )),
     );
   }
+
+ 
 }

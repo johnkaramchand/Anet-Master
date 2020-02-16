@@ -46,7 +46,7 @@ class DevScaffold extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () => Share.share(
-                    "Download the new CIA App and share with your tech friends.\n Website -  http://cia.atria.edu"),
+                    "Download the new CIA App and get connected with the Atria's only student community. \nAlso share with your friends. Playstore: https://play.google.com/store/apps/details?id=s.anet.anet \n Website -  http://cia.atria.edu"),
                 icon: Icon(
                   Icons.share,
                   size: 20,

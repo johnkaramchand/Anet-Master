@@ -3,7 +3,7 @@ import 'package:anet/comingsoon.dart';
 import 'package:anet/home/home_provider.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
-import 'package:anet/projectsNav/projectsPageScreen.dart';
+import 'package:anet/projectsNav/projectsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/eventsPage.dart';
 import 'package:anet/config/index.dart';
@@ -57,7 +57,7 @@ class HomeFrontState extends State<HomeFront> {
                     new Text(
                       statsAttended.toString() ?? '-',
                       style: TextStyle(
-                        color: Tools.multiColors[Random().nextInt(4)],
+                        color:  Tools.multiColors[Random().nextInt(4)],
                         fontSize: 40,
                       ),
                     ),
@@ -163,7 +163,7 @@ class HomeFrontState extends State<HomeFront> {
           RaisedButton(
             child: Text("Locate Us"),
             shape: StadiumBorder(),
-            color: Colors.blue,
+            color: Tools.multiColors[4],
             colorBrightness: Brightness.dark,
             onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
@@ -193,10 +193,10 @@ class HomeFrontState extends State<HomeFront> {
           ),
           ActionCard(
             icon: FontAwesomeIcons.database,
-            color: Colors.redAccent,
+            color: Tools.multiColors[Random().nextInt(4)],
             title: "Projects",
             onPressed: () =>
-                Navigator.pushNamed(context, ProjectsPageScreen.routeName),
+                Navigator.pushNamed(context, ProjectsPage.routeName),
           ),
           
            ActionCard(

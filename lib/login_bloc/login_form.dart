@@ -13,6 +13,7 @@ import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/config_event.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:anet/registerPageStateless/registerPageStateless.dart';
 
 import '../utils/tools.dart';
 /*
@@ -93,6 +94,16 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    @override
+  void initState() {
+    super.initState();
+
+ConfigBloc().dispatch(DarkModeEvent(ConfigBloc().darkModeOn));
+    
+  }
+
+
     final loginBloc = BlocProvider.of<LoginBloc>(context);
     final authbloc = BlocProvider.of<AuthenticationBloc>(context);
 
@@ -110,6 +121,7 @@ class _LoginFormState extends State<LoginForm> {
       ));
     }
 GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
+//ConfigBloc().dispatch(DarkModeEvent(ConfigBloc().darkModeOn));
 
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
@@ -134,6 +146,7 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
       },
       child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
         if (state is LoginLoading) {
+          
           return LoadingIndicator();
         } else {
           final _screenSize = MediaQuery.of(context).size;
@@ -308,7 +321,13 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
                           padding: EdgeInsets.only(top: 15.0, left: 20.0),
                           child: InkWell(
                             onTap: ()  {
-                              authbloc.dispatch(Register());
+                              //authbloc.dispatch(Register());
+                               Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegisterStateless(),
+                  ),
+                );
                             },
                             child: Text(
                                 'Sign up ?',
@@ -373,7 +392,7 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
                     ]), */
 
                   ,
-                  Positioned(
+                  /* Positioned(
                     bottom: 1,
                     left: 1,
                     child: Image.asset(
@@ -382,7 +401,7 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
                       height: 250,
                       alignment: Alignment.bottomLeft,
                     ),
-                  ),
+                  ), */
                 ],
               ));
         }

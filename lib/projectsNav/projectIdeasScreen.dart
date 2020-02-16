@@ -111,7 +111,7 @@ class ProjectIdeasScreen extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     child: Icon(
                       Icons.radio_button_checked,
-                      color: Colors.blue,
+                      color: Tools.multiColors[4  ],
                     ),
                     /*  backgroundImage: NetworkImage(
                         "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg")),
@@ -126,14 +126,14 @@ class ProjectIdeasScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Icon(
+                    /*   Icon(
                         Icons.play_arrow,
                         color: Tools.multiColors[4],
-                      ),
-                      Text(
+                      ), */
+                     /*  Text(
                         "ONGOING",
                         style: TextStyle(color: Colors.grey[500]),
-                      )
+                      ) */
                     ],
                   ),
                   /*  Image.network(

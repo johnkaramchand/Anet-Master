@@ -193,7 +193,7 @@ class ProjectDetail extends StatelessWidget {
                             ),
                           ],
                         ), */
-                        Column(
+                        /* Column(
                           children: <Widget>[
                             SizedBox(
                               height: 5,
@@ -220,7 +220,7 @@ class ProjectDetail extends StatelessWidget {
                               height: 5,
                             ),
                           ],
-                        ),
+                        ), */
                       ],
                     ),
                     SizedBox(
@@ -292,7 +292,7 @@ class ProjectDetail extends StatelessWidget {
             project.p_image.toString().length > 5
                 ? IconButton(
                     icon: Icon(
-                      FontAwesomeIcons.image,
+                      FontAwesomeIcons.github,
                       size: 40,
                     ),
                     onPressed: () async {

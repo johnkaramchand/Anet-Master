@@ -12,6 +12,8 @@ import 'package:anet/authentication_bloc/user_repository.dart';
 import 'package:anet/authentication_bloc/authentication.dart';
 import 'package:anet/authentication_presentation/splash_screen.dart';
 import 'package:anet/login_bloc/login.dart';
+import 'package:anet/registerPageStateless/registerPageStateless.dart';
+
 import 'package:flutter/services.dart';
 import 'utils/devfest.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -208,6 +210,7 @@ class AppState extends State<App> {
                     userRepository:
                         RepositoryProvider.of<UserRepository>(context),
                   ),
+                  RegisterStateless.routeName: (context) =>RegisterStateless(),
 
               /*   SignupPage.routeName: (context) => SignupPage(
                     userRepository:

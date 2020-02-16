@@ -1,40 +1,21 @@
-import 'dart:math';
-
-import 'package:anet/newsNav/news_details.dart';
-import 'package:anet/projectsNav/projects_details.dart';
+import 'package:anet/config/config_bloc.dart';
+import 'package:anet/eventsnav/event_details.dart';
+import 'package:anet/eventsnav/event_detailspast.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/eventsnav/pastevents_screen.dart';
-import 'package:collection/iterable_zip.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'package:anet/home/index.dart';
-import 'package:anet/universal/dev_scaffold.dart';
-import 'package:anet/utils/tools.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-/* 
-class ProjectsPageScreen extends StatelessWidget {
-  
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:anet/utils/tools.dart';
+import 'package:anet/projectsNav/projects_details.dart';
+import 'dart:math';
 
-  @override
-  Widget build(BuildContext context) {
-    var _homeBloc = HomeBloc();
-    return DevScaffold(
-      title: "Projects",
-      body: ProjectScreen(
-        homeBloc: _homeBloc,
-      ),
-    );
-  }
-}
- */
-class ProjectsPageScreen extends StatelessWidget {
+class ProjectIdeasScreen extends StatelessWidget {
   final HomeBloc homeBloc;
-  ProjectsPageScreen({Key key, this.homeBloc}) : super(key: key);
+
+  ProjectIdeasScreen({Key key, this.homeBloc}) : super(key: key);
   final RefreshController _refreshController = RefreshController();
 
   @override
@@ -64,8 +45,13 @@ class ProjectsPageScreen extends StatelessWidget {
           }
 
           var state = homeBloc.currentState as InHomeState;
-          var news = state.projectData.project;
-          var newsList = news.where((s) => s.p_id != 1).toList();
+          var events = state.projectData.project;
+
+         
+
+          var eventSessions = events.where((s) => s.p_state == false).toList();
+          eventSessions.sort((a, b) => b.p_datetime.compareTo(a.p_datetime));
+          print("DATA : ${events[0].p_id}");
 
           return SmartRefresher(
               controller: _refreshController,
@@ -80,7 +66,7 @@ class ProjectsPageScreen extends StatelessWidget {
                 _refreshController.refreshCompleted();
               },
               child: buildlist(
-                  newsList, context) //EventList( allEvents: eventSessions)
+                  eventSessions, context) //EventList( allEvents: eventSessions)
 
               );
         });
@@ -182,8 +168,8 @@ class ProjectsPageScreen extends StatelessWidget {
                   subtitle: new RichText(
                     maxLines: 5,
                     text: new TextSpan(
-                     text: projectList[i].p_datetime.toString() ?? 'datetime',
-                     
+                      //text: projectList[i].p_datetime.toString() ?? 'datetime',
+                      text: '',
                       style: new TextStyle(
                         //color: Colors.blueAccent,
                         color: Colors.blue,
@@ -221,15 +207,6 @@ class ProjectsPageScreen extends StatelessWidget {
         );
       },
     );
-  }
-
-  openProject(String url) async {
-    print("URL :  $url");
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
 

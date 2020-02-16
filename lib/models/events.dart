@@ -27,6 +27,7 @@ class Event {
   int e_id;
   bool e_state;
   String e_title;
+  String e_image;
   String e_date;
   String e_start_time;
   String e_end_time;
@@ -44,6 +45,7 @@ class Event {
     this.e_id,
     this.e_state,
     this.e_title,
+    this.e_image,
     this.e_date,
     this.e_start_time,
     this.e_end_time,
@@ -60,6 +62,7 @@ class Event {
     e_id = json['e_id'];
     e_state = json['e_state'];
     e_title = json['e_title'];
+    e_image = json['e_image'];
     e_date = json['e_date'];
     e_start_time = json['e_start_time'];
     e_end_time = json['e_end_time'];
@@ -77,6 +80,7 @@ class Event {
     data['e_id'] = this.e_id;
     data['e_state'] = this.e_state;
     data['e_title'] = this.e_title;
+    data['e_image'] = this.e_image;
     data['e_date'] = this.e_date;
     data['e_start_time'] = this.e_start_time;
     data['e_end_time'] = this.e_end_time;

@@ -225,7 +225,8 @@ class AttendanceScreen extends State<AttendancePageScreen> {
   Future<Null> getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    String stringValue = await prefs.getString('communitiesinatria-token');
+    //String stringValue = await prefs.getString('communitiesinatria-token');
+    String stringValue =  prefs.getString('communitiesinatria-token');
     token = stringValue;
     //Return bool
   }

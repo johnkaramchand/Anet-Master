@@ -13,4 +13,8 @@ class Tools {
     Color.fromRGBO(97, 226, 171, 1),
     Color.fromRGBO(20, 20, 20, 1),
   ];
+
+  static List<String> month = [
+    "JAN","FEB","MARCH","APRIL","MAY","JUNE","JULY","AUG","SEPT","OCT","NOV","DEC"
+  ];  
 }

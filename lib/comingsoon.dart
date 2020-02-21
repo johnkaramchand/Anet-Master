@@ -1,15 +1,6 @@
-import 'dart:math';
-
-import 'package:anet/newsNav/news_details.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/eventsnav/pastevents_screen.dart';
-
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
-import 'package:anet/utils/tools.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ComingSoonPage extends StatelessWidget {

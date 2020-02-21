@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:anet/projectsNav/projectsPageScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:anet/eventsnav/upcomingevents_screen.dart';
 import 'package:anet/projectsNav/projectIdeasScreen.dart';
 
 import 'package:anet/home/index.dart';

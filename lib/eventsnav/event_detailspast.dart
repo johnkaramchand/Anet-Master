@@ -138,8 +138,8 @@ class EventsDetailPast extends StatelessWidget {
                               FontAwesomeIcons.calendar,
 
                               color: ConfigBloc().darkModeOn
-                                  ? Colors.red
-                                  : Colors.redAccent,
+                                  ? Tools.multiColors[4]
+                                  : Tools.multiColors[4],
                             ),
                             SizedBox(
                               height: 15,
@@ -167,8 +167,8 @@ class EventsDetailPast extends StatelessWidget {
 
                               FontAwesomeIcons.building,
                               color: ConfigBloc().darkModeOn
-                                  ? Colors.red
-                                  : Colors.redAccent,
+                                  ? Tools.multiColors[4]
+                                  : Tools.multiColors[4],
                             ),
                             SizedBox(
                               height: 15,
@@ -195,8 +195,8 @@ class EventsDetailPast extends StatelessWidget {
                               //Icons.access_time
                               FontAwesomeIcons.clock,
                               color: ConfigBloc().darkModeOn
-                                  ? Colors.red
-                                  : Colors.redAccent,
+                                  ?Tools.multiColors[4]
+                                  : Tools.multiColors[4],
                             ),
                             SizedBox(
                               height: 15,

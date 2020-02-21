@@ -103,7 +103,7 @@ class NewsScreen extends StatelessWidget {
             },
             // dense: true,
             isThreeLine: true,
-            trailing: Icon(FontAwesomeIcons.newspaper,color: Colors.green,), 
+            trailing: Icon(FontAwesomeIcons.newspaper,color:Tools.multiColors[4],), 
             /* Container(
                 height: 100,
                 width: 100,

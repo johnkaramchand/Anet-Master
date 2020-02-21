@@ -111,14 +111,14 @@ class PastEventsScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.title.copyWith(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Colors.red),
+                            color: Tools.multiColors[4]),
                       ),
                       //Text("AUG"),
                       
                     ],
                   ),
                   Text(
-                        "${Tools.month[int.parse(allEvents[i].e_date.toString().substring(5, 7))]}",
+                        "${Tools.month[int.parse(allEvents[i].e_date.toString().substring(5, 7))-1]}",
                         style: TextStyle(color: Colors.grey),
                       ),
                   Text(
@@ -132,7 +132,7 @@ class PastEventsScreen extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     FontAwesomeIcons.angleRight,
-                    color: Colors.red,
+                    color: Tools.multiColors[4],
                   ),
                   /*  SizedBox(
                 height: 5,

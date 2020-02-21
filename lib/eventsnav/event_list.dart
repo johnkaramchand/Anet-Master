@@ -5,7 +5,6 @@ import 'package:anet/models/events.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 //import 'package:anet/eventsnav/session_detail.dart';
-import 'package:anet/home/session.dart';
 import 'package:anet/utils/tools.dart';
 
 class EventList extends StatelessWidget {

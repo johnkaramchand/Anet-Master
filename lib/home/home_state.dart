@@ -3,9 +3,6 @@ import 'package:anet/models/news_model.dart';
 import 'package:anet/models/project_model.dart';
 import 'package:anet/models/stat.dart';
 import 'package:equatable/equatable.dart';
-import 'package:anet/home/session.dart';
-import 'package:anet/home/speaker.dart';
-import 'package:anet/home/team.dart';
 import 'package:meta/meta.dart';
 
 @immutable

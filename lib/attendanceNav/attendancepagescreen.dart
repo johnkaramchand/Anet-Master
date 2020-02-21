@@ -4,11 +4,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+//import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AttendancePageScreen extends StatefulWidget {
   static const String routeName = "/attendance";
+  final String dummy="";
 
   var _homeBloc = HomeBloc();
   @override
@@ -33,7 +34,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
   // UserRepository userRepository = UserRepository();
   //AttendanceScreen({Key key, this.homeBloc}) : super(key: key);
   AttendanceScreen({Key key, this.homeBloc});
-  final RefreshController _refreshController = RefreshController();
+//  final RefreshController _refreshController = RefreshController();
   TextEditingController eventCode = TextEditingController();
 
   String token;

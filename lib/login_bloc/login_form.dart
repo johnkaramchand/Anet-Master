@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/login_bloc/login.dart';
-import 'package:anet/login_bloc/signup_page.dart';
 import 'package:anet/authentication_bloc/authentication.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 import 'package:anet/utils/tools.dart';
-import 'dart:math';
-
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/config_event.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:anet/registerPageStateless/registerPageStateless.dart';
-
 import '../utils/tools.dart';
 /*
 class LoginForm extends StatefulWidget {

@@ -1,12 +1,8 @@
-import 'package:anet/authentication_bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/config_event.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:anet/authentication_bloc/authentication.dart';
 
 class DevScaffold extends StatelessWidget {
   final String title;
@@ -18,8 +14,8 @@ class DevScaffold extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final AuthenticationBloc authenticationBloc =
-        BlocProvider.of<AuthenticationBloc>(context);
+   /*  final AuthenticationBloc authenticationBloc =
+        BlocProvider.of<AuthenticationBloc>(context); */
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       color: ConfigBloc().darkModeOn ? Colors.grey[800] : Colors.white,

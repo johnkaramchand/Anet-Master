@@ -1,6 +1,4 @@
-import 'dart:math';
 import 'package:anet/config/config_bloc.dart';
-import 'package:anet/models/news_model.dart';
 import 'package:anet/models/project_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

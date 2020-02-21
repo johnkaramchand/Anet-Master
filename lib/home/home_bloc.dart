@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'package:anet/authentication_bloc/authentication.dart';
 import 'package:bloc/bloc.dart';
 import 'package:anet/home/index.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   static final HomeBloc _homeBlocSingleton = HomeBloc._internal();

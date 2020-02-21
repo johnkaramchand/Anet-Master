@@ -1,6 +1,5 @@
 import 'package:anet/attendanceNav/attendancepagescreen.dart';
 import 'package:anet/comingsoon.dart';
-import 'package:anet/home/home_provider.dart';
 import 'package:anet/home/index.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:anet/projectsNav/projectsPage.dart';

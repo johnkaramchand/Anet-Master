@@ -23,12 +23,7 @@ import 'package:anet/comingsoon.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:anet/projectsNav/projectsPage.dart';
 import 'package:anet/rank.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/eventsnav/eventsPage.dart';
-import 'package:flutter/services.dart';
-import 'utils/devfest.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:anet/home/home_bloc.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {

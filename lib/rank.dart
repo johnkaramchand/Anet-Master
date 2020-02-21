@@ -1,16 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:anet/eventsnav/pastevents_screen.dart';
 
 import 'package:anet/home/index.dart';
 import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/utils/tools.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 
 class RankPage extends StatelessWidget {
   static const String routeName = "/rank";
@@ -18,22 +15,20 @@ class RankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _homeBloc = HomeBloc();
-    return  DevScaffold(
-        title: "Leader Board",
-       
-        body: RankScreen(
-              homeBloc: _homeBloc,
-            ),
-      );
+    return DevScaffold(
+      title: "Leader Board",
+      body: RankScreen(
+        homeBloc: _homeBloc,
+      ),
+    );
   }
 }
 
 class RankScreen extends StatelessWidget {
   final HomeBloc homeBloc;
-   RankScreen({Key key, this.homeBloc}) : super(key: key);
+  RankScreen({Key key, this.homeBloc}) : super(key: key);
   final RefreshController _refreshController = RefreshController();
 
-  
   @override
   Widget build(BuildContext context) {
     var state = homeBloc.currentState as InHomeState;
@@ -42,21 +37,19 @@ class RankScreen extends StatelessWidget {
     return SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
-       // header: defaultHeader,
+        // header: defaultHeader,
         onRefresh: () async {
           print("Pulled down");
-             homeBloc.dispatch(LoadHomeEvent());
-             
-             var events = state.eventsData.events;
-             eventSessions = events.where((s) => s.e_state == true).toList();
+          homeBloc.dispatch(LoadHomeEvent());
+
+          var events = state.eventsData.events;
+          eventSessions = events.where((s) => s.e_state == true).toList();
           _refreshController.refreshCompleted();
         },
-        child:buildlist(eventSessions,context)
+        child: buildlist(eventSessions, context)
         //EventList( allEvents: eventSessions)
-        
-        
-       
-      );
+
+        );
 
     /*var cloudSessions = sessions.where((s) => s.track == "cloud").toList();
     return SessionList(
@@ -64,7 +57,7 @@ class RankScreen extends StatelessWidget {
     );*/
   }
 
-  Widget buildlist(var allEvents,context){
+  Widget buildlist(var allEvents, context) {
     return ListView.builder(
       shrinkWrap: false,
       itemCount: allEvents.length,
@@ -73,7 +66,8 @@ class RankScreen extends StatelessWidget {
         return Card(
           elevation: 0.0,
           child: ListTile(
-            onTap: () {/*
+            onTap: () {
+              /*
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -95,7 +89,7 @@ class RankScreen extends StatelessWidget {
                     .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
-                     text: "${allEvents[i].organizer}\n",
+                    text: "${allEvents[i].organizer}\n",
                     style: Theme.of(context).textTheme.subtitle.copyWith(
                           fontSize: 12,
                         ),
@@ -103,23 +97,22 @@ class RankScreen extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             leading: Hero(
               tag: "${allEvents[i].event_id}\n",
               child: CircleAvatar(
                 radius: 30,
-                backgroundImage:
-                
-                    CachedNetworkImageProvider('https://avatars1.githubusercontent.com/u/12619420?s=400&u=eac38b075e4e4463edfb0f0a8972825cf7803d4c&v=4'),
+                backgroundImage: CachedNetworkImageProvider(
+                    'https://avatars1.githubusercontent.com/u/12619420?s=400&u=eac38b075e4e4463edfb0f0a8972825cf7803d4c&v=4'),
               ),
             ),
             title: RichText(
               text: TextSpan(
-                 text: "${allEvents[i].organizer}\n",
+                text: "${allEvents[i].organizer}\n",
                 style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
                 children: [
                   TextSpan(
-                       text: "${allEvents[i].organizer}\n",
+                      text: "${allEvents[i].organizer}\n",
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             fontSize: 14,
                             color: Tools.multiColors[Random().nextInt(4)],
@@ -138,9 +131,9 @@ class RankScreen extends StatelessWidget {
         );
       },
     );
-
   }
 }
+
 class RefreshBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -154,4 +147,3 @@ class RefreshBackground extends StatelessWidget {
     );
   }
 }
-

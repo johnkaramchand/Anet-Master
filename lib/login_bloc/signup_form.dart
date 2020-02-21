@@ -1,8 +1,6 @@
-import 'package:anet/authentication_bloc/user_repository.dart';
 import 'package:anet/login_bloc/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/authentication_bloc/authentication.dart';
 
 class SignupForm extends StatefulWidget {

@@ -1,6 +1,7 @@
 import 'package:anet/attendanceNav/attendancepagescreen.dart';
 import 'package:anet/comingsoon.dart';
 import 'package:anet/home/index.dart';
+import 'package:anet/intrestgroups/interestGroupsPage.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:anet/projectsNav/projectsPage.dart';
 import 'package:flutter/material.dart';
@@ -185,8 +186,10 @@ class HomeFrontState extends State<HomeFront> {
             color: Colors.redAccent,
             title: "Interest\nGroups",
             onPressed: () async {
-               await _launchURL(
-                    "http://test.ciadev.ninja/interest-groups/");
+
+              Navigator.pushNamed(context,InterestGroupsPage.routeName);
+               /* await _launchURL(
+                    "http://test.ciadev.ninja/interest-groups/"); */
             }
                 //Navigator.pushNamed(context, ProjectsPageScreen.routeName),
           ),

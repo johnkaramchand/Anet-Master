@@ -1,31 +1,20 @@
-import 'dart:math';
-import 'package:anet/projectsNav/projects_details.dart';
+import 'package:anet/models/interest_groups.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:anet/home/index.dart';
-import 'package:anet/utils/tools.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-/* 
-class ProjectsPageScreen extends StatelessWidget {
-  
+import 'package:anet/utils/tools.dart';
+import 'package:anet/projectsNav/projects_details.dart';
+import 'dart:math';
+import 'package:url_launcher/url_launcher.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    var _homeBloc = HomeBloc();
-    return DevScaffold(
-      title: "Projects",
-      body: ProjectScreen(
-        homeBloc: _homeBloc,
-      ),
-    );
-  }
-}
- */
-class ProjectsPageScreen extends StatelessWidget {
+
+class InterestGroupsScreen extends StatelessWidget {
   final HomeBloc homeBloc;
-  ProjectsPageScreen({Key key, this.homeBloc}) : super(key: key);
+
+  InterestGroupsScreen({Key key, this.homeBloc}) : super(key: key);
   final RefreshController _refreshController = RefreshController();
 
   @override
@@ -55,13 +44,14 @@ class ProjectsPageScreen extends StatelessWidget {
           }
 
           var state = homeBloc.currentState as InHomeState;
-          var news = state.projectData.project;
-          //var newsList = news.where((s) => s.p_id == true).toList();
+          var interestgroups = state.interestGroups.interestgroup;
+          var interestgroupslist =  interestgroups.toList();
 
-           var newsList = news.where((s) => s.p_state == true).toList();
-          newsList.sort((a, b) => b.p_datetime.compareTo(a.p_datetime));
-          print("DATA : ${news[0].p_id}");
+         
 
+         /*  var eventSessions = events.where((s) => s.p_state == false).toList();
+          eventSessions.sort((a, b) => b.p_datetime.compareTo(a.p_datetime));
+          print("DATA : ${events[0].p_id}"); */
 
           return SmartRefresher(
               controller: _refreshController,
@@ -76,17 +66,17 @@ class ProjectsPageScreen extends StatelessWidget {
                 _refreshController.refreshCompleted();
               },
               child: buildlist(
-                  newsList, context) //EventList( allEvents: eventSessions)
+                  interestgroupslist, context) //EventList( allEvents: eventSessions)
 
               );
         });
   }
 
-  Widget buildlist(var projectList, context) {
-    print(projectList);
+  Widget buildlist(var interestgroupslist, context) {
+    print(interestgroupslist);
     return ListView.builder(
       shrinkWrap: false,
-      itemCount: projectList.length,
+      itemCount: interestgroupslist.length,
       itemBuilder: (c, i) {
         // return Text("sdd");
         return ClipRRect(
@@ -96,15 +86,10 @@ class ProjectsPageScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(5),
               child: ListTile(
-                  onTap: () {
-                    Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProjectDetail(
-                      project: projectList[i],
-                    ),
-                  ),
-                );
+                  onTap: () async {
+                  await _launchURL("${interestgroupslist[i].g_medium}");
+                    print("${interestgroupslist[i].g_medium}");
+                  
                    // openProject(projectList[i].p_github_link);
                     /* 
                     Navigator.push(
@@ -116,12 +101,12 @@ class ProjectsPageScreen extends StatelessWidget {
                       ),
                     ); */
                   },
-                  leading: CircleAvatar(
+                /*   leading: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.transparent,
                     child: Icon(
                       Icons.radio_button_checked,
-                      color: Colors.blue,
+                      color: Tools.multiColors[4  ],
                     ),
                     /*  backgroundImage: NetworkImage(
                         "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg")),
@@ -129,21 +114,46 @@ class ProjectsPageScreen extends StatelessWidget {
                       fit: BoxFit.fill,
                       imageUrl: //"${newsList[i].n_image}",
                           "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg"), */
-                  ),
+                  ), */
                   // dense: true,
                   isThreeLine: true,
                   trailing: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Icon(
-                        Icons.play_arrow,
+                   /*  Padding(
+                      padding: EdgeInsets.all(10),
+                      child:  RaisedButton(
+                            onPressed: () {
+                             
+                            },
+                            child: Text(
+                              'Get Started',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            color: Tools.multiColors[4],
+                            splashColor: Tools.multiColors[4],
+                            colorBrightness: Brightness.dark,
+                          ),
+                    ) */
+                     /*  Icon(
+                        FontAwesomeIcons.medium,
                         color: Tools.multiColors[4],
+                      ), */
+                      Icon(
+                        FontAwesomeIcons.externalLinkAlt,
+                        color: Tools.multiColors[4],
+                        
+                        
                       ),
-                      Text(
-                        "ONGOING",
+                      
+                      /*  Text(
+                        "Get Started",
                         style: TextStyle(color: Colors.grey[500]),
-                      )
+                      )  */
                     ],
                   ),
                   /*  Image.network(
@@ -169,29 +179,39 @@ class ProjectsPageScreen extends StatelessWidget {
                 ) ,*/
                   title: Text(
                     //"${newsList[i].n_title}",
-                    projectList[i].p_title ?? 'title',
+                    //projectList[i].p_title ?? 'title',
+                    interestgroupslist[i].g_name ?? 'title',
+                   
                     style: Theme.of(context).textTheme.title.copyWith(
-                          fontSize: 20.0,
+                          
                           fontWeight: FontWeight.bold,
+                          //color: Tools.multiColors[4]
                         ),
                   ),
                   subtitle: new RichText(
                     maxLines: 5,
                     text: new TextSpan(
-                     text: projectList[i].p_datetime.toString() ?? 'datetime',
-                     
+                      //text: projectList[i].p_datetime.toString() ?? 'datetime',
+                      text: '',
                       style: new TextStyle(
                         //color: Colors.blueAccent,
-                        color: Colors.blue,
+                       // color: Colors.blue,
                         //decoration: TextDecoration.lineThrough,
                       ),
                       children: <TextSpan>[
                         new TextSpan(
-                          text: '\n${projectList[i].p_desc.toString()}' ??
-                              'description',
-                          style: new TextStyle(
-                            color: Colors.grey,
-                          ),
+                          //text: "\nBuilding custom roms and understanding the core linux",
+                         text: '\n${interestgroupslist[i].g_desc.toString()}' ??
+                              'description', 
+                           //   style: Theme.of(context).textTheme.caption.merge(TextStyle( fontSize:18)),
+                           style: Theme.of(context).textTheme.subhead.merge(TextStyle(color:Colors.grey))
+                              
+
+                          /* style: new TextStyle(
+                           color: Colors.grey, 
+                            fontSize: 18
+                            
+                          ), */
                         ),
                         /*  new TextSpan(
                             text: '....',
@@ -199,6 +219,7 @@ class ProjectsPageScreen extends StatelessWidget {
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
                             )), */
+                        
                       ],
                     ),
                   ) /* Text(
@@ -218,17 +239,15 @@ class ProjectsPageScreen extends StatelessWidget {
       },
     );
   }
+}
 
-  openProject(String url) async {
-    print("URL :  $url");
+     _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Could not launch $url';
     }
   }
-}
-
 class RefreshBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

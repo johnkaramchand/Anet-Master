@@ -1,4 +1,5 @@
 import 'package:anet/models/events.dart';
+import 'package:anet/models/interest_groups.dart';
 import 'package:anet/models/news_model.dart';
 import 'package:anet/models/project_model.dart';
 import 'package:anet/models/stat.dart';
@@ -34,10 +35,12 @@ class InHomeState extends HomeState {
   final Stats stats;
   final ProjectData projectData;
   final String username;
+  final InterestGroups interestGroups;
 
   InHomeState(
       {@required this.eventsData,
       @required this.newsData,
+      @required this.interestGroups,
       //@required this.speakersData,
       //  @required this.sessionsData,
       // @required this.teamsData,
@@ -61,6 +64,7 @@ class InHomeState extends HomeState {
     return InHomeState(
         eventsData: this.eventsData,
         newsData: this.newsData,
+        interestGroups: this.interestGroups,
         // speakersData: this.speakersData,
         // sessionsData: this.sessionsData,
         // teamsData: this.teamsData,

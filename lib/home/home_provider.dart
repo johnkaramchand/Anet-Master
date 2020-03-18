@@ -1,3 +1,4 @@
+import 'package:anet/models/interest_groups.dart';
 import 'package:anet/models/project_model.dart';
 import 'package:anet/models/stat.dart';
 import 'package:anet/models/events.dart';
@@ -14,6 +15,7 @@ abstract class IHomeProvider {
   Future<Stats> getStats();
   Future<ProjectData> getProjects();
   Future<String> getUsername();
+  Future<InterestGroups> getInterestGroups();
 }
 
 class HomeProvider implements IHomeProvider {
@@ -34,6 +36,17 @@ class HomeProvider implements IHomeProvider {
     if (response.statusCode == 200) {
       print(response.body);
       ProjectData res = ProjectData.fromJson(json.decode(response.body));
+      return res;
+    } else
+      throw Exception('Failed to load events');
+  }
+
+    Future<InterestGroups> getInterestGroups() async {
+    final response =
+        await http.get('http://test.ciadev.ninja/api/v2/interestgroup/?format=json');
+    if (response.statusCode == 200) {
+      print(response.body);
+      InterestGroups res = InterestGroups.fromJson(json.decode(response.body));
       return res;
     } else
       throw Exception('Failed to load events');

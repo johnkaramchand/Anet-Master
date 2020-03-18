@@ -20,6 +20,7 @@ class LoadHomeEvent extends HomeEvent {
     // var speakersData = await _homeProvider.getSpeakers();
     //var sessionsData = await _homeProvider.getSessions();
     //var teamsData = await _homeProvider.getTeams();
+    var interestGroupsData = await _homeProvider.getInterestGroups();
     var stats = await _homeProvider.getStats();
     var projectsData = await _homeProvider.getProjects();
     var username = await _homeProvider.getUsername();
@@ -30,6 +31,7 @@ class LoadHomeEvent extends HomeEvent {
       // var speakersData = await _homeProvider.getSpeakers();
       //var sessionsData = await _homeProvider.getSessions();
       //var teamsData = await _homeProvider.getTeams();
+      var interestGroupsData = await _homeProvider.getInterestGroups();
       var stats = await _homeProvider.getStats();
       var projectsData = await _homeProvider.getProjects();
       var username = await _homeProvider.getUsername();
@@ -42,6 +44,8 @@ class LoadHomeEvent extends HomeEvent {
           //  sessionsData: sessionsData,
 
           //  teamsData: teamsData,
+          interestGroups: interestGroupsData,
+          
           stats: stats,
           projectData: projectsData,
           username: username);
@@ -53,6 +57,7 @@ class LoadHomeEvent extends HomeEvent {
         newsData: newsData,
         eventsData: eventsData,
         stats: stats,
+        interestGroups: interestGroupsData,
         projectData: projectsData,
         username: username);
   }

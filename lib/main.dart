@@ -2,6 +2,7 @@ import 'package:anet/authentication_presentation/Registered.dart';
 import 'package:anet/config/config_bloc.dart';
 import 'package:anet/config/index.dart';
 import 'package:anet/home/index.dart';
+import 'package:anet/intrestgroups/interestGroupsPage.dart';
 import 'package:anet/login_bloc/login.dart' as prefix0;
 import 'package:anet/login_bloc/tempsignup.dart';
 import 'package:anet/utils/tools.dart';
@@ -137,17 +138,45 @@ class AppState extends State<App> {
               //* Custom Google Font
               fontFamily: Devfest.josefin_sans_family,
               primarySwatch: Colors.red,
-              primaryColor: configBloc.darkModeOn ? Tools.multiColors[5] : Colors.white,
+              primaryColor:
+                  configBloc.darkModeOn ? Tools.multiColors[5] : Colors.white,
               disabledColor: Colors.grey,
-              cardColor: configBloc.darkModeOn ?Tools.multiColors[5]: Colors.white,
-              canvasColor:
-                  configBloc.darkModeOn ? Tools.multiColors[5] : Colors.grey[40],
+              cardColor:
+                  configBloc.darkModeOn ? Tools.multiColors[5] : Colors.white,
+              canvasColor: configBloc.darkModeOn
+                  ? Tools.multiColors[5]
+                  : Colors.grey[40],
               brightness:
                   configBloc.darkModeOn ? Brightness.dark : Brightness.light,
               buttonTheme: Theme.of(context).buttonTheme.copyWith(
                   colorScheme: configBloc.darkModeOn
                       ? ColorScheme.dark()
                       : ColorScheme.light()),
+
+              /*      primaryColorDark:
+                  configBloc.darkModeOn ? Tools.multiColors[4] : Colors.black,
+                  primaryTextTheme: TextTheme(
+                    display1:TextStyle(
+                      color:Colors.red
+                    ),
+                    body1:TextStyle(
+                      color:Colors.red
+                    )
+                  ),  */
+
+           /*    textTheme: Theme.of(context).textTheme.apply(
+                    bodyColor: configBloc.darkModeOn
+                        ? Tools.multiColors[4]
+                        : Colors.black,
+                    fontFamily: Devfest.josefin_sans_family,
+                    displayColor:
+                        configBloc.darkModeOn ? Colors.white : Colors.black54,
+                  ),
+              iconTheme: Theme.of(context).iconTheme.merge(IconThemeData(
+                  color: configBloc.darkModeOn
+                      ? Tools.multiColors[4]
+                      : Colors.green)), */
+                
               appBarTheme: AppBarTheme(
                 elevation: 0.0,
               ),
@@ -205,7 +234,8 @@ class AppState extends State<App> {
                     userRepository:
                         RepositoryProvider.of<UserRepository>(context),
                   ),
-                  RegisterStateless.routeName: (context) =>RegisterStateless(),
+              RegisterStateless.routeName: (context) => RegisterStateless(),
+              InterestGroupsPage.routeName: (context) => InterestGroupsPage(),
 
               /*   SignupPage.routeName: (context) => SignupPage(
                     userRepository:

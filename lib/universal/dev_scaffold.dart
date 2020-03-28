@@ -28,7 +28,7 @@ class DevScaffold extends StatelessWidget {
             centerTitle: true,
             bottom: tabBar != null ? tabBar : null,
             actions: <Widget>[
-              IconButton(
+            /*   IconButton(
                 icon: Icon(
                   ConfigBloc().darkModeOn
                       ? FontAwesomeIcons.lightbulb
@@ -38,7 +38,7 @@ class DevScaffold extends StatelessWidget {
                 onPressed: () {
                   ConfigBloc()
                       .dispatch(DarkModeEvent(!ConfigBloc().darkModeOn));
-                },
+                }, */
               ),
               IconButton(
                 onPressed: () => Share.share(

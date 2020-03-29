@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:anet/supersaiyan/super_events.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 import 'package:pointycastle/export.dart' as p;
@@ -41,38 +42,6 @@ import 'package:anet/universal/dev_scaffold.dart';
 import 'package:anet/authentication_bloc/authentication.dart';
 import "package:pointycastle/export.dart" as exp;
 
-Uint8List _processInBlocks(exp.AsymmetricBlockCipher engine, Uint8List input) {
-  final numBlocks = input.length ~/ engine.inputBlockSize +
-      ((input.length % engine.inputBlockSize != 0) ? 1 : 0);
-
-  final output = Uint8List(numBlocks * engine.outputBlockSize);
-
-  var inputOffset = 0;
-  var outputOffset = 0;
-  while (inputOffset < input.length) {
-    final chunkSize = (inputOffset + engine.inputBlockSize <= input.length)
-        ? engine.inputBlockSize
-        : input.length - inputOffset;
-
-    outputOffset += engine.processBlock(
-        input, inputOffset, chunkSize, output, outputOffset);
-
-    inputOffset += chunkSize;
-  }
-
-  return (output.length == outputOffset)
-      ? output
-      : output.sublist(0, outputOffset);
-}
-
-Uint8List rsaEncrypt(exp.RSAPublicKey myPublic, Uint8List dataToEncrypt) {
-  final encryptor = exp.PKCS1Encoding(exp.RSAEngine())
-    ..init(true,
-        exp.PublicKeyParameter<exp.RSAPublicKey>(myPublic)); // true=encrypt
-
-  return _processInBlocks(encryptor, dataToEncrypt);
-}
-
 class SuperLoginPage extends StatefulWidget {
   static const String routeName = "/superloginpage";
   @override
@@ -86,55 +55,8 @@ class SuperLoginForm extends State<SuperLoginPage> {
   @override
   void initState() {
     super.initState();
-    ses();
+
     ConfigBloc().dispatch(DarkModeEvent(ConfigBloc().darkModeOn));
-  }
-
-  ses() async {
-    var plaintext = "2020";
-    var public_key =
-        'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1Nrr7gsMxSv+WN/eaJJE0JcOce8McNfRMK0pYKFrwuyvEj6W0sul+npdIlz6eT69SZA5uh+kmjVa4jHj2CPdEXrtuECl761acyay+nTDpxBNAu5lNZmN3roD+sBciGmqX0A2Awlb78mq/cjf+Jm2TRf2o6Pkv5FLocDAo7FgPIwIDAQAB';
-
-    ///var b64 = base64Encode(utf8.encode(public_key));
-    var javaEncoded = public_key;
-    var pem =
-        '-----BEGIN RSA PUBLIC KEY-----\n$javaEncoded\n-----END RSA PUBLIC KEY-----';
-    print("pem $pem");
-//    p.RSAPublicKey public = X509Utils.publicKeyFromPem(pem);
-    //var cipher = new exportpointy.RSAEngine()
-    //..init(true, new exportpointy.PublicKeyParameter<exportpointy.RSAPublicKey>(public));
-    //var cipherText = cipher.process(new Uint8List.fromList(plaintext.codeUnits));
-
-//    encryptedText =  String.fromCharCodes(cipherText);
-
-    //  String s = new String.fromCharCodes(yo);
-
-/*     var yo = rsaEncrypt(public, new Uint8List.fromList(plaintext.codeUnits));
-    encryptedText = yo.toString();
-    String s = new String.fromCharCodes(yo);
-    print(s.codeUnits);
- */ //  var outputAsUint8List = new Uint8List.fromList(s.codeUnits);
-    //print(outputAsUint8List);
-
-    /* encryptedText =
-        await encryptString("2020", public); */
-
-    /// ANOTHER NEW METHOD
-
-/*     var plainText = "2020";
-    exportpointy.AsymmetricKeyParameter<exportpointy.RSAPublicKey> keyParametersPublic =
-        new exportpointy.PublicKeyParameter(public);
-
-    var cipher = new exportpointy.PKCS1Encoding(exportpointy.RSAEngine())
-    ..init(true, keyParametersPublic);
-
-    var cipherText =
-        cipher.process(new Uint8List.fromList(plainText.codeUnits));
-        /// FINAL AGAIn
-          final publicKey = await p.parseKeyFromFile<exportpointy.RSAPublicKey>('test/public.pem');
- */
-
-    //final decrypted = encrypter.decrypt(encrypted);
   }
 
   final _usernameController = TextEditingController();
@@ -144,6 +66,8 @@ class SuperLoginForm extends State<SuperLoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final loginsupersaiyanBloc = BlocProvider.of<SuperSaiyanBloc>(context);
+
     // BorderRadiusGeometry radius = BorderRadius.only(
     //   topLeft: Radius.circular(24.0),
     //   topRight: Radius.circular(24.0),
@@ -298,14 +222,19 @@ class SuperLoginForm extends State<SuperLoginPage> {
                         height: 40.0,
                         child: RaisedButton(
                           onPressed: () async {
+                             loginsupersaiyanBloc.dispatch(SuperSaiyanLoggedIn(
+                                username: _usernameController.text,
+                                password: _passwordController.text));
+ 
                             /*  print("Button Pressed");
                               state is! LoginLoading
                                   ? _onLoginButtonPressed()
                                   : null; */
 
-                            try {
-                              var publicKey =
-                                  '';
+ /*                             try {
+                              var publicKey 
+                              =
+                                  'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1Nrr7gsMxSv+WN/eaJJE0JcOce8McNfRMK0pYKFrwuyvEj6W0sul+npdIlz6eT69SZA5uh+kmjVa4jHj2CPdEXrtuECl761acyay+nTDpxBNAu5lNZmN3roD+sBciGmqX0A2Awlb78mq/cjf+Jm2TRf2o6Pkv5FLocDAo7FgPIwIDAQAB';
                               final encrypted =
                                   await encryptString("2020", publicKey);
                               
@@ -349,7 +278,7 @@ class SuperLoginForm extends State<SuperLoginPage> {
                               print(response.body); 
                             } catch (error) {
                               print("Something went wrong $error");
-                            }
+                            } */
                           },
                           child: Text(
                             'Log in',

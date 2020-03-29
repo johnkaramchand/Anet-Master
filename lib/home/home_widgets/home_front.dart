@@ -4,12 +4,14 @@ import 'package:anet/home/index.dart';
 import 'package:anet/intrestgroups/interestGroupsPage.dart';
 import 'package:anet/newsNav/newsPageScreen.dart';
 import 'package:anet/projectsNav/projectsPage.dart';
+import 'package:anet/supersaiyanUI/supersaiyanlogin.dart';
 import 'package:flutter/material.dart';
 import 'package:anet/eventsnav/eventsPage.dart';
 import 'package:anet/config/index.dart';
 import 'package:anet/utils/devfest.dart';
 import 'package:anet/utils/tools.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
 import 'package:anet/home/home_bloc.dart';
@@ -40,6 +42,60 @@ class HomeFrontState extends State<HomeFront> {
     print(username);
   }
 
+  Widget newUIdata(context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        new Container(
+          child: Column(
+            children: <Widget>[
+              new Text(
+                statsAttended.toString() ?? '-',
+                style: TextStyle(
+                  color: Color.fromRGBO(238, 255, 248, 1),
+                  fontSize: 40,
+                ),
+              ),
+              new Divider(
+                height: 2,
+              ),
+              new Text(
+                "Events Attended",
+                style: Theme.of(context).textTheme.body2,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+        new VerticalDivider(
+          width: 1,
+          color: Colors.red,
+        ),
+        new Container(
+          child: Column(
+            children: <Widget>[
+              new Text(
+                totalsore.toString() ?? '-',
+                style: TextStyle(
+                    color: Color.fromRGBO(238, 255, 248, 1),
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+              ),
+              new Divider(
+                height: 2,
+              ),
+              new Text(
+                "Community Score",
+                style: Theme.of(context).textTheme.body2,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
   List<Widget> devFestTexts(context) => [
         SizedBox(
           height: 20,
@@ -57,7 +113,7 @@ class HomeFrontState extends State<HomeFront> {
                     new Text(
                       statsAttended.toString() ?? '-',
                       style: TextStyle(
-                        color:  Tools.multiColors[Random().nextInt(4)],
+                        color: Tools.multiColors[Random().nextInt(4)],
                         fontSize: 40,
                       ),
                     ),
@@ -182,17 +238,16 @@ class HomeFrontState extends State<HomeFront> {
             onPressed: () => Navigator.pushNamed(context, EventsPage.routeName),
           ),
           ActionCard(
-            icon: FontAwesomeIcons.solidHeart,
-            color: Colors.redAccent,
-            title: "Interest\nGroups",
-            onPressed: () async {
-
-              Navigator.pushNamed(context,InterestGroupsPage.routeName);
-               /* await _launchURL(
+              icon: FontAwesomeIcons.solidHeart,
+              color: Colors.redAccent,
+              title: "Interest\nGroups",
+              onPressed: () async {
+                Navigator.pushNamed(context, InterestGroupsPage.routeName);
+                /* await _launchURL(
                     "http://test.ciadev.ninja/interest-groups/"); */
-            }
-                //Navigator.pushNamed(context, ProjectsPageScreen.routeName),
-          ),
+              }
+              //Navigator.pushNamed(context, ProjectsPageScreen.routeName),
+              ),
           ActionCard(
             icon: FontAwesomeIcons.database,
             color: Tools.multiColors[Random().nextInt(4)],
@@ -200,18 +255,13 @@ class HomeFrontState extends State<HomeFront> {
             onPressed: () =>
                 Navigator.pushNamed(context, ProjectsPage.routeName),
           ),
-          
-           ActionCard(
-            icon: FontAwesomeIcons.microchip,
-            color: Colors.amber,
-            title: "Atria Iot Lab",
-            onPressed: ()async {
-               await _launchURL(
-                    "http://iot.atria.edu");
-
-            }
-              
-          ),
+          ActionCard(
+              icon: FontAwesomeIcons.microchip,
+              color: Colors.amber,
+              title: "Atria Iot Lab",
+              onPressed: () async {
+                await _launchURL("http://iot.atria.edu");
+              }),
           ActionCard(
             icon: FontAwesomeIcons.newspaper,
             color: Colors.green,
@@ -226,7 +276,6 @@ class HomeFrontState extends State<HomeFront> {
             onPressed: () =>
                 Navigator.pushNamed(context, ComingSoonPage.routeName),
           ),
-
           ActionCard(
             icon: FontAwesomeIcons.checkSquare,
             color: Colors.purple,
@@ -234,7 +283,14 @@ class HomeFrontState extends State<HomeFront> {
             onPressed: () =>
                 Navigator.pushNamed(context, AttendancePageScreen.routeName),
           ),
-          
+          ActionCard(
+            icon: FontAwesomeIcons.book,
+            color: Tools.multiColors[Random().nextInt(4)],
+            title: "Attendance",
+            onPressed: () =>
+                Navigator.pushNamed(context, SuperSaiyanLoginPage.routeName),
+          ),
+
           /*
           ActionCard(
             icon: FontAwesomeIcons.solidNewspaper,
@@ -314,12 +370,13 @@ class HomeFrontState extends State<HomeFront> {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.all(10.0),
-              height: MediaQuery.of(context).size.height * 0.2,
+              padding: const EdgeInsets.all(5.0),
+              height: MediaQuery.of(context).size.height * 0.15,
               width: MediaQuery.of(context).size.width,
               child: Icon(
                 FontAwesomeIcons.userAstronaut,
@@ -337,8 +394,13 @@ class HomeFrontState extends State<HomeFront> {
             ),
             Text(
               "Hey, $username",
-              style: Theme.of(context).textTheme.headline,
+              style: Theme.of(context).textTheme.headline.merge(TextStyle(
+                    fontSize: 32,
+                  )),
               textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 20,
             ),
 
             /*
@@ -347,12 +409,17 @@ class HomeFrontState extends State<HomeFront> {
                   ? Devfest.banner_dark
                   : Devfest.banner_light,
             ),*/
-
-            ...devFestTexts(context),
+            newUIdata(context),
+            //...devFestTexts(context),
             SizedBox(
               height: 20,
             ),
-            newActions(context),
+
+            SizedBox(
+              height: 20,
+            ),
+            newUInav(context),
+            //newActions(context),
             SizedBox(
               height: 20,
             ),
@@ -369,6 +436,265 @@ class HomeFrontState extends State<HomeFront> {
       ),
     );
   }
+}
+
+Widget newUInav(context) {
+  return Column(
+    children: <Widget>[
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          ButtonTheme(
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(5.0),
+                side: BorderSide(color: Colors.red)),
+            minWidth: MediaQuery.of(context).size.width / 2.5,
+            height: 50,
+            child: FlatButton(
+              onPressed: () {
+                 Navigator.pushNamed(context, EventsPage.routeName);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Icon(
+                    Icons.calendar_today,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Events',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
+                  )
+                ],
+              ),
+              color: Tools.multiColors[4],
+              splashColor: Tools.multiColors[4],
+              colorBrightness: Brightness.dark,
+            ),
+          ),
+          ButtonTheme(
+            minWidth: MediaQuery.of(context).size.width / 2,
+            height: 50,
+            child: FlatButton(
+              onPressed: () {
+                 Navigator.pushNamed(context, ProjectsPage.routeName);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Icon(
+                    //Icons.check_box_outline_blank,
+                    FontAwesomeIcons.database,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Projects',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
+                  )
+                ],
+              ),
+              color: Tools.multiColors[4],
+              splashColor: Tools.multiColors[4],
+              colorBrightness: Brightness.dark,
+            ),
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      ButtonTheme(
+        shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(5.0),
+            side: BorderSide(color: Colors.red)),
+        minWidth: MediaQuery.of(context).size.width / 2.5,
+        height: 50,
+        child: FlatButton(
+          onPressed: () {
+             Navigator.pushNamed(context, InterestGroupsPage.routeName);
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Icon(
+                FontAwesomeIcons.connectdevelop,
+                color: Colors.black,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Interest Groups',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22),
+              )
+            ],
+          ),
+          color: Tools.multiColors[4],
+          splashColor: Tools.multiColors[4],
+          colorBrightness: Brightness.dark,
+        ),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          ButtonTheme(
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(5.0),
+                side: BorderSide(color: Colors.red)),
+            minWidth: MediaQuery.of(context).size.width / 2.5,
+            height: 50,
+            child: FlatButton(
+              onPressed: () {
+                 Navigator.pushNamed(context, NewsPageScreen.routeName);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Icon(
+                    FontAwesomeIcons.newspaper,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'News',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
+                  )
+                ],
+              ),
+              color: Tools.multiColors[4],
+              splashColor: Tools.multiColors[4],
+              colorBrightness: Brightness.dark,
+            ),
+          ),
+          ButtonTheme(
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(5.0),
+                side: BorderSide(color: Colors.red)),
+            minWidth: MediaQuery.of(context).size.width / 2,
+            height: 50,
+            child: FlatButton(
+              onPressed: () {
+                 Navigator.pushNamed(context, AttendancePageScreen.routeName);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Icon(
+                    FontAwesomeIcons.checkSquare,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Rewards',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
+                  )
+                ],
+              ),
+              color: Tools.multiColors[4],
+              splashColor: Tools.multiColors[4],
+              colorBrightness: Brightness.dark,
+            ),
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      ButtonTheme(
+        shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(5.0),
+            side: BorderSide(color: Colors.red)),
+        minWidth: MediaQuery.of(context).size.width / 2.5,
+        height: 50,
+        child: FlatButton(
+          onPressed: () {
+            Navigator.pushNamed(context, SuperSaiyanLoginPage.routeName);
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Icon(
+                FontAwesomeIcons.connectdevelop,
+                color: Colors.black,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Attendance',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22),
+              )
+            ],
+          ),
+          color: Tools.multiColors[4],
+          splashColor: Tools.multiColors[4],
+          colorBrightness: Brightness.dark,
+        ),
+      ),
+      SizedBox(
+        height: 10,
+      ),
+      Container(
+        //alignment: Alignment(1.0, 0.0),
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 15.0, left: 20.0),
+        child: InkWell(
+          onTap: () async{
+            var url = "http://cia.atria.edu";
+          try{
+            launch(url);
+            
+          }catch(error){
+            print(error);
+          }
+           
+          },
+          child: Text(
+            'cia.atria.edu',
+            style: TextStyle(
+                color: Tools.multiColors[4],
+                fontFamily: 'JosefinSans',
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+                fontSize: 18),
+          ),
+        ),
+      ),
+    ],
+  );
 }
 
 class ActionCard extends StatelessWidget {

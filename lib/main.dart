@@ -139,7 +139,8 @@ class AppState extends State<App> {
           return MaterialApp(
             theme: ThemeData(
               //* Custom Google Font
-              fontFamily: Devfest.josefin_sans_family,
+              //fontFamily: Devfest.josefin_sans_family,
+              fontFamily: Devfest.google_sans_family,
               primarySwatch: Colors.red,
               primaryColor:
                   configBloc.darkModeOn ? Tools.multiColors[5] : Colors.white,

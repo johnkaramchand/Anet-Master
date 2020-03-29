@@ -121,10 +121,10 @@ class PastEventsScreen extends StatelessWidget {
                         "${Tools.month[int.parse(allEvents[i].e_date.toString().substring(5, 7))-1]}",
                         style: TextStyle(color: Colors.grey),
                       ),
-                  Text(
+                  /* Text(
                     "${allEvents[i].e_start_time.toString().substring(0, 5)}",
                     style: TextStyle(color: Colors.grey),
-                  ),
+                  ), */
                 ],
               ),
               trailing: Column(

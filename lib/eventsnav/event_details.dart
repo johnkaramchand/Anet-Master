@@ -258,10 +258,11 @@ class EventsDetail extends StatelessWidget {
                   child: Text(
                     "REGISTER",
                     style: TextStyle(
-                        //color: Colors.black,
+                        color: Colors.black,
                         //  fontFamily: 'Raleway',
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold),
+                        
                   ),
                   color: Tools.multiColors[4],
                 ),

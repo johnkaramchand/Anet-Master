@@ -1,3 +1,4 @@
+import 'package:anet/utils/devfest.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anet/login_bloc/login.dart';
@@ -169,13 +170,14 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
                         children: <Widget>[
                           GestureDetector(
                             onTap: (){
-
+/* 
                             ConfigBloc()
-                      .dispatch(DarkModeEvent(!ConfigBloc().darkModeOn));
+                      .dispatch(DarkModeEvent(!ConfigBloc().darkModeOn)); */
                             },
                             child: Text(
                               'CIA',
                               style: TextStyle(
+                                fontFamily: Devfest.josefin_sans_family,
                                 fontSize: 120.0,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 10,
@@ -186,6 +188,7 @@ GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
                           Text(
                             'COMMUNITIES IN ATRIA',
                             style: TextStyle(
+                               fontFamily: Devfest.josefin_sans_family,
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                                 color: Tools.multiColors[4]),

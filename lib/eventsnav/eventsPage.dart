@@ -21,7 +21,7 @@ class EventsPage extends StatelessWidget {
         title: "Events",
         tabBar: TabBar(
           indicatorSize: TabBarIndicatorSize.label,
-          indicatorColor: Tools.multiColors[Random().nextInt(4)],
+          indicatorColor: Tools.multiColors[4],
           labelStyle: TextStyle(
             fontSize: 12,
           ),

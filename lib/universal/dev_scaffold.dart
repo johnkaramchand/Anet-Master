@@ -28,7 +28,7 @@ class DevScaffold extends StatelessWidget {
             centerTitle: true,
             bottom: tabBar != null ? tabBar : null,
             actions: <Widget>[
-              IconButton(
+            /*   IconButton(
                 icon: Icon(
                   ConfigBloc().darkModeOn
                       ? FontAwesomeIcons.lightbulb
@@ -38,8 +38,8 @@ class DevScaffold extends StatelessWidget {
                 onPressed: () {
                   ConfigBloc()
                       .dispatch(DarkModeEvent(!ConfigBloc().darkModeOn));
-                },
-              ),
+                }, 
+              ),*/
               IconButton(
                 onPressed: () => Share.share(
                     "Download the new CIA App and get connected with the Atria's only student community. \nAlso share with your friends. Playstore: https://play.google.com/store/apps/details?id=s.anet.anet \n Website -  http://cia.atria.edu"),

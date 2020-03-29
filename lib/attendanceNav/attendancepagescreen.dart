@@ -200,7 +200,7 @@ class AttendanceScreen extends State<AttendancePageScreen> {
                     Text(
                       "CLAIM",
                       style: TextStyle(
-                          //color: Colors.black,
+                          color: Colors.black,
                           //  fontFamily: 'Raleway',
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold),
@@ -208,7 +208,8 @@ class AttendanceScreen extends State<AttendancePageScreen> {
                     SizedBox(
                       width: 10,
                     ),
-                    Icon(Icons.open_in_new),
+                    Icon(Icons.open_in_new,
+                    color: Colors.black,),
                   ],
                 ),
                 color: Tools.multiColors[4],

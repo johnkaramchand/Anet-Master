@@ -121,13 +121,15 @@ class UpcomingEventsScreen extends StatelessWidget {
                     ],
                   ),
                   Text(
-                        "${Tools.month[int.parse(allEvents[i].e_date.toString().substring(5, 7))-1]}",
+                       "${Tools.month[int.parse(allEvents[i].e_date.toString().substring(5, 7))-1]}",
+                      
                         style: TextStyle(color: Colors.grey),
                       ),
-                  Text(
-                    "${allEvents[i].e_start_time.toString().substring(0, 5)}",
+                  /* Text(
+                    ".",
+                    //"${allEvents[i].e_start_time.toString().substring(0, 5)}",
                     style: TextStyle(color: Colors.grey[600]),
-                  ),
+                  ), */
                 ],
               ),
               trailing: Column(

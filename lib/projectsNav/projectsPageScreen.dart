@@ -121,7 +121,7 @@ class ProjectsPageScreen extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     child: Icon(
                       Icons.radio_button_checked,
-                      color: Colors.blue,
+                      color: Tools.multiColors[4  ],
                     ),
                     /*  backgroundImage: NetworkImage(
                         "https://duhx21azq7s2f4tri3boig0k-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/hydroponic-cannabis-seedling.jpg")),
@@ -178,11 +178,12 @@ class ProjectsPageScreen extends StatelessWidget {
                   subtitle: new RichText(
                     maxLines: 5,
                     text: new TextSpan(
-                     text: projectList[i].p_datetime.toString() ?? 'datetime',
+                     //text: projectList[i].p_datetime.toString().substring(0,10) ?? 'datetime',
+                     text: '',
                      
                       style: new TextStyle(
                         //color: Colors.blueAccent,
-                        color: Colors.blue,
+                        color: Tools.multiColors[4],
                         //decoration: TextDecoration.lineThrough,
                       ),
                       children: <TextSpan>[

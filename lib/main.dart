@@ -5,6 +5,9 @@ import 'package:anet/home/index.dart';
 import 'package:anet/intrestgroups/interestGroupsPage.dart';
 import 'package:anet/login_bloc/login.dart' as prefix0;
 import 'package:anet/login_bloc/tempsignup.dart';
+import 'package:anet/supersaiyan/super_state.dart';
+import 'package:anet/supersaiyanUI/supersaiyanhome.dart';
+import 'package:anet/supersaiyanUI/supersaiyanlogin.dart';
 import 'package:anet/utils/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
@@ -111,8 +114,8 @@ class AppState extends State<App> {
 
   setupApp() {
     configBloc = ConfigBloc();
-    configBloc.darkModeOn =
-        Devfest.prefs.getBool(Devfest.darkModePref) ?? false;
+    configBloc.darkModeOn = true;
+        //Devfest.prefs.getBool(Devfest.darkModePref) ?? false;
   }
 
   @override
@@ -136,7 +139,8 @@ class AppState extends State<App> {
           return MaterialApp(
             theme: ThemeData(
               //* Custom Google Font
-              fontFamily: Devfest.josefin_sans_family,
+              //fontFamily: Devfest.josefin_sans_family,
+              fontFamily: Devfest.google_sans_family,
               primarySwatch: Colors.red,
               primaryColor:
                   configBloc.darkModeOn ? Tools.multiColors[5] : Colors.white,
@@ -164,7 +168,7 @@ class AppState extends State<App> {
                     )
                   ),  */
 
-           /*    textTheme: Theme.of(context).textTheme.apply(
+              /*    textTheme: Theme.of(context).textTheme.apply(
                     bodyColor: configBloc.darkModeOn
                         ? Tools.multiColors[4]
                         : Colors.black,
@@ -176,7 +180,7 @@ class AppState extends State<App> {
                   color: configBloc.darkModeOn
                       ? Tools.multiColors[4]
                       : Colors.green)), */
-                
+
               appBarTheme: AppBarTheme(
                 elevation: 0.0,
               ),
@@ -236,6 +240,10 @@ class AppState extends State<App> {
                   ),
               RegisterStateless.routeName: (context) => RegisterStateless(),
               InterestGroupsPage.routeName: (context) => InterestGroupsPage(),
+              SuperSaiyanLoginPage.routeName: (context) => SuperSaiyanLoginPage(
+                  userRepository:
+                      RepositoryProvider.of<UserRepository>(context)),
+                      SuperSaiyanHome.routeName: (context) => SuperSaiyanHome(),
 
               /*   SignupPage.routeName: (context) => SignupPage(
                     userRepository:

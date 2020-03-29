@@ -140,7 +140,7 @@ class NewsScreen extends StatelessWidget {
                   ),
             ),
             subtitle: Text(
-              "\n${newsList[i].n_author}\n${newsList[i].n_datetime.toString()}",
+              "\n${newsList[i].n_datetime.toString()}".substring(0,11),
               
               style: Theme.of(context).textTheme.caption.copyWith(
                     fontSize: 12.0,
